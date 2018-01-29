@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Canvas from './canvas';
 
 class App extends React.Component {
    constructor(props) {
@@ -46,7 +47,8 @@ class App extends React.Component {
       <div>
         <input type="file" onChange={this.handleUploadImage} />
         <button onClick={this.getImage}>Show image</button>
-        <div className="displayImage"><img></img></div>        
+        <div className="displayImage"><img></img></div> 
+        <Canvas char1='/upload/rageface.jpg'/>
       </div>
     );
   }
