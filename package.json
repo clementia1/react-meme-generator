@@ -16,7 +16,7 @@
     "multer": "^1.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-komik": "0.0.6"
+    "react-komik": "https://github.com/clementia1/react-komik/tarball/master"
   },
   "devDependencies": {
     "babel": "^6.23.0",
