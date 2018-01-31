@@ -1,5 +1,5 @@
 import React from 'react';
-import { Strip, Panel, Character, Balloon } from 'react-komik';
+import { Strip, Panel, Character, Balloon } from './comic';
 
 
 
