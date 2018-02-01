@@ -10,14 +10,14 @@ class Strip extends Component {
         };
     }
     onDownload() {
-        var {canvas} = this.state;
+        var { canvas } = this.state;
         var link = this.downloadLink;
         link.setAttribute('href', canvas.toDataURL());
-        link.setAttribute('download', this.props.title+'.png');
+        link.setAttribute('download', this.props.title + '.png');
         link.click();
     }
     onEffect(effect) {
-        var {canvas} = this.state;
+        var { canvas } = this.state;
         canvas.deactivateAll();
         var overlayImageUrl = canvas.toDataURL('png');
         var imageDOM = ReactDOM.findDOMNode(this.imageBuffer);
@@ -25,8 +25,8 @@ class Strip extends Component {
         imageDOM.setAttribute('crossOrigin', 'anonymous');
         var filterImageUrl = imageDOM.getAttribute('src');
         // patch fabric for cross domain image jazz
-        
-        fabric.Image.fromURL(filterImageUrl, function(img) {
+
+        fabric.Image.fromURL(filterImageUrl, function (img) {
             switch (effect) {
                 case 'grayscale':
                     img.filters.push(new fabric.Image.filters.Grayscale());
@@ -44,19 +44,19 @@ class Strip extends Component {
             img.applyFilters(canvas.renderAll.bind(canvas));
             canvas.add(img);
         }, {
-            crossOrigin: 'anonymous'
-        });
+                crossOrigin: 'anonymous'
+            });
         canvas.deactivateAll().renderAll();
     }
     componentDidMount() {
         var canvas = new fabric.Canvas('canvas');
-        var {padding, width, height, fill, stroke, fontFamily, strokeWidth, fontSize} = this.props;
+        var { padding, width, height, fill, stroke, fontFamily, strokeWidth, fontSize } = this.props;
         var rect = new fabric.Rect({
             top: padding,
             left: padding,
-            width : width - 2 * padding,
-            height : height - 2 * padding,
-            fill : fill,
+            width: width - 2 * padding,
+            height: height - 2 * padding,
+            fill: fill,
             stroke: stroke,
             selectable: false,
             strokeWidth: strokeWidth
@@ -77,15 +77,49 @@ class Strip extends Component {
         });
         canvas.add(text);
 
-        this.setState({canvas});
+        this.setState({ canvas });
     }
+    hovering() {
+        var canvas = this.__canvas = new fabric.Canvas('c');
+        fabric.Object.prototype.transparentCorners = false;
+      
+        canvas.on('mouse:over', function(e) {
+          e.target.set('fill', 'red');
+          canvas.renderAll();
+        });
+      
+        canvas.on('mouse:out', function(e) {
+          e.target.set('fill', 'green');
+          canvas.renderAll();
+        });
+      
+        // add random objects
+        for (var i = 15; i--; ) {
+          var dim = fabric.util.getRandomInt(30, 60);
+          var klass = ['Rect', 'Triangle', 'Circle'][fabric.util.getRandomInt(0,2)];
+          var options = {
+            top: fabric.util.getRandomInt(0, 600),
+            left: fabric.util.getRandomInt(0, 600),
+            fill: 'green'
+          };
+          if (klass === 'Circle') {
+            options.radius = dim;
+          }
+          else {
+            options.width = dim;
+            options.height = dim;
+          }
+          canvas.add(new fabric[klass](options));
+        }
+      }
+
     render() {
         var _this = this;
         var parentProps = objectAssign({}, _this.props);
         delete parentProps.children;
-        var childProps = objectAssign({}, {canvas: _this.state.canvas, parent: parentProps, rootParent: parentProps});
-        var childrenWithProps = React.Children.map(this.props.children, function(child, id) {
-            var currentProps = objectAssign({}, childProps, {index: id});
+        var childProps = objectAssign({}, { canvas: _this.state.canvas, parent: parentProps, rootParent: parentProps });
+        var childrenWithProps = React.Children.map(this.props.children, function (child, id) {
+            var currentProps = objectAssign({}, childProps, { index: id });
             return React.cloneElement(child, currentProps);
         });
         return (
@@ -93,13 +127,14 @@ class Strip extends Component {
                 <canvas id="canvas" {...this.props}></canvas>
                 {childrenWithProps}
                 <div>
-                    <button onClick={this.onEffect.bind(this, 'grayscale')}>Grayscale</button> 
-                    <button onClick={this.onEffect.bind(this, 'sepia')}>Sepia</button> 
-                    <button onClick={this.onEffect.bind(this, 'sepia2')}>Sepia 2</button> 
-                    <button onClick={this.onEffect.bind(this, 'invert')}>Invert</button> 
+                    <button onClick={this.hovering.bind(this)}>Hovering</button>
+                    <button onClick={this.onEffect.bind(this, 'grayscale')}>Grayscale</button>
+                    <button onClick={this.onEffect.bind(this, 'sepia')}>Sepia</button>
+                    <button onClick={this.onEffect.bind(this, 'sepia2')}>Sepia 2</button>
+                    <button onClick={this.onEffect.bind(this, 'invert')}>Invert</button>
                     <button onClick={this.onDownload.bind(this)}>Download</button>
-                    <img ref={(ref) => this.imageBuffer = ref} crossOrigin="anonymous" src=""  style={{display:'none'}} />
-                    <a ref={(ref) => this.downloadLink = ref} style={{display: 'none'}}>Download</a>
+                    <img ref={(ref) => this.imageBuffer = ref} crossOrigin="anonymous" src="" style={{ display: 'none' }} />
+                    <a ref={(ref) => this.downloadLink = ref} style={{ display: 'none' }}>Download</a>
                 </div>
             </div>
         );

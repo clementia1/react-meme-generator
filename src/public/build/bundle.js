@@ -26483,6 +26483,40 @@ var Strip = function (_Component) {
             this.setState({ canvas: canvas });
         }
     }, {
+        key: 'hovering',
+        value: function hovering() {
+            var canvas = this.__canvas = new fabric.Canvas('c');
+            fabric.Object.prototype.transparentCorners = false;
+
+            canvas.on('mouse:over', function (e) {
+                e.target.set('fill', 'red');
+                canvas.renderAll();
+            });
+
+            canvas.on('mouse:out', function (e) {
+                e.target.set('fill', 'green');
+                canvas.renderAll();
+            });
+
+            // add random objects
+            for (var i = 15; i--;) {
+                var dim = fabric.util.getRandomInt(30, 60);
+                var klass = ['Rect', 'Triangle', 'Circle'][fabric.util.getRandomInt(0, 2)];
+                var options = {
+                    top: fabric.util.getRandomInt(0, 600),
+                    left: fabric.util.getRandomInt(0, 600),
+                    fill: 'green'
+                };
+                if (klass === 'Circle') {
+                    options.radius = dim;
+                } else {
+                    options.width = dim;
+                    options.height = dim;
+                }
+                canvas.add(new fabric[klass](options));
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this3 = this;
@@ -26503,6 +26537,11 @@ var Strip = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     null,
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.hovering.bind(this) },
+                        'Hovering'
+                    ),
                     _react2.default.createElement(
                         'button',
                         { onClick: this.onEffect.bind(this, 'grayscale') },
