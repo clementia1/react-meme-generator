@@ -25123,7 +25123,16 @@ var App = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-    _this.state = { image: '' };
+    _this.state = {
+      image: '',
+      characters: [{
+        name: 'character1',
+        image: '/upload/rageface.jpg'
+      }, {
+        name: 'character2',
+        image: '/upload/rageface.jpg'
+      }]
+    };
 
     _this.handleUploadImage = _this.handleUploadImage.bind(_this);
     _this.getImage = _this.getImage.bind(_this);
@@ -25179,7 +25188,7 @@ var App = function (_React$Component) {
           { className: 'displayImage' },
           _react2.default.createElement('img', null)
         ),
-        _react2.default.createElement(_canvas2.default, { char1: '/upload/rageface.jpg' })
+        _react2.default.createElement(_canvas2.default, { characters: this.state.characters })
       );
     }
   }]);
@@ -26087,7 +26096,7 @@ module.exports = function spread(callback) {
 
 
 Object.defineProperty(exports, "__esModule", {
-		value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -26107,36 +26116,36 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Canvas = function (_React$Component) {
-		_inherits(Canvas, _React$Component);
+  _inherits(Canvas, _React$Component);
 
-		function Canvas(props) {
-				_classCallCheck(this, Canvas);
+  function Canvas(props) {
+    _classCallCheck(this, Canvas);
 
-				return _possibleConstructorReturn(this, (Canvas.__proto__ || Object.getPrototypeOf(Canvas)).call(this, props));
-		}
+    return _possibleConstructorReturn(this, (Canvas.__proto__ || Object.getPrototypeOf(Canvas)).call(this, props));
+  }
 
-		_createClass(Canvas, [{
-				key: 'render',
-				value: function render() {
-						return _react2.default.createElement(
-								_comic.Strip,
-								{ title: 'Your title here', column: '1' },
-								_react2.default.createElement(
-										_comic.Panel,
-										null,
-										_react2.default.createElement(
-												_comic.Character,
-												{
-														image: this.props.char1 },
-												_react2.default.createElement(_comic.Balloon, {
-														text: 'Reactify Comic!' })
-										)
-								)
-						);
-				}
-		}]);
+  _createClass(Canvas, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _comic.Strip,
+        { title: 'Your title here', column: '1' },
+        _react2.default.createElement(
+          _comic.Panel,
+          null,
+          this.props.characters.map(function (character) {
+            return _react2.default.createElement(
+              _comic.Character,
+              { image: character.image },
+              _react2.default.createElement(_comic.Balloon, { text: 'Reactify Comic!' })
+            );
+          })
+        )
+      );
+    }
+  }]);
 
-		return Canvas;
+  return Canvas;
 }(_react2.default.Component);
 
 exports.default = Canvas;
