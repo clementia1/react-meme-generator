@@ -119,7 +119,7 @@ class Balloon extends Component {
 
 Balloon.defaultProps = {
     text: 'Hi Bro!',
-    image: 'chat_right.svg',
+    image: './upload/chat_right.svg',
     top: null,
     left: null,
     bottom: -70,

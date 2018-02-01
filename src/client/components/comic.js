@@ -5,9 +5,10 @@ import Character from './comic-components/Character';
 import Balloon from './comic-components/Balloon';
 import fabric from 'fabric-webpack';
 
+
 module.exports = {
     Panel,
     Strip,
     Balloon,
-    Character
+    Character, fabric
 };

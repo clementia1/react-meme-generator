@@ -26178,7 +26178,7 @@ module.exports = {
     Panel: _Panel2.default,
     Strip: _Strip2.default,
     Balloon: _Balloon2.default,
-    Character: _Character2.default
+    Character: _Character2.default, fabric: _fabricWebpack2.default
 };
 
 /***/ }),
@@ -26919,7 +26919,7 @@ var Balloon = function (_Component) {
 
 Balloon.defaultProps = {
     text: 'Hi Bro!',
-    image: 'chat_right.svg',
+    image: './upload/chat_right.svg',
     top: null,
     left: null,
     bottom: -70,

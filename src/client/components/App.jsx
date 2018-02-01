@@ -49,6 +49,7 @@ class App extends React.Component {
         <button onClick={this.getImage}>Show image</button>
         <div className="displayImage"><img></img></div> 
         <Canvas char1='/upload/rageface.jpg'/>
+        
       </div>
     );
   }
