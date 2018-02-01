@@ -12,11 +12,13 @@ class Canvas extends React.Component {
     return (
 		<Strip title="Your title here" column="1">
 			<Panel>
-				<Character
-					image={this.props.char1}>
-					<Balloon 
-						text="Reactify Comic!" />
-				</Character>
+                { 
+                this.props.characters.map((character) => {
+                    return <Character image={character.image}>
+                              <Balloon text="Reactify Comic!"/>
+                           </Character>
+                    })
+                }
 			</Panel>
 		</Strip>
     );

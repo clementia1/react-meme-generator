@@ -5,7 +5,19 @@ import Canvas from './canvas';
 class App extends React.Component {
    constructor(props) {
     super(props);
-    this.state = {image: ''};
+    this.state = {
+        image: '',
+        characters: [
+            {
+                name: 'character1',
+                image: '/upload/rageface.jpg'                
+            },
+            {
+                name: 'character2',
+                image: '/upload/rageface.jpg'                
+            }
+        ]
+    };
 
     this.handleUploadImage = this.handleUploadImage.bind(this);
     this.getImage = this.getImage.bind(this);
@@ -48,7 +60,7 @@ class App extends React.Component {
         <input type="file" onChange={this.handleUploadImage} />
         <button onClick={this.getImage}>Show image</button>
         <div className="displayImage"><img></img></div> 
-        <Canvas char1='/upload/rageface.jpg'/>
+        <Canvas characters={this.state.characters}/>
         
       </div>
     );
