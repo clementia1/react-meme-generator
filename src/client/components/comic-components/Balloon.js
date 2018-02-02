@@ -79,6 +79,7 @@ class Balloon extends Component {
             fontSize: fontSize || _this.props.rootParent.fontSize,
             fontWeight: 'bold',
             textAlign: textAlign,
+            editable: true,
             fontFamily: fontFamily || _this.props.rootParent.fontFamily,
         };
  

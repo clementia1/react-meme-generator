@@ -7,6 +7,8 @@ class App extends React.Component {
     super(props);
     this.state = {
         image: '',
+        width: 500,
+        title: 'Type your title',
         characters: [
             {
                 name: 'character1',
@@ -18,7 +20,9 @@ class App extends React.Component {
             }
         ]
     };
-
+       
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleWidthChange = this.handleWidthChange.bind(this);
     this.handleUploadImage = this.handleUploadImage.bind(this);
     this.getImage = this.getImage.bind(this);
   }
@@ -27,9 +31,6 @@ class App extends React.Component {
     const data = new FormData();
     data.append('file', event.target.files[0]);
       this.setState({image: event.target.files[0].name});
-    data.append('name', 'some value user types');
-    data.append('description', 'some value user types');
-      console.log(event.target.files[0]);
     // '/upload' is your node.js route that triggers our middleware
     axios.post('/upload', data).then((response) => {
       console.log(response); // do something with the response
@@ -53,15 +54,28 @@ class App extends React.Component {
 	            }
           });
   }
+  
+  handleWidthChange(event) {
+      this.setState({width: event.target.value});
+  }
+   
+  handleTitleChange(event) {
+      this.setState({title: event.target.value});
+  }
     
+  removeCharacter() {
+      this.setState({characters: this.state.characters.slice(0, -1)});
+  }
   render() {
     return (
       <div>
+        <button onClick={this.removeCharacter.bind(this)}>Remove character</button>
         <input type="file" onChange={this.handleUploadImage} />
+        Заголовок: <input type="text" onChange={this.handleTitleChange} />
+        Ширина: <input type="range" min="0" max="1000" step="10" value={this.state.width} onChange={this.handleWidthChange} />
         <button onClick={this.getImage}>Show image</button>
         <div className="displayImage"><img></img></div> 
-        <Canvas characters={this.state.characters}/>
-        
+        <Canvas title={this.state.title} width={this.state.width} characters={this.state.characters}/>        
       </div>
     );
   }

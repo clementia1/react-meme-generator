@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import objectAssign from 'object-assign';
 import ReactDOM from 'react-dom';
 
 class Strip extends Component {
@@ -48,9 +47,10 @@ class Strip extends Component {
         });
         canvas.deactivateAll().renderAll();
     }
-    
     componentDidMount() {
         var canvas = new fabric.Canvas('canvas');
+        
+        
         var {padding, width, height, fill, stroke, fontFamily, strokeWidth, fontSize} = this.props;
         var rect = new fabric.Rect({
             top: padding,
@@ -80,13 +80,25 @@ class Strip extends Component {
 
         this.setState({canvas});
     }
+    
+    componentWillReceiveProps(nextProps) {
+        var {canvas} = this.state;
+        
+        
+        canvas.item(1).setText(nextProps.title);
+        canvas.item(0).setWidth(nextProps.width, {backstoreOnly:true});
+        canvas.item(0).setWidth(nextProps.width, {cssOnly:true});
+        canvas.setWidth(nextProps.width, {backstoreOnly:true});
+        canvas.setWidth(nextProps.width, {cssOnly:true});
+    }
+    
     render() {
         var _this = this;
-        var parentProps = objectAssign({}, _this.props);
+        var parentProps = Object.assign({}, _this.props);
         delete parentProps.children;
-        var childProps = objectAssign({}, {canvas: _this.state.canvas, parent: parentProps, rootParent: parentProps});
+        var childProps = Object.assign({}, {canvas: _this.state.canvas, parent: parentProps, rootParent: parentProps});
         var childrenWithProps = React.Children.map(this.props.children, function(child, id) {
-            var currentProps = objectAssign({}, childProps, {index: id});
+            var currentProps = Object.assign({}, childProps, {index: id});
             return React.cloneElement(child, currentProps);
         });
         return (

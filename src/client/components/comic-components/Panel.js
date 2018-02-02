@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import objectAssign from 'object-assign';
 
 class Panel extends Component {
     constructor(props) {
@@ -79,11 +78,11 @@ class Panel extends Component {
     }
     render() {
         var _this = this;
-        var parentProps = objectAssign({}, _this.props, _this.state.props);
+        var parentProps = Object.assign({}, _this.props, _this.state.props);
         delete parentProps.children;
-        var childProps = objectAssign({}, {canvas: _this.props.canvas, parent: parentProps, rootParent: _this.props.rootParent});
+        var childProps = Object.assign({}, {canvas: _this.props.canvas, parent: parentProps, rootParent: _this.props.rootParent});
         var childrenWithProps = React.Children.map(this.props.children, function(child, id) {
-            var currentProps = objectAssign({}, childProps, {index: id});
+            var currentProps = Object.assign({}, childProps, {index: id});
             return React.cloneElement(child, currentProps);
         });
         return (<div>{childrenWithProps}</div>);
@@ -93,7 +92,7 @@ class Panel extends Component {
 Panel.defaultProps = {
     height: 180,
     padding: 20,
-    fill: 'white',
+    fill: 'rgba(0,0,0,0)',
     stroke: 'black',
     strokeWidth: 3,
     background: null,

@@ -10,12 +10,12 @@ class Canvas extends React.Component {
 
   render() {
     return (
-		<Strip title="Your title here" column="1">
-			<Panel>
+		<Strip width={this.props.width} title={this.props.title} column="1">
+			<Panel width={this.props.width}>
                 { 
                 this.props.characters.map((character) => {
                     return <Character image={character.image}>
-                              <Balloon text="Reactify Comic!"/>
+                              <Balloon text="javascript... i like it"/>
                            </Character>
                     })
                 }
@@ -24,5 +24,7 @@ class Canvas extends React.Component {
     );
   }
 }
+
+
 
 export default Canvas;
