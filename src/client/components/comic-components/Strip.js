@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Dropdown from './Dropdown';
 
 class Strip extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            canvas: null
+            canvas: null,
+            isAddBlockOpened: false,
+
         };
+        this.toggleAddCard = this.toggleAddCard.bind(this);
     }
     onDownload() {
         var { canvas } = this.state;
@@ -91,26 +95,10 @@ class Strip extends Component {
         canvas.setWidth(nextProps.width, { backstoreOnly: true });
         canvas.setWidth(nextProps.width, { cssOnly: true });
     }
-
-    AddText() {
-        var {canvas} = this.state;
-        // console.log(canvas);
-        var text = 'Lorem ipsum dolor sit amet';
-        var textSample = new fabric.Textbox(text, {
-            fontSize: 20,
-            fontFamily: 'helvetica',
-            fontWeight: '',
-            width: 100,
-            left: 100,
-            top: 100,
-            originX: 'center',
-            originY: 'center',
-            hasRotatingPoint: true,
-            centerTransform: true
-        });
-
-        canvas.add(textSample);
-        this.setState({canvas});
+    toggleAddCard() {
+        this.setState({
+            isAddBlockOpened: !this.state.isAddBlockOpened,
+        })
     }
     render() {
         var _this = this;
@@ -126,7 +114,12 @@ class Strip extends Component {
                 <canvas id="canvas" {...this.props}></canvas>
                 {childrenWithProps}
                 <div>
-                    <button onClick={this.AddText.bind(this)}>добавить текст</button>
+                    {this.state.isAddBlockOpened ?
+                        <div className="add-card-opened">
+                            <Dropdown canvas={this.state.canvas} />
+                            <button onClick={this.toggleAddCard}>Х</button>
+                        </div> : <button onClick={this.toggleAddCard.bind(this)}>добавить текст</button>
+                    }
                     <button onClick={this.onEffect.bind(this, 'grayscale')}>Grayscale</button>
                     <button onClick={this.onEffect.bind(this, 'sepia')}>Sepia</button>
                     <button onClick={this.onEffect.bind(this, 'sepia2')}>Sepia 2</button>

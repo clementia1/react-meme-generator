@@ -26205,6 +26205,10 @@ var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _Dropdown = __webpack_require__(110);
+
+var _Dropdown2 = _interopRequireDefault(_Dropdown);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26222,8 +26226,11 @@ var Strip = function (_Component) {
         var _this2 = _possibleConstructorReturn(this, (Strip.__proto__ || Object.getPrototypeOf(Strip)).call(this, props));
 
         _this2.state = {
-            canvas: null
+            canvas: null,
+            isAddBlockOpened: false
+
         };
+        _this2.toggleAddCard = _this2.toggleAddCard.bind(_this2);
         return _this2;
     }
 
@@ -26328,27 +26335,11 @@ var Strip = function (_Component) {
             canvas.setWidth(nextProps.width, { cssOnly: true });
         }
     }, {
-        key: 'AddText',
-        value: function AddText() {
-            var canvas = this.state.canvas;
-            // console.log(canvas);
-
-            var text = 'Lorem ipsum dolor sit amet';
-            var textSample = new fabric.Textbox(text, {
-                fontSize: 20,
-                fontFamily: 'helvetica',
-                fontWeight: '',
-                width: 100,
-                left: 100,
-                top: 100,
-                originX: 'center',
-                originY: 'center',
-                hasRotatingPoint: true,
-                centerTransform: true
+        key: 'toggleAddCard',
+        value: function toggleAddCard() {
+            this.setState({
+                isAddBlockOpened: !this.state.isAddBlockOpened
             });
-
-            canvas.add(textSample);
-            this.setState({ canvas: canvas });
         }
     }, {
         key: 'render',
@@ -26371,9 +26362,18 @@ var Strip = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     null,
-                    _react2.default.createElement(
+                    this.state.isAddBlockOpened ? _react2.default.createElement(
+                        'div',
+                        { className: 'add-card-opened' },
+                        _react2.default.createElement(_Dropdown2.default, { canvas: this.state.canvas }),
+                        _react2.default.createElement(
+                            'button',
+                            { onClick: this.toggleAddCard },
+                            '\u0425'
+                        )
+                    ) : _react2.default.createElement(
                         'button',
-                        { onClick: this.AddText.bind(this) },
+                        { onClick: this.toggleAddCard.bind(this) },
                         '\u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u0435\u043A\u0441\u0442'
                     ),
                     _react2.default.createElement(
@@ -53254,7 +53254,7 @@ exports = module.exports = __webpack_require__(107)(false);
 
 
 // module
-exports.push([module.i, "body {\n  background: #ACCEEC;\n  color: #005CC5;\n  text-align: center; }\n", ""]);
+exports.push([module.i, "body {\n  background: #ACCEEC;\n  color: #005CC5;\n  text-align: center; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\n.add-card-open {\n  text-align: center; }\n", ""]);
 
 // exports
 
@@ -53817,6 +53817,152 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Dropdown = function (_React$Component) {
+  _inherits(Dropdown, _React$Component);
+
+  function Dropdown(props) {
+    _classCallCheck(this, Dropdown);
+
+    var _this = _possibleConstructorReturn(this, (Dropdown.__proto__ || Object.getPrototypeOf(Dropdown)).call(this, props));
+
+    _this.state = {
+      text: '',
+      color: '#000000',
+      font: ['Arial', 'Sherwood', 'Geneva', 'Verdana', 'Monaco', 'Myriad Pro', 'Lucida Grande', 'Ubuntu', 'Impact', 'Times New Roman', 'Georgia', 'Gothic'],
+      selectedFont: "Arial",
+      selectedSize: 20,
+      size: [10, 20, 25, 30, 50]
+    };
+    _this.AddText = _this.AddText.bind(_this);
+    _this.changeFont = _this.changeFont.bind(_this);
+    _this.changeTextarea = _this.changeTextarea.bind(_this);
+    _this.changeTextareaColor = _this.changeTextareaColor.bind(_this);
+    _this.changeSize = _this.changeSize.bind(_this);
+    return _this;
+  }
+
+  _createClass(Dropdown, [{
+    key: 'AddText',
+    value: function AddText() {
+      var canvas = this.props.canvas;
+
+      var text = this.state.text;
+      var textSample = new fabric.Textbox(text, {
+        fontSize: this.state.selectedSize,
+        fontFamily: this.state.selectedFont,
+        fontWeight: '',
+        width: 100,
+        left: 100,
+        top: 400,
+        originX: 'center',
+        originY: 'center',
+        hasRotatingPoint: true,
+        centerTransform: true,
+        fill: this.state.color
+
+      });
+      canvas.add(textSample);
+      this.setState({ canvas: canvas });
+    }
+  }, {
+    key: 'changeTextarea',
+    value: function changeTextarea(e) {
+      this.setState({
+        text: e.target.value
+      });
+    }
+  }, {
+    key: 'changeTextareaColor',
+    value: function changeTextareaColor(e) {
+      this.setState({
+        color: e.target.value
+      });
+    }
+  }, {
+    key: 'changeFont',
+    value: function changeFont(e) {
+      this.setState({
+        selectedFont: e.target.value
+      });
+    }
+  }, {
+    key: 'changeSize',
+    value: function changeSize(e) {
+      this.setState({
+        selectedSize: e.target.value
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'add-card-opened' },
+        _react2.default.createElement('textarea', { onChange: this.changeTextarea, value: this.state.text }),
+        _react2.default.createElement('input', { type: 'color', value: this.state.color, onChange: this.changeTextareaColor.bind(this) }),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.AddText },
+          '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C'
+        ),
+        _react2.default.createElement(
+          'select',
+          { className: 'font-selector', onChange: this.changeFont, value: this.state.selectedFont },
+          this.state.font.map(function (item, index) {
+            return _react2.default.createElement(
+              'option',
+              { key: index, value: item, style: { fontFamily: item } },
+              item
+            );
+          }),
+          '    '
+        ),
+        _react2.default.createElement(
+          'select',
+          { className: 'font-selector', onChange: this.changeSize, value: this.state.selectedSize },
+          this.state.size.map(function (item, index) {
+            return _react2.default.createElement(
+              'option',
+              { key: index, value: item, style: { fontFamily: item } },
+              item
+            );
+          }),
+          '    '
+        )
+      );
+    }
+  }]);
+
+  return Dropdown;
+}(_react2.default.Component);
+
+exports.default = Dropdown;
 
 /***/ })
 /******/ ]);
