@@ -24993,7 +24993,7 @@ module.exports = camelize;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -25019,109 +25019,71 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var App = function (_React$Component) {
-    _inherits(App, _React$Component);
+  _inherits(App, _React$Component);
 
-    function App(props) {
-        _classCallCheck(this, App);
+  function App(props) {
+    _classCallCheck(this, App);
 
-        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-        _this.state = {
-            image: '',
-            width: 500,
-            title: 'Type your title',
-            characters: [{
-                name: 'character1',
-                image: '/upload/rageface.jpg'
-            }, {
-                name: 'character2',
-                image: '/upload/rageface.jpg'
-            }]
-        };
+    _this.state = {
+      image: '',
+      width: 500,
+      title: 'Type your title'
+    };
 
-        _this.handleTitleChange = _this.handleTitleChange.bind(_this);
-        _this.handleWidthChange = _this.handleWidthChange.bind(_this);
-        _this.handleUploadImage = _this.handleUploadImage.bind(_this);
-        _this.getImage = _this.getImage.bind(_this);
-        return _this;
+    _this.handleTitleChange = _this.handleTitleChange.bind(_this);
+    _this.handleWidthChange = _this.handleWidthChange.bind(_this);
+    _this.handleUploadImage = _this.handleUploadImage.bind(_this);
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'handleUploadImage',
+    value: function handleUploadImage(event) {
+      var _this2 = this;
+
+      var data = new FormData();
+      data.append('file', event.target.files[0]);
+      var imagePath = '/upload/' + event.target.files[0].name;
+
+      _axios2.default.post('/upload', data).then(function (response) {
+        _this2.setState({ image: imagePath });
+        console.log(response);
+      });
     }
+  }, {
+    key: 'handleWidthChange',
+    value: function handleWidthChange(event) {
+      this.setState({ width: event.target.value });
+    }
+  }, {
+    key: 'handleTitleChange',
+    value: function handleTitleChange(event) {
+      this.setState({ title: event.target.value });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('input', { type: 'file', onChange: this.handleUploadImage }),
+        '\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A: ',
+        _react2.default.createElement('input', { type: 'text', onChange: this.handleTitleChange }),
+        '\u0428\u0438\u0440\u0438\u043D\u0430: ',
+        _react2.default.createElement('input', { type: 'range', min: '0', max: '1000', step: '10', value: this.state.width, onChange: this.handleWidthChange }),
+        _react2.default.createElement(
+          'div',
+          { className: 'displayImage' },
+          _react2.default.createElement('img', null)
+        ),
+        _react2.default.createElement(_canvas2.default, { image: this.state.image, title: this.state.title, width: this.state.width })
+      );
+    }
+  }]);
 
-    _createClass(App, [{
-        key: 'handleUploadImage',
-        value: function handleUploadImage(event) {
-            var data = new FormData();
-            data.append('file', event.target.files[0]);
-            this.setState({ image: event.target.files[0].name });
-            // '/upload' is your node.js route that triggers our middleware
-            _axios2.default.post('/upload', data).then(function (response) {
-                console.log(response); // do something with the response
-            });
-        }
-    }, {
-        key: 'getImage',
-        value: function getImage() {
-            var imageUrl = "/upload/" + this.state.image;
-            var reader = new FileReader();
-            var el = document.querySelector('.displayImage');
-            var imageEl = el.querySelector("img");
-
-            _axios2.default.get(imageUrl, {
-                responseType: "blob"
-            }).then(function (response) {
-                reader.readAsDataURL(response.data);
-                reader.onload = function () {
-                    var imageDataUrl = reader.result;
-                    imageEl.setAttribute("src", imageDataUrl);
-                };
-            });
-        }
-    }, {
-        key: 'handleWidthChange',
-        value: function handleWidthChange(event) {
-            this.setState({ width: event.target.value });
-        }
-    }, {
-        key: 'handleTitleChange',
-        value: function handleTitleChange(event) {
-            this.setState({ title: event.target.value });
-        }
-    }, {
-        key: 'removeCharacter',
-        value: function removeCharacter() {
-            this.setState({ characters: this.state.characters.slice(0, -1) });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'button',
-                    { onClick: this.removeCharacter.bind(this) },
-                    'Remove character'
-                ),
-                _react2.default.createElement('input', { type: 'file', onChange: this.handleUploadImage }),
-                '\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A: ',
-                _react2.default.createElement('input', { type: 'text', onChange: this.handleTitleChange }),
-                '\u0428\u0438\u0440\u0438\u043D\u0430: ',
-                _react2.default.createElement('input', { type: 'range', min: '0', max: '1000', step: '10', value: this.state.width, onChange: this.handleWidthChange }),
-                _react2.default.createElement(
-                    'button',
-                    { onClick: this.getImage },
-                    'Show image'
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'displayImage' },
-                    _react2.default.createElement('img', null)
-                ),
-                _react2.default.createElement(_canvas2.default, { title: this.state.title, width: this.state.width, characters: this.state.characters })
-            );
-        }
-    }]);
-
-    return App;
+  return App;
 }(_react2.default.Component);
 
 exports.default = App;
@@ -26057,24 +26019,22 @@ var Canvas = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _comic.Strip,
-        { width: this.props.width, title: this.props.title, column: '1' },
-        _react2.default.createElement(
-          _comic.Panel,
-          { width: this.props.width },
-          this.props.characters.map(function (character) {
-            return _react2.default.createElement(
-              _comic.Character,
-              { image: character.image },
-              _react2.default.createElement(_comic.Balloon, { text: 'javascript... i like it' })
-            );
-          })
-        )
+        { image: this.props.image, width: this.props.width, title: this.props.title, column: '1' },
+        _react2.default.createElement(_comic.Panel, { width: this.props.width })
       );
     }
   }]);
 
   return Canvas;
 }(_react2.default.Component);
+
+/*{ 
+this.props.characters.map((character) => {
+    return <Character image={character.image}>
+              <Balloon text="javascript... i like it"/>
+           </Character>
+    })
+}*/
 
 exports.default = Canvas;
 
@@ -26425,10 +26385,20 @@ var Strip = function (_Component) {
             this.setState({ canvas: canvas });
         }
     }, {
+        key: 'addImage',
+        value: function addImage() {}
+    }, {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
             var canvas = this.state.canvas;
 
+
+            if (nextProps.image !== this.props.image) {
+                fabric.Image.fromURL(nextProps.image, function (oImg) {
+                    oImg.scaleToWidth(0.5 * canvas.getWidth());
+                    canvas.add(oImg);
+                });
+            }
 
             canvas.item(1).setText(nextProps.title);
             canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
@@ -26596,7 +26566,7 @@ var Dropdown = function (_React$Component) {
       var canvas = this.props.canvas;
 
       var text = this.state.text;
-      var textSample = new fabric.Textbox(text, {
+      var textSample = new fabric.IText(text, {
         fontSize: this.state.selectedSize,
         fontFamily: this.state.selectedFont,
         fontWeight: '',

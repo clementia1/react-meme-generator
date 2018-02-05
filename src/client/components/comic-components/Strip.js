@@ -85,11 +85,18 @@ class Strip extends Component {
 
         this.setState({ canvas });
     }
-
+    
+    
     componentWillReceiveProps(nextProps) {
         var { canvas } = this.state;
-
-
+        
+        if (nextProps.image !== this.props.image) {
+            fabric.Image.fromURL(nextProps.image, function (oImg) {
+                oImg.scaleToWidth(0.5 * canvas.getWidth());
+                canvas.add(oImg);
+            });
+        }
+        
         canvas.item(1).setText(nextProps.title);
         canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
         canvas.item(0).setWidth(nextProps.width, { cssOnly: true });

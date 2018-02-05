@@ -21,7 +21,7 @@ class Dropdown extends React.Component {
   AddText() {
     let { canvas } = this.props;
     let text = this.state.text;
-    let textSample = new fabric.Textbox(text, {
+    let textSample = new fabric.IText(text, {
       fontSize: this.state.selectedSize,
       fontFamily: this.state.selectedFont,
       fontWeight: '',
