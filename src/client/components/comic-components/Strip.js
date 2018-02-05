@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Dropdown from './Dropdown';
+import customizeControls from '../fabricjs/customizeControls';
 
 class Strip extends Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class Strip extends Component {
     }
     componentDidMount() {
         var canvas = new fabric.Canvas('canvas');
-
+        customizeControls(canvas);
 
         var { padding, width, height, fill, stroke, fontFamily, strokeWidth, fontSize } = this.props;
         var rect = new fabric.Rect({
