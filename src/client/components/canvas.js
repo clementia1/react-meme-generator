@@ -10,7 +10,7 @@ class Canvas extends React.Component {
 
   render() {
     return (
-		<Strip image={this.props.image} width={this.props.width} title={this.props.title} column="1">
+		<Strip image={this.props.image} imageCount={this.props.imageCount} width={this.props.width} title={this.props.title} column="1">
 			<Panel width={this.props.width}>
 
 			</Panel>

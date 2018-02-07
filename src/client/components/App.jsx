@@ -10,6 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = {
         image: '',
+        imageCount: 0,
         width: 500,
         title: 'Type your title'
     };
@@ -33,7 +34,10 @@ class App extends React.Component {
   
   addImageToCanvas(event) {     
      let img = event.target.src;
-     this.setState({image: img}); 
+     this.setState({
+         image: img,
+         imageCount: this.state.imageCount + 1
+     }); 
   }
   
   handleWidthChange(event) {
@@ -76,7 +80,7 @@ class App extends React.Component {
                     </div>
                 </div>
                 <div className="mdl-cell mdl-cell--9-col">
-                    <Canvas image={this.state.image} title={this.state.title} width={this.state.width}/>
+                    <Canvas image={this.state.image} imageCount={this.state.imageCount} title={this.state.title} width={this.state.width}/>
                 </div>
             </div>
         </div>

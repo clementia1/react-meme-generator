@@ -91,8 +91,8 @@ class Strip extends Component {
     
     componentWillReceiveProps(nextProps) {
         var { canvas } = this.state;
-        
-        if (nextProps.image !== this.props.image) {
+        console.log(nextProps.imageCount, this.props.imageCount);
+        if (nextProps.image !== this.props.image || nextProps.imageCount !== this.props.imageCount) {
             fabric.Image.fromURL(nextProps.image, function (oImg) {
                 oImg.scaleToWidth(0.5 * canvas.getWidth());
                 canvas.add(oImg);

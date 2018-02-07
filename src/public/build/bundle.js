@@ -25562,6 +25562,7 @@ var App = function (_React$Component) {
 
         _this.state = {
             image: '',
+            imageCount: 0,
             width: 500,
             title: 'Type your title'
         };
@@ -25591,7 +25592,10 @@ var App = function (_React$Component) {
         key: 'addImageToCanvas',
         value: function addImageToCanvas(event) {
             var img = event.target.src;
-            this.setState({ image: img });
+            this.setState({
+                image: img,
+                imageCount: this.state.imageCount + 1
+            });
         }
     }, {
         key: 'handleWidthChange',
@@ -25690,7 +25694,7 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-cell mdl-cell--9-col' },
-                        _react2.default.createElement(_canvas2.default, { image: this.state.image, title: this.state.title, width: this.state.width })
+                        _react2.default.createElement(_canvas2.default, { image: this.state.image, imageCount: this.state.imageCount, title: this.state.title, width: this.state.width })
                     )
                 )
             );
@@ -26633,7 +26637,7 @@ var Canvas = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _comic.Strip,
-        { image: this.props.image, width: this.props.width, title: this.props.title, column: '1' },
+        { image: this.props.image, imageCount: this.props.imageCount, width: this.props.width, title: this.props.title, column: '1' },
         _react2.default.createElement(_comic.Panel, { width: this.props.width })
       );
     }
@@ -27007,8 +27011,8 @@ var Strip = function (_Component) {
         value: function componentWillReceiveProps(nextProps) {
             var canvas = this.state.canvas;
 
-
-            if (nextProps.image !== this.props.image) {
+            console.log(nextProps.imageCount, this.props.imageCount);
+            if (nextProps.image !== this.props.image || nextProps.imageCount !== this.props.imageCount) {
                 fabric.Image.fromURL(nextProps.image, function (oImg) {
                     oImg.scaleToWidth(0.5 * canvas.getWidth());
                     canvas.add(oImg);
