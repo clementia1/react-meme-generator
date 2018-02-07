@@ -1,5 +1,6 @@
 import React from 'react';
-
+import 'material-design-lite/material.css';
+import 'material-design-lite/material.min.js';
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class Dropdown extends React.Component {
       <div className="add-card-opened">
         <textarea onChange={this.changeTextarea} value={this.state.text}></textarea>
         <input type="color" value={this.state.color} onChange={this.changeTextareaColor.bind(this)}></input>
-        <button onClick={this.AddText}>Добавить</button>
+        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Добавить</button>
         <select className="font-selector" onChange={this.changeFont} value={this.state.selectedFont}>
           {this.state.font.map((item, index) => {
             return <option key={index} value={item} style={{ fontFamily: item }}>{item}</option>

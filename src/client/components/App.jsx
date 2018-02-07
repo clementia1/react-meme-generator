@@ -45,7 +45,11 @@ class App extends React.Component {
         <div>
             <div className="mdl-grid">
                 <div className="mdl-cell mdl-cell--12-col">
-                    <input type="file" onChange={this.handleUploadImage} /> 
+                    <label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                      ADD IMAGE
+                      <input type="file" onChange={this.handleUploadImage}/>
+                    </label>
+                    <br></br>
                       <div className="mdl-textfield mdl-js-textfield">
                         <input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} />
                         <label className="mdl-textfield__label" htmlFor="title">Type your title</label>

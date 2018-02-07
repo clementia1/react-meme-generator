@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Dropdown from './Dropdown';
 import customizeControls from '../fabricjs/customizeControls';
+import 'material-design-lite/material.css';
+import 'material-design-lite/material.min.js';
 
 class Strip extends Component {
     constructor(props) {
@@ -125,14 +127,14 @@ class Strip extends Component {
                     {this.state.isAddBlockOpened ?
                         <div className="add-card-opened">
                             <Dropdown canvas={this.state.canvas} />
-                            <button onClick={this.toggleAddCard}>Х</button>
-                        </div> : <button onClick={this.toggleAddCard.bind(this)}>добавить текст</button>
+                            <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard}>Х</button>
+                        </div> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard.bind(this)}>добавить текст</button>
                     }
-                    <button onClick={this.onEffect.bind(this, 'grayscale')}>Grayscale</button>
-                    <button onClick={this.onEffect.bind(this, 'sepia')}>Sepia</button>
-                    <button onClick={this.onEffect.bind(this, 'sepia2')}>Sepia 2</button>
-                    <button onClick={this.onEffect.bind(this, 'invert')}>Invert</button>
-                    <button onClick={this.onDownload.bind(this)}>Download</button>
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'grayscale')}>Grayscale</button>
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'sepia')}>Sepia</button>
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'sepia2')}>Sepia 2</button>
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'invert')}>Invert</button>
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onDownload.bind(this)}>Download</button>
                     <img ref={(ref) => this.imageBuffer = ref} crossOrigin="anonymous" src="" style={{ display: 'none' }} />
                     <a ref={(ref) => this.downloadLink = ref} style={{ display: 'none' }}>Download</a>
                 </div>
