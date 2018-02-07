@@ -45,7 +45,7 @@ class App extends React.Component {
         <div>
             <div className="mdl-grid">
                 <div className="mdl-cell mdl-cell--12-col">
-                    <label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                    <label className="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                       ADD IMAGE
                       <input type="file" onChange={this.handleUploadImage}/>
                     </label>
@@ -63,12 +63,12 @@ class App extends React.Component {
             <div className="mdl-grid">
                 <div className="mdl-cell mdl-cell--3-col">
                     <div className="mdl-grid">
-                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg" alt="альтернативный текст" /></div>
-                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg" alt="альтернативный текст" /></div>
-                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg" alt="альтернативный текст" /></div>
-                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg" alt="альтернативный текст" /></div>
-                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="upload/Pepe_pls.png" alt="альтернативный текст" /></div>
-                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="upload/rageface.jpg" alt="альтернативный текст" /></div>
+                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg"/></div>
+                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg"/></div>
+                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg"/></div>
+                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg"/></div>
+                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="upload/Pepe_pls.png"/></div>
+                        <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox"><img src="upload/rageface.jpg"/></div>
                     </div>
                 </div>
                 <div className="mdl-cell mdl-cell--9-col">

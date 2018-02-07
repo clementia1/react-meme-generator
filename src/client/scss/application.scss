@@ -71,11 +71,17 @@ label.input-custom-file input[type=file] {
     width: 300px;
 }
 
-.imgBox  {
-    display: flex;
+.imgBox  { 
+    -moz-display: flex;
     justify-content: stretch;
     transition: all .2s ease-in-out;
 }
+
+.imgBox img {
+    width: 100%;
+    height: auto; 
+}
+
 
 .imgBox:hover { 
     transform: scale(1.1); 
