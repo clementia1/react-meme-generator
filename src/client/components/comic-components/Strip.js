@@ -4,6 +4,7 @@ import Dropdown from './Dropdown';
 import customizeControls from '../fabricjs/customizeControls';
 import 'material-design-lite/material.css';
 import 'material-design-lite/material.min.js';
+import Brush from './Brush';
 
 class Strip extends Component {
     constructor(props) {
@@ -11,9 +12,11 @@ class Strip extends Component {
         this.state = {
             canvas: null,
             isAddBlockOpened: false,
+            isAddBlockOpenedBrush: false,
 
         };
         this.toggleAddCard = this.toggleAddCard.bind(this);
+        this.toggleAddCardBrush = this.toggleAddCardBrush.bind(this);
     }
     onDownload() {
         var { canvas } = this.state;
@@ -87,8 +90,8 @@ class Strip extends Component {
 
         this.setState({ canvas });
     }
-    
-    
+
+
     componentWillReceiveProps(nextProps) {
         var { canvas } = this.state;
         console.log(nextProps.imageCount, this.props.imageCount);
@@ -98,7 +101,7 @@ class Strip extends Component {
                 canvas.add(oImg);
             });
         }
-        
+
         canvas.item(1).setText(nextProps.title);
         canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
         canvas.item(0).setWidth(nextProps.width, { cssOnly: true });
@@ -108,6 +111,11 @@ class Strip extends Component {
     toggleAddCard() {
         this.setState({
             isAddBlockOpened: !this.state.isAddBlockOpened,
+        })
+    }
+    toggleAddCardBrush() {
+        this.setState({
+            isAddBlockOpenedBrush: !this.state.isAddBlockOpenedBrush,
         })
     }
     render() {
@@ -129,6 +137,12 @@ class Strip extends Component {
                             <Dropdown canvas={this.state.canvas} />
                             <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard}>Х</button>
                         </div> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard.bind(this)}>добавить текст</button>
+                    }
+                    {this.state.isAddBlockOpenedBrush ?
+                        <div className="add-card-opened">
+                            <Brush canvas={this.state.canvas} />
+                            <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCardBrush}>Х</button>
+                        </div> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCardBrush.bind(this)}>РЕЖИМ КИСТЬ</button>
                     }
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'grayscale')}>Grayscale</button>
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'sepia')}>Sepia</button>
