@@ -9710,6 +9710,21 @@ var ImagePanel1 = function ImagePanel1(props) {
                 'div',
                 { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
                 _react2.default.createElement('img', { src: 'upload/memes/rageface/1.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'upload/memes/rageface/wtf.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'upload/memes/rageface/okay.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'upload/memes/rageface/rly.png' })
             )
         )
     );
