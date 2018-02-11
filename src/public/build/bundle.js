@@ -9774,6 +9774,11 @@ var ImagePanel2 = function ImagePanel2(props) {
                 'div',
                 { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
                 _react2.default.createElement('img', { src: 'upload/memes/pepe/Pepe_pls.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'upload/memes/pepe/fae.png' })
             )
         )
     );
@@ -32300,6 +32305,10 @@ var Strip = function (_Component) {
                 fontFamily: fontFamily
             });
             canvas.add(text);
+
+            canvas.on("object:selected", function (options) {
+                options.target.bringToFront();
+            });
 
             this.setState({ canvas: canvas });
         }

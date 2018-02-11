@@ -89,6 +89,10 @@ class Strip extends Component {
         });
         canvas.add(text);
 
+        canvas.on("object:selected", function(options) {
+            options.target.bringToFront();
+        });
+        
         this.setState({ canvas });
     }
 
