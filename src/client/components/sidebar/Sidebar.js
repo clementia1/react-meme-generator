@@ -6,10 +6,10 @@ import ImagePanel2 from './sidebar-components/ImagePanel2';
 import SidebarHeader from './sidebar-components/SidebarHeader';
 import SidebarMain from './sidebar-components/SidebarMain';
 
-const Sidebar = () => (
+const Sidebar = (props) => (
   <div>
     <SidebarHeader/>
-    <SidebarMain/>
+    <SidebarMain addImage={props.addImage}/>
   </div>
 )
 

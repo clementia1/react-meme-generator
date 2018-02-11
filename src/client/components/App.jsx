@@ -86,7 +86,7 @@ class App extends React.Component {
 
             <div className="mdl-grid">
                 <div className="mdl-cell mdl-cell--3-col">
-                    <Sidebar/>
+                    <Sidebar addImage={this.addImageToCanvas}/>
                 </div>
                 <div className="mdl-cell mdl-cell--9-col">
                     <Canvas image={this.state.image} imageCount={this.state.imageCount} title={this.state.title} width={this.state.width}/>

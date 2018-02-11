@@ -9689,7 +9689,7 @@ __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ImagePanel1 = function ImagePanel1() {
+var ImagePanel1 = function ImagePanel1(props) {
     return _react2.default.createElement(
         'div',
         null,
@@ -9698,17 +9698,17 @@ var ImagePanel1 = function ImagePanel1() {
             { className: 'mdl-grid' },
             _react2.default.createElement(
                 'div',
-                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox' },
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
                 _react2.default.createElement('img', { src: 'https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg' })
             ),
             _react2.default.createElement(
                 'div',
-                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox' },
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
                 _react2.default.createElement('img', { src: 'upload/Pepe_pls.png' })
             ),
             _react2.default.createElement(
                 'div',
-                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox' },
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
                 _react2.default.createElement('img', { src: 'upload/rageface.jpg' })
             )
         )
@@ -9738,7 +9738,7 @@ __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ImagePanel2 = function ImagePanel2() {
+var ImagePanel2 = function ImagePanel2(props) {
     return _react2.default.createElement(
         'div',
         null,
@@ -9747,17 +9747,17 @@ var ImagePanel2 = function ImagePanel2() {
             { className: 'mdl-grid' },
             _react2.default.createElement(
                 'div',
-                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox' },
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
                 _react2.default.createElement('img', { src: 'https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg' })
             ),
             _react2.default.createElement(
                 'div',
-                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox' },
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
                 _react2.default.createElement('img', { src: 'https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg' })
             ),
             _react2.default.createElement(
                 'div',
-                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox' },
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
                 _react2.default.createElement('img', { src: 'https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg' })
             )
         )
@@ -30972,7 +30972,7 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-cell mdl-cell--3-col' },
-                        _react2.default.createElement(_Sidebar2.default, null)
+                        _react2.default.createElement(_Sidebar2.default, { addImage: this.addImageToCanvas })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -59818,12 +59818,12 @@ var _SidebarMain2 = _interopRequireDefault(_SidebarMain);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Sidebar = function Sidebar() {
+var Sidebar = function Sidebar(props) {
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(_SidebarHeader2.default, null),
-    _react2.default.createElement(_SidebarMain2.default, null)
+    _react2.default.createElement(_SidebarMain2.default, { addImage: props.addImage })
   );
 };
 
@@ -59914,15 +59914,19 @@ var _reactRouterDom = __webpack_require__(24);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SidebarMain = function SidebarMain() {
+var SidebarMain = function SidebarMain(props) {
   return _react2.default.createElement(
     'main',
     null,
     _react2.default.createElement(
       _reactRouterDom.Switch,
       null,
-      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _ImagePanel2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/ImagePanel2', component: _ImagePanel4.default })
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render() {
+          return _react2.default.createElement(_ImagePanel2.default, { addImage: props.addImage });
+        } }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/ImagePanel2', render: function render() {
+          return _react2.default.createElement(_ImagePanel4.default, { addImage: props.addImage });
+        } })
     )
   );
 };

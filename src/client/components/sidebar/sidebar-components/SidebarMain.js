@@ -5,11 +5,11 @@ import ImagePanel1 from './ImagePanel1';
 import ImagePanel2 from './ImagePanel2';
 import { Route, Switch } from 'react-router-dom';
 
-const SidebarMain = () => (
+const SidebarMain = (props) => (
   <main>
     <Switch>
-      <Route exact path='/' component={ImagePanel1}/>
-      <Route path='/ImagePanel2' component={ImagePanel2}/>
+      <Route exact path='/' render={()=><ImagePanel1 addImage={props.addImage}/>} />
+      <Route path='/ImagePanel2' render={()=><ImagePanel2 addImage={props.addImage}/>}/>
     </Switch>
   </main>
 );
