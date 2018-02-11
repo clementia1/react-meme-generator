@@ -13,11 +13,13 @@ class App extends React.Component {
         image: '',
         imageCount: 0,
         width: 700,
+        height: 500,
         title: 'Type your title'
     };
        
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleWidthChange = this.handleWidthChange.bind(this);
+    this.handleHeightChange = this.handleHeightChange.bind(this);
     this.handleUploadImage = this.handleUploadImage.bind(this);
     this.addImageToCanvas = this.addImageToCanvas.bind(this);
   }
@@ -43,6 +45,10 @@ class App extends React.Component {
   
   handleWidthChange(event) {
       this.setState({width: event.target.value});
+  }
+
+  handleHeightChange(event) {
+    this.setState({height: event.target.value});
   }
    
   handleTitleChange(event) {
@@ -75,6 +81,12 @@ class App extends React.Component {
                             Adjust canvas width
                             </div>
                         </div>
+                        <div className="controlpanel-item">
+                            <p className="rangeCanvasWidth" id="rangeCanvasHeight"> <input className="mdl-slider mdl-js-slider" type="range" min="0" max="1000" step="10" value={this.state.height} onChange={this.handleHeightChange} /> </p>
+                            <div className="mdl-tooltip" htmlFor="rangeCanvasHeight">
+                            Adjust canvas height
+                            </div>
+                        </div>
                     </div>
                     <div class="mdl-tabs__panel header-panel" id="tab2">
                         <p>Second tab's content.</p>
@@ -89,7 +101,13 @@ class App extends React.Component {
                     <Sidebar addImage={this.addImageToCanvas}/>
                 </div>
                 <div className="mdl-cell mdl-cell--9-col">
-                    <Canvas image={this.state.image} imageCount={this.state.imageCount} title={this.state.title} width={this.state.width}/>
+                    <Canvas 
+                        image={this.state.image}
+                        imageCount={this.state.imageCount}
+                        title={this.state.title}
+                        width={this.state.width}
+                        height={this.state.height}
+                    />
                 </div>
             </div>
         </div>

@@ -105,13 +105,21 @@ class Strip extends Component {
                 oImg.scaleToWidth(0.5 * canvas.getWidth());
                 canvas.add(oImg);
             });
+        }        
+        console.log(canvas.item(0), canvas.item(1));
+        if (nextProps.width !== this.props.width) {
+            canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
+            canvas.item(0).setWidth(nextProps.width, { cssOnly: true }).sendToBack();
+            canvas.setWidth(nextProps.width, { backstoreOnly: true });
+            canvas.setWidth(nextProps.width, { cssOnly: true });
         }
-        
-        
-        canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
-        canvas.item(0).setWidth(nextProps.width, { cssOnly: true }).sendToBack();
-        canvas.setWidth(nextProps.width, { backstoreOnly: true });
-        canvas.setWidth(nextProps.width, { cssOnly: true });
+        if (nextProps.height !== this.props.height) {
+            canvas.item(0).setHeight(nextProps.height, { backstoreOnly: true });
+            canvas.item(0).setHeight(nextProps.height, { cssOnly: true }).sendToBack();
+            canvas.setHeight(nextProps.height, { backstoreOnly: true });
+            canvas.setHeight(nextProps.height, { cssOnly: true });
+        }
+
         if (canvas.getItemByName('mainTitle')) {
             canvas.getItemByName('mainTitle').setText(nextProps.title).bringToFront();
         } 

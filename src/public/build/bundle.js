@@ -30856,11 +30856,13 @@ var App = function (_React$Component) {
             image: '',
             imageCount: 0,
             width: 700,
+            height: 500,
             title: 'Type your title'
         };
 
         _this.handleTitleChange = _this.handleTitleChange.bind(_this);
         _this.handleWidthChange = _this.handleWidthChange.bind(_this);
+        _this.handleHeightChange = _this.handleHeightChange.bind(_this);
         _this.handleUploadImage = _this.handleUploadImage.bind(_this);
         _this.addImageToCanvas = _this.addImageToCanvas.bind(_this);
         return _this;
@@ -30893,6 +30895,11 @@ var App = function (_React$Component) {
         key: 'handleWidthChange',
         value: function handleWidthChange(event) {
             this.setState({ width: event.target.value });
+        }
+    }, {
+        key: 'handleHeightChange',
+        value: function handleHeightChange(event) {
+            this.setState({ height: event.target.value });
         }
     }, {
         key: 'handleTitleChange',
@@ -30965,6 +30972,22 @@ var App = function (_React$Component) {
                                 { className: 'mdl-tooltip', htmlFor: 'rangeCanvasWidth' },
                                 'Adjust canvas width'
                             )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'controlpanel-item' },
+                            _react2.default.createElement(
+                                'p',
+                                { className: 'rangeCanvasWidth', id: 'rangeCanvasHeight' },
+                                ' ',
+                                _react2.default.createElement('input', { className: 'mdl-slider mdl-js-slider', type: 'range', min: '0', max: '1000', step: '10', value: this.state.height, onChange: this.handleHeightChange }),
+                                ' '
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'mdl-tooltip', htmlFor: 'rangeCanvasHeight' },
+                                'Adjust canvas height'
+                            )
                         )
                     ),
                     _react2.default.createElement(
@@ -30997,7 +31020,13 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-cell mdl-cell--9-col' },
-                        _react2.default.createElement(_canvas2.default, { image: this.state.image, imageCount: this.state.imageCount, title: this.state.title, width: this.state.width })
+                        _react2.default.createElement(_canvas2.default, {
+                            image: this.state.image,
+                            imageCount: this.state.imageCount,
+                            title: this.state.title,
+                            width: this.state.width,
+                            height: this.state.height
+                        })
                     )
                 )
             );
@@ -31940,7 +31969,7 @@ var Canvas = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _comic.Strip,
-        { image: this.props.image, imageCount: this.props.imageCount, width: this.props.width, title: this.props.title, column: '1' },
+        { image: this.props.image, imageCount: this.props.imageCount, width: this.props.width, height: this.props.height, title: this.props.title, column: '1' },
         _react2.default.createElement(_comic.Panel, { width: this.props.width })
       );
     }
@@ -32324,11 +32353,20 @@ var Strip = function (_Component) {
                     canvas.add(oImg);
                 });
             }
+            console.log(canvas.item(0), canvas.item(1));
+            if (nextProps.width !== this.props.width) {
+                canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
+                canvas.item(0).setWidth(nextProps.width, { cssOnly: true }).sendToBack();
+                canvas.setWidth(nextProps.width, { backstoreOnly: true });
+                canvas.setWidth(nextProps.width, { cssOnly: true });
+            }
+            if (nextProps.height !== this.props.height) {
+                canvas.item(0).setHeight(nextProps.height, { backstoreOnly: true });
+                canvas.item(0).setHeight(nextProps.height, { cssOnly: true }).sendToBack();
+                canvas.setHeight(nextProps.height, { backstoreOnly: true });
+                canvas.setHeight(nextProps.height, { cssOnly: true });
+            }
 
-            canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
-            canvas.item(0).setWidth(nextProps.width, { cssOnly: true }).sendToBack();
-            canvas.setWidth(nextProps.width, { backstoreOnly: true });
-            canvas.setWidth(nextProps.width, { cssOnly: true });
             if (canvas.getItemByName('mainTitle')) {
                 canvas.getItemByName('mainTitle').setText(nextProps.title).bringToFront();
             }
