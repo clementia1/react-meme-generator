@@ -99,14 +99,14 @@ class Strip extends Component {
 
     componentWillReceiveProps(nextProps) {
         var { canvas } = this.state;
-        console.log(nextProps.imageCount, this.props.imageCount);
+        
         if (nextProps.image !== this.props.image || nextProps.imageCount !== this.props.imageCount) {
             fabric.Image.fromURL(nextProps.image, function (oImg) {
                 oImg.scaleToWidth(0.5 * canvas.getWidth());
                 canvas.add(oImg);
             });
         }
-        console.log(canvas.item(0), canvas.item(1));
+        
         
         canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
         canvas.item(0).setWidth(nextProps.width, { cssOnly: true }).sendToBack();
@@ -115,7 +115,7 @@ class Strip extends Component {
         if (canvas.getItemByName('mainTitle')) {
             canvas.getItemByName('mainTitle').setText(nextProps.title).bringToFront();
         } 
-        canvas.getItemByName('mainTitle').bringToFront();
+        
     }
     toggleAddCard() {
         this.setState({
