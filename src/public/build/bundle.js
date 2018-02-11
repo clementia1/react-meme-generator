@@ -30865,6 +30865,7 @@ var App = function (_React$Component) {
         _this.handleHeightChange = _this.handleHeightChange.bind(_this);
         _this.handleUploadImage = _this.handleUploadImage.bind(_this);
         _this.addImageToCanvas = _this.addImageToCanvas.bind(_this);
+        _this.addImageFromUrl = _this.addImageFromUrl.bind(_this);
         return _this;
     }
 
@@ -30889,6 +30890,13 @@ var App = function (_React$Component) {
             this.setState({
                 image: img,
                 imageCount: this.state.imageCount + 1
+            });
+        }
+    }, {
+        key: 'addImageFromUrl',
+        value: function addImageFromUrl(event) {
+            this.setState({
+                image: event.target.value
             });
         }
     }, {
@@ -30949,12 +30957,16 @@ var App = function (_React$Component) {
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'mdl-textfield mdl-js-textfield controlpanel-item' },
-                            _react2.default.createElement('input', { className: 'mdl-textfield__input', type: 'text', id: 'title', onChange: this.handleTitleChange }),
+                            { className: 'controlpanel-item' },
                             _react2.default.createElement(
-                                'label',
-                                { className: 'mdl-textfield__label', htmlFor: 'title' },
-                                'Type your title'
+                                'div',
+                                { 'class': 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label' },
+                                _react2.default.createElement('input', { 'class': 'mdl-textfield__input', type: 'text', id: 'sample3', onChange: this.addImageFromUrl }),
+                                _react2.default.createElement(
+                                    'label',
+                                    { 'class': 'mdl-textfield__label', 'for': 'sample3' },
+                                    'Add image from url'
+                                )
                             )
                         ),
                         _react2.default.createElement(
@@ -30987,6 +30999,16 @@ var App = function (_React$Component) {
                                 'div',
                                 { className: 'mdl-tooltip', htmlFor: 'rangeCanvasHeight' },
                                 'Adjust canvas height'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'mdl-textfield mdl-js-textfield controlpanel-item' },
+                            _react2.default.createElement('input', { className: 'mdl-textfield__input', type: 'text', id: 'title', onChange: this.handleTitleChange }),
+                            _react2.default.createElement(
+                                'label',
+                                { className: 'mdl-textfield__label', htmlFor: 'title' },
+                                'Type your title'
                             )
                         )
                     ),

@@ -22,6 +22,7 @@ class App extends React.Component {
     this.handleHeightChange = this.handleHeightChange.bind(this);
     this.handleUploadImage = this.handleUploadImage.bind(this);
     this.addImageToCanvas = this.addImageToCanvas.bind(this);
+    this.addImageFromUrl = this.addImageFromUrl.bind(this);
   }
 
   handleUploadImage(event) {
@@ -42,6 +43,12 @@ class App extends React.Component {
          imageCount: this.state.imageCount + 1
      }); 
   }
+
+  addImageFromUrl(event) { 
+    this.setState({
+        image: event.target.value
+    }); 
+ }
   
   handleWidthChange(event) {
       this.setState({width: event.target.value});
@@ -71,9 +78,11 @@ class App extends React.Component {
                             <input type="file" onChange={this.handleUploadImage}/>
                             </label>
                         </div>
-                        <div className="mdl-textfield mdl-js-textfield controlpanel-item">
-                            <input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} />
-                            <label className="mdl-textfield__label" htmlFor="title">Type your title</label>
+                        <div className="controlpanel-item">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="sample3" onChange={this.addImageFromUrl}/>
+                                <label class="mdl-textfield__label" for="sample3">Add image from url</label>
+                            </div>
                         </div>
                         <div className="controlpanel-item">
                             <p className="rangeCanvasWidth" id="rangeCanvasWidth"> <input className="mdl-slider mdl-js-slider" type="range" min="0" max="1000" step="10" value={this.state.width} onChange={this.handleWidthChange} /> </p>
@@ -86,6 +95,10 @@ class App extends React.Component {
                             <div className="mdl-tooltip" htmlFor="rangeCanvasHeight">
                             Adjust canvas height
                             </div>
+                        </div>
+                        <div className="mdl-textfield mdl-js-textfield controlpanel-item">
+                            <input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} />
+                            <label className="mdl-textfield__label" htmlFor="title">Type your title</label>
                         </div>
                     </div>
                     <div class="mdl-tabs__panel header-panel" id="tab2">
