@@ -108,3 +108,16 @@ label.input-custom-file input[type=file] {
   display: inline-flex;
   margin: 20px;
 }
+
+.sidebar-header-ul {  
+  list-style-type: none;
+  background-color: rgb(41, 22, 4);
+}
+
+.sidebar-header-ul li, a {
+  color: rgb(218, 216, 214);
+  padding: 10px;
+  outline: none;
+  text-decoration: none;
+  text-transform: uppercase;
+}

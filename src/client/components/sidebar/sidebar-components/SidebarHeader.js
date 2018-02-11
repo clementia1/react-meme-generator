@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const SidebarHeader = () => (
     <nav>
-      <ul>
+      <ul className="sidebar-header-ul mdl-tabs__tab-bar">
         <li><Link to='/'>Rageface</Link></li>
         <li><Link to='/ImagePanel2'>Pepe</Link></li>
       </ul>

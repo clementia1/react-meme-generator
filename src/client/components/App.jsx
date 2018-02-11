@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
         image: '',
         imageCount: 0,
-        width: 500,
+        width: 700,
         title: 'Type your title'
     };
        
