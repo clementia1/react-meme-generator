@@ -38,8 +38,8 @@ class Panel extends Component {
             var currentProps = {
                 top: _top,
                 left: _left,
-                width: _width,
-                height: _height,
+                width: 0,
+                height: 0,
                 fill : fill,
                 stroke: stroke,
                 strokeWidth: strokeWidth,

@@ -12,19 +12,11 @@ class Canvas extends React.Component {
     return (
 		<Strip image={this.props.image} imageCount={this.props.imageCount} width={this.props.width} title={this.props.title} column="1">
 			<Panel width={this.props.width}>
-
-			</Panel>
+			</Panel> 
 		</Strip>
     );
   }
 }
 
-                /*{ 
-                this.props.characters.map((character) => {
-                    return <Character image={character.image}>
-                              <Balloon text="javascript... i like it"/>
-                           </Character>
-                    })
-                }*/
 
 export default Canvas;

@@ -65,8 +65,8 @@ class Strip extends Component {
         var rect = new fabric.Rect({
             top: padding,
             left: padding,
-            width: width - 2 * padding,
-            height: height - 2 * padding,
+            width: 0,
+            height: 0,
             fill: fill,
             stroke: stroke,
             selectable: false,
@@ -78,6 +78,7 @@ class Strip extends Component {
         if (this.props.upperCase) title = title.toUpperCase();
 
         var text = new fabric.Text(title, {
+            name: 'mainTitle',
             top: padding + 20,
             left: width / 2,
             originX: 'center',
@@ -101,12 +102,16 @@ class Strip extends Component {
                 canvas.add(oImg);
             });
         }
-
-        canvas.item(1).setText(nextProps.title);
+        console.log(canvas.item(0), canvas.item(1));
+        
         canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
-        canvas.item(0).setWidth(nextProps.width, { cssOnly: true });
+        canvas.item(0).setWidth(nextProps.width, { cssOnly: true }).sendToBack();
         canvas.setWidth(nextProps.width, { backstoreOnly: true });
         canvas.setWidth(nextProps.width, { cssOnly: true });
+        if (canvas.getItemByName('mainTitle')) {
+            canvas.getItemByName('mainTitle').setText(nextProps.title).bringToFront();
+        } 
+        canvas.getItemByName('mainTitle').bringToFront();
     }
     toggleAddCard() {
         this.setState({

@@ -54,9 +54,9 @@ class App extends React.Component {
         <div>
              <div class="mdl-tabs mdl-js-tabs">
                     <div class="mdl-tabs__tab-bar">
-                        <a href="#tab1" class="mdl-tabs__tab header-tab">Tab One</a>
-                        <a href="#tab2" class="mdl-tabs__tab header-tab">Tab Two</a>
-                        <a href="#tab3" class="mdl-tabs__tab header-tab">Tab Three</a>
+                        <a href="#tab1" class="mdl-tabs__tab header-tab">MAIN SETTINGS</a>
+                        <a href="#tab2" class="mdl-tabs__tab header-tab">ADD TEXT</a>
+                        <a href="#tab3" class="mdl-tabs__tab header-tab">DRAWING MODE</a>
                     </div>
                     <div class="mdl-tabs__panel header-panel is-active" id="tab1">
                         <div className="controlpanel-item">
