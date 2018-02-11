@@ -6,7 +6,7 @@ let app = express();
 
 
 app.use(express.static(path.join(__dirname, '..', 'public'))); //serves the index.html
-app.use(express.static('/upload'));
+app.use('/upload', express.static('upload'));
 app.listen(3000); //listens on port 3000 -> http://localhost:3000/
 
 // configuring Multer to use files directory for storing files

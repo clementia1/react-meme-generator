@@ -65,8 +65,8 @@ class Strip extends Component {
         var rect = new fabric.Rect({
             top: padding,
             left: padding,
-            width: 0,
-            height: 0,
+            width: width - 2 * padding,
+            height: height - 2 * padding,
             fill: fill,
             stroke: stroke,
             selectable: false,

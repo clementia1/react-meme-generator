@@ -92,7 +92,7 @@ class Panel extends Component {
 Panel.defaultProps = {
     height: 180,
     padding: 20,
-    fill: 'rgba(0,0,0,0)',
+    fill: 'white',
     stroke: 'black',
     strokeWidth: 3,
     background: null,

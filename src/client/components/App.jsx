@@ -97,13 +97,4 @@ class App extends React.Component {
   }
 }
 
-/*<div className="mdl-grid">
-    <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={this.addImageToCanvas}><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg"/></div>
-    <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={this.addImageToCanvas}><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg"/></div>
-    <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={this.addImageToCanvas}><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg"/></div>
-    <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={this.addImageToCanvas}><img src="https://pbs.twimg.com/profile_images/848395594590814208/_TtPuzHs.jpg"/></div>
-    <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={this.addImageToCanvas}><img src="upload/Pepe_pls.png"/></div>
-    <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={this.addImageToCanvas}><img src="upload/rageface.jpg"/></div>
-</div>*/
-
 export default App;

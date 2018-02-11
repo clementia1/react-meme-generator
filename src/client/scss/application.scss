@@ -77,11 +77,10 @@ label.input-custom-file input[type=file] {
 
 .imgBox  { 
     -moz-display: flex;
-    justify-content: stretch;
     transition: all .2s ease-in-out;
 }
 
-.imgBox img {
+.imgBox > img {
     width: 100%;
     height: auto;
 }
