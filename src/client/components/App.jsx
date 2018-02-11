@@ -59,18 +59,21 @@ class App extends React.Component {
                         <a href="#tab3" class="mdl-tabs__tab header-tab">Tab Three</a>
                     </div>
                     <div class="mdl-tabs__panel header-panel is-active" id="tab1">
-                        <label className="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                        ADD IMAGE
-                        <input type="file" onChange={this.handleUploadImage}/>
-                        </label>
-                        <br></br>
-                        <div className="mdl-textfield mdl-js-textfield">
-                        <input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} />
-                        <label className="mdl-textfield__label" htmlFor="title">Type your title</label>
+                        <div className="controlpanel-item">
+                            <label className="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            ADD IMAGE
+                            <input type="file" onChange={this.handleUploadImage}/>
+                            </label>
                         </div>
-                        <p className="rangeCanvasWidth" id="rangeCanvasWidth"> <input className="mdl-slider mdl-js-slider" type="range" min="0" max="1000" step="10" value={this.state.width} onChange={this.handleWidthChange} /> </p>
-                        <div className="mdl-tooltip" htmlFor="rangeCanvasWidth">
-                        Adjust canvas width
+                        <div className="mdl-textfield mdl-js-textfield controlpanel-item">
+                            <input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} />
+                            <label className="mdl-textfield__label" htmlFor="title">Type your title</label>
+                        </div>
+                        <div className="controlpanel-item">
+                            <p className="rangeCanvasWidth" id="rangeCanvasWidth"> <input className="mdl-slider mdl-js-slider" type="range" min="0" max="1000" step="10" value={this.state.width} onChange={this.handleWidthChange} /> </p>
+                            <div className="mdl-tooltip" htmlFor="rangeCanvasWidth">
+                            Adjust canvas width
+                            </div>
                         </div>
                     </div>
                     <div class="mdl-tabs__panel header-panel" id="tab2">
