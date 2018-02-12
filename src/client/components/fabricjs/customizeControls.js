@@ -3,6 +3,7 @@ function customizeControls(canvas) {
     var DIMICON = 15;
     var dataImage = [            
             "http://localhost:3000/upload/remove.svg", /*delete*/
+            "upload/layer.svg"
           ];
           //********override*****//
           fabric.Object.prototype._drawControl = function(control, ctx, methodName, left, top) {
@@ -18,11 +19,11 @@ function customizeControls(canvas) {
                 //*delete*
                 SelectedIconImage.src = dataImage[0];
                 break;
-              /*case 'tr':
+              case 'tr':
                 //*scale*
                 SelectedIconImage.src = dataImage[1];
                 break;
-              case 'bl':
+/*              case 'bl':
                 //*scale*
                 SelectedIconImage.src = dataImage[2];
                 break;
@@ -61,7 +62,7 @@ function customizeControls(canvas) {
               } else if (corner === "mt") {
                   this.setCursor('n-resize');
               } else if (corner === "tr") {
-                  this.setCursor('ne-resize');
+                  this.setCursor('pointer');
               } else if (corner === 'mtr' && target.hasRotatingPoint) {
                   this.setCursor(this.rotationCursor);
               } else {
@@ -92,6 +93,10 @@ function customizeControls(canvas) {
                 case 'tl': //delete function if mouse down
                   action = 'delete';
                   canvas.remove(canvas.getActiveObject());
+                  break;
+                case 'tr': //delete function if mouse down
+                  action = 'sendToBack';
+                  canvas.sendBackwards(canvas.getActiveObject());
                   break;
                   /**ADD END**/
                 default:

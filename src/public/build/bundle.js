@@ -30856,6 +30856,10 @@ var App = function (_React$Component) {
             _this.child.fitToObjectWidth();
         };
 
+        _this.fitToHeight = function () {
+            _this.child.fitToObjectHeight();
+        };
+
         _this.state = {
             image: '',
             imageCount: 0,
@@ -31024,6 +31028,11 @@ var App = function (_React$Component) {
                                 'button',
                                 { className: 'mdl-button mdl-js-button mdl-button--raised', onClick: this.fitToWidth },
                                 'FIT TO WIDTH'
+                            ),
+                            _react2.default.createElement(
+                                'button',
+                                { className: 'mdl-button mdl-js-button mdl-button--raised', onClick: this.fitToHeight },
+                                'FIT TO HEIGHT'
                             )
                         )
                     ),
@@ -32336,11 +32345,28 @@ var Strip = function (_Component) {
         value: function fitToObjectWidth() {
             var canvas = this.state.canvas;
 
-            var activeObjWidth = canvas.getActiveObject().getWidth();
-            canvas.item(0).setWidth(activeObjWidth, { backstoreOnly: true });
-            canvas.item(0).setWidth(activeObjWidth, { cssOnly: true }).sendToBack();
-            canvas.setWidth(activeObjWidth, { backstoreOnly: true });
-            canvas.setWidth(activeObjWidth, { cssOnly: true });
+            if (canvas.getActiveObject()) {
+                var activeObjWidth = canvas.getActiveObject().getWidth();
+                canvas.item(0).setWidth(activeObjWidth, { backstoreOnly: true });
+                canvas.item(0).setWidth(activeObjWidth, { cssOnly: true }).sendToBack();
+                canvas.setWidth(activeObjWidth, { backstoreOnly: true });
+                canvas.setWidth(activeObjWidth, { cssOnly: true });
+                canvas.getActiveObject().center().setCoords();
+            }
+        }
+    }, {
+        key: 'fitToObjectHeight',
+        value: function fitToObjectHeight() {
+            var canvas = this.state.canvas;
+
+            if (canvas.getActiveObject()) {
+                var activeObjHeight = canvas.getActiveObject().getHeight();
+                canvas.item(0).setHeight(activeObjHeight, { backstoreOnly: true });
+                canvas.item(0).setHeight(activeObjHeight, { cssOnly: true }).sendToBack();
+                canvas.setHeight(activeObjHeight, { backstoreOnly: true });
+                canvas.setHeight(activeObjHeight, { cssOnly: true });
+                canvas.getActiveObject().center().setCoords();
+            }
         }
     }, {
         key: 'componentDidMount',
@@ -32617,14 +32643,13 @@ var Dropdown = function (_React$Component) {
         fontFamily: this.state.selectedFont,
         fontWeight: '',
         width: 100,
-        left: 100,
-        top: 400,
+        left: 50,
+        top: 50,
         originX: 'center',
         originY: 'center',
         hasRotatingPoint: true,
         centerTransform: true,
         fill: this.state.color
-
       });
       canvas.add(textSample);
       this.setState({ canvas: canvas });
@@ -32825,7 +32850,8 @@ Object.defineProperty(exports, "__esModule", {
 function customizeControls(canvas) {
 
   var DIMICON = 15;
-  var dataImage = ["http://localhost:3000/upload/remove.svg"];
+  var dataImage = ["http://localhost:3000/upload/remove.svg", /*delete*/
+  "upload/layer.svg"];
   //********override*****//
   fabric.Object.prototype._drawControl = function (control, ctx, methodName, left, top) {
     if (!this.isControlVisible(control)) {
@@ -32840,18 +32866,18 @@ function customizeControls(canvas) {
         //*delete*
         SelectedIconImage.src = dataImage[0];
         break;
-      /*case 'tr':
+      case 'tr':
         //*scale*
         SelectedIconImage.src = dataImage[1];
         break;
-      case 'bl':
-        //*scale*
-        SelectedIconImage.src = dataImage[2];
-        break;
-      case 'br':
-        //*rotate*
-        SelectedIconImage.src = dataImage[3];
-        break;*/
+      /*              case 'bl':
+                      //*scale*
+                      SelectedIconImage.src = dataImage[2];
+                      break;
+                    case 'br':
+                      //*rotate*
+                      SelectedIconImage.src = dataImage[3];
+                      break;*/
       default:
         ctx[methodName](left, top, size, size);
     }
@@ -32883,7 +32909,7 @@ function customizeControls(canvas) {
     } else if (corner === "mt") {
       this.setCursor('n-resize');
     } else if (corner === "tr") {
-      this.setCursor('ne-resize');
+      this.setCursor('pointer');
     } else if (corner === 'mtr' && target.hasRotatingPoint) {
       this.setCursor(this.rotationCursor);
     } else {
@@ -32915,6 +32941,11 @@ function customizeControls(canvas) {
           //delete function if mouse down
           action = 'delete';
           canvas.remove(canvas.getActiveObject());
+          break;
+        case 'tr':
+          //delete function if mouse down
+          action = 'sendToBack';
+          canvas.sendBackwards(canvas.getActiveObject());
           break;
         /**ADD END**/
         default:
@@ -60099,7 +60130,7 @@ exports = module.exports = __webpack_require__(55)(false);
 
 
 // module
-exports.push([module.i, "/* ----------------------------------------------\n * Generated by Animista on 2018-2-7 9:5:40\n * w: http://animista.net, t: @cssanimista\n * ---------------------------------------------- */\n/**\n * ----------------------------------------\n * animation shadow-drop-2-center\n * ----------------------------------------\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n.canvas-container {\n  background: white; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: 100px; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 20px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n", ""]);
+exports.push([module.i, "/* ----------------------------------------------\n * Generated by Animista on 2018-2-7 9:5:40\n * w: http://animista.net, t: @cssanimista\n * ---------------------------------------------- */\n/**\n * ----------------------------------------\n * animation shadow-drop-2-center\n * ----------------------------------------\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n.canvas-container {\n  background: white; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: auto; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 20px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n", ""]);
 
 // exports
 

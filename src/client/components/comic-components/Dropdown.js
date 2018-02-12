@@ -27,15 +27,14 @@ class Dropdown extends React.Component {
       fontFamily: this.state.selectedFont,
       fontWeight: '',
       width: 100,
-      left: 100,
-      top: 400,
+      left: 50,
+      top: 50,
       originX: 'center',
       originY: 'center',
       hasRotatingPoint: true,
       centerTransform: true,
       fill: this.state.color,
-
-    });
+    });    
     canvas.add(textSample);
     this.setState({ canvas });
   }

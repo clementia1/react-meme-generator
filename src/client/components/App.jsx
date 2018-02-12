@@ -47,6 +47,10 @@ class App extends React.Component {
   fitToWidth = () => {
     this.child.fitToObjectWidth(); 
   }
+  
+  fitToHeight = () => {
+    this.child.fitToObjectHeight(); 
+  }
     
   addImageFromUrl(event) { 
     this.setState({
@@ -107,6 +111,9 @@ class App extends React.Component {
                         <div className="controlpanel-item">
                             <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.fitToWidth}>
                               FIT TO WIDTH
+                            </button>
+                            <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.fitToHeight}>
+                              FIT TO HEIGHT
                             </button>
                         </div>
                     </div>

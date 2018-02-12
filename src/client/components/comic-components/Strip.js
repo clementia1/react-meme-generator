@@ -60,11 +60,26 @@ class Strip extends Component {
     
     fitToObjectWidth() {        
         let { canvas } = this.state;
-        let activeObjWidth = canvas.getActiveObject().getWidth();
-        canvas.item(0).setWidth(activeObjWidth, { backstoreOnly: true });
-        canvas.item(0).setWidth(activeObjWidth, { cssOnly: true }).sendToBack();
-        canvas.setWidth(activeObjWidth, { backstoreOnly: true });
-        canvas.setWidth(activeObjWidth, { cssOnly: true });
+        if (canvas.getActiveObject()) {
+            let activeObjWidth = canvas.getActiveObject().getWidth();
+            canvas.item(0).setWidth(activeObjWidth, { backstoreOnly: true });
+            canvas.item(0).setWidth(activeObjWidth, { cssOnly: true }).sendToBack();
+            canvas.setWidth(activeObjWidth, { backstoreOnly: true });
+            canvas.setWidth(activeObjWidth, { cssOnly: true });
+            canvas.getActiveObject().center().setCoords();
+        }
+    }
+    
+    fitToObjectHeight() { 
+        let { canvas } = this.state;
+        if (canvas.getActiveObject()) {
+            let activeObjHeight = canvas.getActiveObject().getHeight();
+            canvas.item(0).setHeight(activeObjHeight, { backstoreOnly: true });
+            canvas.item(0).setHeight(activeObjHeight, { cssOnly: true }).sendToBack();
+            canvas.setHeight(activeObjHeight, { backstoreOnly: true });
+            canvas.setHeight(activeObjHeight, { cssOnly: true });
+            canvas.getActiveObject().center().setCoords();
+        }     
     }
     
     componentDidMount() {
