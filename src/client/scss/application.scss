@@ -100,11 +100,12 @@ label.input-custom-file input[type=file] {
 }
 
 .header-panel {
+  display: inline-table;
   height: 100px;
 }
 
 .controlpanel-item {
-  display: inline-flex;
+  display: inline-table;
   margin: 20px;
 }
 
