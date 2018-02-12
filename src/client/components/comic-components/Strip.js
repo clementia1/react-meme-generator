@@ -57,7 +57,18 @@ class Strip extends Component {
             });
         canvas.deactivateAll().renderAll();
     }
+    
+    fitToObjectWidth() {        
+        let { canvas } = this.state;
+        let activeObjWidth = canvas.getActiveObject().getWidth();
+        canvas.item(0).setWidth(activeObjWidth, { backstoreOnly: true });
+        canvas.item(0).setWidth(activeObjWidth, { cssOnly: true }).sendToBack();
+        canvas.setWidth(activeObjWidth, { backstoreOnly: true });
+        canvas.setWidth(activeObjWidth, { cssOnly: true });
+    }
+    
     componentDidMount() {
+        this.props.onRef(this);
         var canvas = new fabric.Canvas('canvas');
         customizeControls(canvas);
 
@@ -95,7 +106,9 @@ class Strip extends Component {
         
         this.setState({ canvas });
     }
-
+      componentWillUnmount() {
+        this.props.onRef(null)
+      }
 
     componentWillReceiveProps(nextProps) {
         var { canvas } = this.state;

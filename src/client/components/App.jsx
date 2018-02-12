@@ -43,7 +43,11 @@ class App extends React.Component {
          imageCount: this.state.imageCount + 1
      }); 
   }
-
+  
+  fitToWidth = () => {
+    this.child.fitToObjectWidth(); 
+  }
+    
   addImageFromUrl(event) { 
     this.setState({
         image: event.target.value
@@ -100,6 +104,11 @@ class App extends React.Component {
                             <input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} />
                             <label className="mdl-textfield__label" htmlFor="title">Type your title</label>
                         </div>
+                        <div className="controlpanel-item">
+                            <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.fitToWidth}>
+                              FIT TO WIDTH
+                            </button>
+                        </div>
                     </div>
                     <div class="mdl-tabs__panel header-panel" id="tab2">
                         <p>Second tab's content.</p>
@@ -114,7 +123,7 @@ class App extends React.Component {
                     <Sidebar addImage={this.addImageToCanvas}/>
                 </div>
                 <div className="mdl-cell mdl-cell--9-col">
-                    <Canvas 
+                    <Canvas onRef={ref => (this.child = ref)}
                         image={this.state.image}
                         imageCount={this.state.imageCount}
                         title={this.state.title}

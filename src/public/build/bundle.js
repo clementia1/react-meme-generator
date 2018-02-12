@@ -30852,6 +30852,10 @@ var App = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
+        _this.fitToWidth = function () {
+            _this.child.fitToObjectWidth();
+        };
+
         _this.state = {
             image: '',
             imageCount: 0,
@@ -30917,6 +30921,8 @@ var App = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
             return _react2.default.createElement(
                 'div',
                 null,
@@ -31010,6 +31016,15 @@ var App = function (_React$Component) {
                                 { className: 'mdl-textfield__label', htmlFor: 'title' },
                                 'Type your title'
                             )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'controlpanel-item' },
+                            _react2.default.createElement(
+                                'button',
+                                { className: 'mdl-button mdl-js-button mdl-button--raised', onClick: this.fitToWidth },
+                                'FIT TO WIDTH'
+                            )
                         )
                     ),
                     _react2.default.createElement(
@@ -31042,7 +31057,9 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-cell mdl-cell--9-col' },
-                        _react2.default.createElement(_canvas2.default, {
+                        _react2.default.createElement(_canvas2.default, { onRef: function onRef(ref) {
+                                return _this3.child = ref;
+                            },
                             image: this.state.image,
                             imageCount: this.state.imageCount,
                             title: this.state.title,
@@ -31991,7 +32008,7 @@ var Canvas = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _comic.Strip,
-        { image: this.props.image, imageCount: this.props.imageCount, width: this.props.width, height: this.props.height, title: this.props.title, column: '1' },
+        this.props,
         _react2.default.createElement(_comic.Panel, { width: this.props.width })
       );
     }
@@ -32315,8 +32332,20 @@ var Strip = function (_Component) {
             canvas.deactivateAll().renderAll();
         }
     }, {
+        key: 'fitToObjectWidth',
+        value: function fitToObjectWidth() {
+            var canvas = this.state.canvas;
+
+            var activeObjWidth = canvas.getActiveObject().getWidth();
+            canvas.item(0).setWidth(activeObjWidth, { backstoreOnly: true });
+            canvas.item(0).setWidth(activeObjWidth, { cssOnly: true }).sendToBack();
+            canvas.setWidth(activeObjWidth, { backstoreOnly: true });
+            canvas.setWidth(activeObjWidth, { cssOnly: true });
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
+            this.props.onRef(this);
             var canvas = new fabric.Canvas('canvas');
             (0, _customizeControls2.default)(canvas);
 
@@ -32362,6 +32391,11 @@ var Strip = function (_Component) {
             });
 
             this.setState({ canvas: canvas });
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.props.onRef(null);
         }
     }, {
         key: 'componentWillReceiveProps',
