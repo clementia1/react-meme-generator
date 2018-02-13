@@ -11,7 +11,9 @@ class Dropdown extends React.Component {
       font: ['Arial', 'Sherwood', 'Geneva', 'Verdana', 'Monaco', 'Myriad Pro', 'Lucida Grande', 'Ubuntu', 'Impact', 'Times New Roman', 'Georgia', 'Gothic'],
       selectedFont: "Arial",
       selectedSize: 20,
-      size:[10, 20, 25,30,50],
+      size: [10, 20, 25, 30, 50],
+      fontWeight: "normal",
+      activ: false,
     };
     this.AddText = this.AddText.bind(this);
     this.changeFont = this.changeFont.bind(this);
@@ -21,23 +23,60 @@ class Dropdown extends React.Component {
   }
   AddText() {
     let { canvas } = this.props;
-    let text = this.state.text;
-    let textSample = new fabric.IText(text, {
-      fontSize: this.state.selectedSize,
-      fontFamily: this.state.selectedFont,
-      fontWeight: '',
-      width: 100,
-      left: 50,
-      top: 50,
-      originX: 'center',
-      originY: 'center',
-      hasRotatingPoint: true,
-      centerTransform: true,
-      fill: this.state.color,
-    });    
-    canvas.add(textSample);
-    this.setState({ canvas });
+
+    if (this.state.activ && typeof (canvas.getActiveObject().text) !== 'undefined') {
+      canvas.getActiveObject().text = this.state.text;
+      canvas.getActiveObject().fontSize=this.state.selectedSize;
+      canvas.getActiveObject().fontFamily=this.state.selectedFont;
+    } else {
+      let text = this.state.text;
+      let textSample = new fabric.IText(text, {
+        fontSize: this.state.selectedSize,
+        fontFamily: this.state.selectedFont,
+        fontWeight: '',
+        width: 100,
+        left: 50,
+        top: 50,
+        originX: 'center',
+        originY: 'center',
+        hasRotatingPoint: true,
+        centerTransform: true,
+        fill: this.state.color,
+      });
+      canvas.add(textSample);
+    }
+    console.log("ADD TEXT", canvas);
   }
+
+  componentDidMount() {
+    let { canvas } = this.props;
+    console.log("componentDidMountcanvas.getActiveObject()", canvas.getActiveObject());
+    if (canvas.getActiveObject() === undefined){console.log("undefined")}
+    else if ( typeof (canvas.getActiveObject().text) == 'string') {
+      let activeObj = canvas.getActiveObject();
+      this.setState({
+        text: activeObj.text,
+        selectedSize: activeObj.fontSize,
+        selectedFont: activeObj.fontFamily,
+        fontWeight: activeObj.fontWeight,
+        activ: true,
+        // this.changeFont(activeObj.fontFamily);
+      })
+    }
+    // console.log("canvas.getActiveObject()", activeObj);
+  
+    else { console.log("canvas.getActiveObject()", activeObj); }
+
+  }
+
+  // componentWillUpdate(nextState){
+  //   console.log("componentWillUpdatenextProps",nextState);
+  //   this.setState({
+  //     test:nextState
+  //   })
+
+
+  // }
 
   changeTextarea(e) {
     this.setState({
