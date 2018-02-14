@@ -181,7 +181,7 @@ class Strip extends Component {
                         <div className="add-card-opened">
                             <Dropdown canvas={this.state.canvas} />
                             <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard}>Х</button>
-                        </div> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard.bind(this)}>добавить текст</button>
+                        </div> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard.bind(this)}>Edit Text</button>
                     }
                     {this.state.isAddBlockOpenedBrush ?
                         <div className="add-card-opened">

@@ -20,63 +20,62 @@ class Dropdown extends React.Component {
     this.changeTextarea = this.changeTextarea.bind(this);
     this.changeTextareaColor = this.changeTextareaColor.bind(this);
     this.changeSize = this.changeSize.bind(this);
+    this.editText = this.editText.bind(this);
+    this.saveText = this.saveText.bind(this);
   }
   AddText() {
     let { canvas } = this.props;
-
-    if (this.state.activ && typeof (canvas.getActiveObject().text) !== 'undefined') {
-      canvas.getActiveObject().text = this.state.text;
-      canvas.getActiveObject().fontSize=this.state.selectedSize;
-      canvas.getActiveObject().fontFamily=this.state.selectedFont;
-    } else {
-      let text = this.state.text;
-      let textSample = new fabric.IText(text, {
-        fontSize: this.state.selectedSize,
-        fontFamily: this.state.selectedFont,
-        fontWeight: '',
-        width: 100,
-        left: 50,
-        top: 50,
-        originX: 'center',
-        originY: 'center',
-        hasRotatingPoint: true,
-        centerTransform: true,
-        fill: this.state.color,
-      });
-      canvas.add(textSample);
-    }
-    console.log("ADD TEXT", canvas);
+    let text = this.state.text;
+    let textSample = new fabric.IText(text, {
+      fontSize: this.state.selectedSize,
+      fontFamily: this.state.selectedFont,
+      fontWeight: '',
+      width: 100,
+      left: 50,
+      top: 50,
+      originX: 'center',
+      originY: 'center',
+      hasRotatingPoint: true,
+      centerTransform: true,
+      fill: this.state.color,
+    });
+    canvas.add(textSample);
   }
-
-  componentDidMount() {
+  editText() {
     let { canvas } = this.props;
-    console.log("componentDidMountcanvas.getActiveObject()", canvas.getActiveObject());
-    if (canvas.getActiveObject() === undefined){console.log("undefined")}
-    else if ( typeof (canvas.getActiveObject().text) == 'string') {
+    if (canvas.getActiveObject() === undefined) { console.log("undefined") }
+    else if (typeof (canvas.getActiveObject().text) == 'string') {
       let activeObj = canvas.getActiveObject();
       this.setState({
         text: activeObj.text,
         selectedSize: activeObj.fontSize,
         selectedFont: activeObj.fontFamily,
         fontWeight: activeObj.fontWeight,
+        color: activeObj.fill,
         activ: true,
-        // this.changeFont(activeObj.fontFamily);
       })
     }
-    // console.log("canvas.getActiveObject()", activeObj);
-  
     else { console.log("canvas.getActiveObject()", activeObj); }
+  }
+  componentDidUpdate (){
+    let { canvas } = this.props;
+    console.log("componentDidUpdate", canvas);
+    canvas.getActiveObject().text = this.state.text;
+    canvas.getActiveObject().fontSize = this.state.selectedSize;
+    canvas.getActiveObject().fontFamily = this.state.selectedFont;
+    canvas.getActiveObject().fill = this.state.color;
+    }
+  
 
+  saveText() {
+    // let { canvas } = this.props;
+    // console.log("saveText", canvas);
+    // canvas.getActiveObject().text = this.state.text;
+    // canvas.getActiveObject().fontSize = this.state.selectedSize;
+    // canvas.getActiveObject().fontFamily = this.state.selectedFont;
+    // canvas.getActiveObject().fill = this.state.color;
   }
 
-  // componentWillUpdate(nextState){
-  //   console.log("componentWillUpdatenextProps",nextState);
-  //   this.setState({
-  //     test:nextState
-  //   })
-
-
-  // }
 
   changeTextarea(e) {
     this.setState({
@@ -105,6 +104,8 @@ class Dropdown extends React.Component {
         <textarea onChange={this.changeTextarea} value={this.state.text}></textarea>
         <input type="color" value={this.state.color} onChange={this.changeTextareaColor.bind(this)}></input>
         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Добавить</button>
+        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.editText}>Изменить</button>
+        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.saveText}>Сохранить</button>
         <select className="font-selector" onChange={this.changeFont} value={this.state.selectedFont}>
           {this.state.font.map((item, index) => {
             return <option key={index} value={item} style={{ fontFamily: item }}>{item}</option>
