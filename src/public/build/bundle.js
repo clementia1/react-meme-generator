@@ -32622,7 +32622,7 @@ var Dropdown = function (_React$Component) {
       font: ['Arial', 'Sherwood', 'Geneva', 'Verdana', 'Monaco', 'Myriad Pro', 'Lucida Grande', 'Ubuntu', 'Impact', 'Times New Roman', 'Georgia', 'Gothic'],
       selectedFont: "Arial",
       selectedSize: 20,
-      size: [10, 20, 25, 30, 50],
+      size: [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 72],
       fontWeight: "normal",
       activ: false
     };
@@ -32631,8 +32631,6 @@ var Dropdown = function (_React$Component) {
     _this.changeTextarea = _this.changeTextarea.bind(_this);
     _this.changeTextareaColor = _this.changeTextareaColor.bind(_this);
     _this.changeSize = _this.changeSize.bind(_this);
-    _this.editText = _this.editText.bind(_this);
-    _this.saveText = _this.saveText.bind(_this);
     return _this;
   }
 
@@ -32642,40 +32640,21 @@ var Dropdown = function (_React$Component) {
       var canvas = this.props.canvas;
 
       var text = this.state.text;
-      var textSample = new fabric.IText(text, {
-        fontSize: this.state.selectedSize,
-        fontFamily: this.state.selectedFont,
-        fontWeight: '',
-        width: 100,
-        left: 50,
-        top: 50,
-        originX: 'center',
-        originY: 'center',
-        hasRotatingPoint: true,
-        centerTransform: true,
-        fill: this.state.color
-      });
-      canvas.add(textSample);
-    }
-  }, {
-    key: 'editText',
-    value: function editText() {
-      var canvas = this.props.canvas;
-
-      if (canvas.getActiveObject() === undefined) {
-        console.log("undefined");
-      } else if (typeof canvas.getActiveObject().text == 'string') {
-        var _activeObj = canvas.getActiveObject();
-        this.setState({
-          text: _activeObj.text,
-          selectedSize: _activeObj.fontSize,
-          selectedFont: _activeObj.fontFamily,
-          fontWeight: _activeObj.fontWeight,
-          color: _activeObj.fill,
-          activ: true
+      if (text !== '') {
+        var textSample = new fabric.IText(text, {
+          fontSize: this.state.selectedSize,
+          fontFamily: this.state.selectedFont,
+          fontWeight: '',
+          width: 100,
+          left: 50,
+          top: 50,
+          originX: 'center',
+          originY: 'center',
+          hasRotatingPoint: true,
+          centerTransform: true,
+          fill: this.state.color
         });
-      } else {
-        console.log("canvas.getActiveObject()", activeObj);
+        canvas.add(textSample);
       }
     }
   }, {
@@ -32683,21 +32662,15 @@ var Dropdown = function (_React$Component) {
     value: function componentDidUpdate() {
       var canvas = this.props.canvas;
 
-      console.log("componentDidUpdate", canvas);
-      canvas.getActiveObject().text = this.state.text;
-      canvas.getActiveObject().fontSize = this.state.selectedSize;
-      canvas.getActiveObject().fontFamily = this.state.selectedFont;
-      canvas.getActiveObject().fill = this.state.color;
-    }
-  }, {
-    key: 'saveText',
-    value: function saveText() {
-      // let { canvas } = this.props;
-      // console.log("saveText", canvas);
-      // canvas.getActiveObject().text = this.state.text;
-      // canvas.getActiveObject().fontSize = this.state.selectedSize;
-      // canvas.getActiveObject().fontFamily = this.state.selectedFont;
-      // canvas.getActiveObject().fill = this.state.color;
+      var activObj = canvas.getActiveObject();
+      // if activeObject is a text - changing it
+      if (activObj && activObj.setText) {
+        activObj.setText(this.state.text);
+        activObj.set({ fontSize: this.state.selectedSize });
+        activObj.set({ fontFamily: this.state.selectedFont });
+        activObj.set({ fill: this.state.color });
+        canvas.renderAll();
+      }
     }
   }, {
     key: 'changeTextarea',
@@ -32733,22 +32706,12 @@ var Dropdown = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'add-card-opened' },
-        _react2.default.createElement('textarea', { onChange: this.changeTextarea, value: this.state.text }),
+        _react2.default.createElement('textarea', { onChange: this.changeTextarea }),
         _react2.default.createElement('input', { type: 'color', value: this.state.color, onChange: this.changeTextareaColor.bind(this) }),
         _react2.default.createElement(
           'button',
           { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.AddText },
           '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C'
-        ),
-        _react2.default.createElement(
-          'button',
-          { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.editText },
-          '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C'
-        ),
-        _react2.default.createElement(
-          'button',
-          { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.saveText },
-          '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C'
         ),
         _react2.default.createElement(
           'select',
