@@ -20,6 +20,7 @@ class Strip extends Component {
     }
     onDownload() {
         var { canvas } = this.state;
+        canvas.deactivateAll().renderAll();
         var link = this.downloadLink;
         link.setAttribute('href', canvas.toDataURL());
         link.setAttribute('download', this.props.title + '.png');

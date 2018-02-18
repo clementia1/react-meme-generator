@@ -32300,6 +32300,7 @@ var Strip = function (_Component) {
         value: function onDownload() {
             var canvas = this.state.canvas;
 
+            canvas.deactivateAll().renderAll();
             var link = this.downloadLink;
             link.setAttribute('href', canvas.toDataURL());
             link.setAttribute('download', this.props.title + '.png');
@@ -32659,16 +32660,16 @@ var Dropdown = function (_React$Component) {
     }
   }, {
     key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
+    value: function componentDidUpdate(prevProps, prevState) {
       var canvas = this.props.canvas;
 
       var activObj = canvas.getActiveObject();
       // if activeObject is a text - changing it
       if (activObj && activObj.setText) {
-        activObj.setText(this.state.text);
-        activObj.set({ fontSize: this.state.selectedSize });
-        activObj.set({ fontFamily: this.state.selectedFont });
-        activObj.set({ fill: this.state.color });
+        if (this.state.text !== prevState.text) activObj.setText(this.state.text);
+        if (this.state.selectedSize !== prevState.text) activObj.set({ fontSize: this.state.selectedSize });
+        if (this.state.selectedFont !== prevState.text) activObj.set({ fontFamily: this.state.selectedFont });
+        if (this.state.color !== prevState.text) activObj.set({ fill: this.state.color });
         canvas.renderAll();
       }
     }
