@@ -70,6 +70,19 @@ class App extends React.Component {
       this.setState({title: event.target.value});
   }
 
+  componentWillMount() {
+    function getWindowWidth() {
+        return Math.max(
+          document.body.scrollWidth,
+          document.documentElement.scrollWidth,
+          document.body.offsetWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth
+        );
+      }
+      this.setState({width: getWindowWidth() * 0.75 - getWindowWidth() * 0.03});
+  }
+
   render() {
     return (
         <div>
@@ -93,7 +106,7 @@ class App extends React.Component {
                             </div>
                         </div>
                         <div className="controlpanel-item">
-                            <p className="rangeCanvasWidth" id="rangeCanvasWidth"> <input className="mdl-slider mdl-js-slider" type="range" min="0" max="1000" step="10" value={this.state.width} onChange={this.handleWidthChange} /> </p>
+                            <p className="rangeCanvasWidth" id="rangeCanvasWidth"> <input className="mdl-slider mdl-js-slider" type="range" min="0" max="1500" step="10" value={this.state.width} onChange={this.handleWidthChange} /> </p>
                             <div className="mdl-tooltip" htmlFor="rangeCanvasWidth">
                             Adjust canvas width
                             </div>
@@ -106,7 +119,7 @@ class App extends React.Component {
                         </div>
                         <div className="mdl-textfield mdl-js-textfield controlpanel-item">
                             <input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} />
-                            <label className="mdl-textfield__label" htmlFor="title">Type your title</label>
+                            <label className="mdl-textfield__label" htmlFor="title">Type your text</label>
                         </div>
                         <div className="controlpanel-item">
                             <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.fitToWidth}>

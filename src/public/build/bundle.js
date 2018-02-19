@@ -30923,6 +30923,14 @@ var App = function (_React$Component) {
             this.setState({ title: event.target.value });
         }
     }, {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            function getWindowWidth() {
+                return Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.documentElement.clientWidth);
+            }
+            this.setState({ width: getWindowWidth() * 0.75 - getWindowWidth() * 0.03 });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this3 = this;
@@ -30986,7 +30994,7 @@ var App = function (_React$Component) {
                                 'p',
                                 { className: 'rangeCanvasWidth', id: 'rangeCanvasWidth' },
                                 ' ',
-                                _react2.default.createElement('input', { className: 'mdl-slider mdl-js-slider', type: 'range', min: '0', max: '1000', step: '10', value: this.state.width, onChange: this.handleWidthChange }),
+                                _react2.default.createElement('input', { className: 'mdl-slider mdl-js-slider', type: 'range', min: '0', max: '1500', step: '10', value: this.state.width, onChange: this.handleWidthChange }),
                                 ' '
                             ),
                             _react2.default.createElement(
@@ -31018,7 +31026,7 @@ var App = function (_React$Component) {
                             _react2.default.createElement(
                                 'label',
                                 { className: 'mdl-textfield__label', htmlFor: 'title' },
-                                'Type your title'
+                                'Type your text'
                             )
                         ),
                         _react2.default.createElement(
@@ -32401,7 +32409,7 @@ var Strip = function (_Component) {
             var title = this.props.title;
             if (this.props.upperCase) title = title.toUpperCase();
 
-            var text = new fabric.Text(title, {
+            var text = new fabric.IText(title, {
                 name: 'mainTitle',
                 top: padding + 20,
                 left: width / 2,
@@ -32432,7 +32440,7 @@ var Strip = function (_Component) {
 
             if (nextProps.image !== this.props.image || nextProps.imageCount !== this.props.imageCount) {
                 fabric.Image.fromURL(nextProps.image, function (oImg) {
-                    oImg.scaleToWidth(0.5 * canvas.getWidth());
+                    oImg.scaleToWidth(0.3 * canvas.getWidth());
                     canvas.add(oImg);
                 });
             }

@@ -104,7 +104,7 @@ class Strip extends Component {
         var title = this.props.title;
         if (this.props.upperCase) title = title.toUpperCase();
 
-        var text = new fabric.Text(title, {
+        var text = new fabric.IText(title, {
             name: 'mainTitle',
             top: padding + 20,
             left: width / 2,
@@ -131,7 +131,7 @@ class Strip extends Component {
         
         if (nextProps.image !== this.props.image || nextProps.imageCount !== this.props.imageCount) {
             fabric.Image.fromURL(nextProps.image, function (oImg) {
-                oImg.scaleToWidth(0.5 * canvas.getWidth());
+                oImg.scaleToWidth(0.3 * canvas.getWidth());
                 canvas.add(oImg);
             });
         }        
