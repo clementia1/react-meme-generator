@@ -86,7 +86,7 @@ class App extends React.Component {
   render() {
     return (
         <div>
-             <div class="mdl-tabs mdl-js-tabs">
+             <div class="header mdl-tabs mdl-js-tabs">
                     <div class="mdl-tabs__tab-bar">
                         <a href="#tab1" class="mdl-tabs__tab header-tab">MAIN SETTINGS</a>
                         <a href="#tab2" class="mdl-tabs__tab header-tab">ADD TEXT</a>
@@ -139,10 +139,10 @@ class App extends React.Component {
             </div>
 
             <div className="mdl-grid">
-                <div className="mdl-cell mdl-cell--3-col">
+                <div className="sidebar mdl-cell mdl-cell--3-col">
                     <Sidebar addImage={this.addImageToCanvas}/>
                 </div>
-                <div className="mdl-cell mdl-cell--9-col">
+                <div className="mainCanvas mdl-cell mdl-cell--9-col">
                     <Canvas onRef={ref => (this.child = ref)}
                         image={this.state.image}
                         imageCount={this.state.imageCount}
