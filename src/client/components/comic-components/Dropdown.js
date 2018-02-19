@@ -46,13 +46,21 @@ class Dropdown extends React.Component {
     let { canvas } = this.props;
     let activObj = canvas.getActiveObject();
     // if activeObject is a text - changing it
-    if (activObj && activObj.setText) {  
+    if (activObj && activObj.setText && !activObj.getSelectionStyles) {  
       if (this.state.text !== prevState.text) activObj.setText(this.state.text);
       if (this.state.selectedFontSize !== prevState.text) activObj.set({fontSize: this.state.selectedFontSize});
       if (this.state.selectedFont !== prevState.text) activObj.set({fontFamily: this.state.selectedFont}); 
       if (this.state.color !== prevState.text) activObj.set({fill: this.state.color});
       canvas.renderAll();
-    }      
+    }
+
+    if (activObj && activObj.setText && activObj.isEditing && activObj.getSelectionStyles) {
+      activObj.dirty = true;      
+      if (this.state.selectedFontSize !== prevState.text) activObj.setSelectionStyles({fontSize: this.state.selectedFontSize});
+      if (this.state.selectedFont !== prevState.text) activObj.setSelectionStyles({fontFamily: this.state.selectedFont}); 
+      if (this.state.color !== prevState.text) activObj.setSelectionStyles({fill: this.state.color});
+      canvas.renderAll();
+    }     
   }  
 
   changeTextarea(e) {
