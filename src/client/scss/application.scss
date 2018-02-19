@@ -121,3 +121,12 @@ label.input-custom-file input[type=file] {
   text-decoration: none;
   text-transform: uppercase;
 }
+
+.Select {
+  display: inline-flex;
+  align-items: center;
+}
+
+.font-family-select {
+  width: 160px;
+}
