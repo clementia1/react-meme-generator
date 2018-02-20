@@ -4,7 +4,7 @@
   "description": "Node &amp; Express with React on front",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/server/index.js",
+    "start": "./node_modules/.bin/nodemon src/server/index.js",
     "webpack": "./node_modules/.bin/webpack --progress --color --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,7 +31,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
     "node-sass": "^4.7.2",
-    "nodemon": "^1.14.11",
+    "nodemon": "^1.15.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "webpack": "^3.10.0"
