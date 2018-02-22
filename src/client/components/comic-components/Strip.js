@@ -41,12 +41,6 @@ class Strip extends Component {
                 case 'grayscale':
                     img.filters.push(new fabric.Image.filters.Grayscale());
                     break;
-                case 'sepia':
-                    img.filters.push(new fabric.Image.filters.Sepia());
-                    break;
-                case 'sepia2':
-                    img.filters.push(new fabric.Image.filters.Sepia2());
-                    break;
                 case 'invert':
                     img.filters.push(new fabric.Image.filters.Invert());
                     break;
@@ -101,11 +95,8 @@ class Strip extends Component {
         });
         canvas.add(rect);
 
-        var title = this.props.title;
-        if (this.props.upperCase) title = title.toUpperCase();
-
-        var text = new fabric.IText(title, {
-            name: 'mainTitle',
+        var text = new fabric.IText('Type your text', {
+            name: 'sampleText',
             top: padding + 20,
             left: width / 2,
             originX: 'center',
@@ -148,10 +139,7 @@ class Strip extends Component {
             canvas.setHeight(nextProps.height, { backstoreOnly: true });
             canvas.setHeight(nextProps.height, { cssOnly: true });
         }
-
-        if (canvas.getItemByName('mainTitle')) {
-            canvas.getItemByName('mainTitle').setText(nextProps.title).bringToFront();
-        } 
+        canvas.item(0).set({fill: nextProps.canvasbgcolor});
         
     }
     toggleAddCard() {
@@ -191,8 +179,6 @@ class Strip extends Component {
                         </div> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCardBrush.bind(this)}>РЕЖИМ КИСТЬ</button>
                     }
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'grayscale')}>Grayscale</button>
-                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'sepia')}>Sepia</button>
-                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'sepia2')}>Sepia 2</button>
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'invert')}>Invert</button>
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onDownload.bind(this)}>Download</button>
                     <img ref={(ref) => this.imageBuffer = ref} crossOrigin="anonymous" src="" style={{ display: 'none' }} />
@@ -209,14 +195,12 @@ Strip.defaultProps = {
     top: 0,
     left: 0,
     padding: 0,
-    title: 'Comic Title',
     column: 2,
     fill: 'white',
     stroke: 'black',
     strokeWidth: 0,
     fontFamily: 'Arial',
     fontSize: 13,
-    upperCase: false
 };
 
 export default Strip;

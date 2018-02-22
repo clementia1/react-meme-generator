@@ -12,12 +12,11 @@ class App extends React.Component {
     this.state = {
         image: '',
         imageCount: 0,
+        canvasBgColor: '',
         width: 700,
         height: 500,
-        title: 'Type your title'
     };
-       
-    this.handleTitleChange = this.handleTitleChange.bind(this);
+
     this.handleWidthChange = this.handleWidthChange.bind(this);
     this.handleHeightChange = this.handleHeightChange.bind(this);
     this.handleUploadImage = this.handleUploadImage.bind(this);
@@ -65,10 +64,11 @@ class App extends React.Component {
   handleHeightChange(event) {
     this.setState({height: event.target.value});
   }
-   
-  handleTitleChange(event) {
-      this.setState({title: event.target.value});
-  }
+
+  handleCanvasBgColorChange = (event) => {
+    this.setState({canvasBgColor: event.target.value});
+  }    
+
 
   componentWillMount() {
     function getWindowWidth() {
@@ -86,13 +86,13 @@ class App extends React.Component {
   render() {
     return (
         <div>
-             <div class="header mdl-tabs mdl-js-tabs">
-                    <div class="mdl-tabs__tab-bar">
-                        <a href="#tab1" class="mdl-tabs__tab header-tab">MAIN SETTINGS</a>
-                        <a href="#tab2" class="mdl-tabs__tab header-tab">ADD TEXT</a>
-                        <a href="#tab3" class="mdl-tabs__tab header-tab">DRAWING MODE</a>
+             <div className="header mdl-tabs mdl-js-tabs">
+                    <div className="mdl-tabs__tab-bar">
+                        <a href="#tab1" className="mdl-tabs__tab header-tab">MAIN SETTINGS</a>
+                        <a href="#tab2" className="mdl-tabs__tab header-tab">ADD TEXT</a>
+                        <a href="#tab3" className="mdl-tabs__tab header-tab">DRAWING MODE</a>
                     </div>
-                    <div class="mdl-tabs__panel header-panel is-active" id="tab1">
+                    <div className="mdl-tabs__panel header-panel is-active" id="tab1">
                         <div className="controlpanel-item">
                             <label className="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                             ADD IMAGE
@@ -100,9 +100,9 @@ class App extends React.Component {
                             </label>
                         </div>
                         <div className="controlpanel-item">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="sample3" onChange={this.addImageFromUrl}/>
-                                <label class="mdl-textfield__label" for="sample3">Add image from url</label>
+                            <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input className="mdl-textfield__input" type="text" id="sample3" onChange={this.addImageFromUrl}/>
+                                <label className="mdl-textfield__label" htmlFor="sample3">Add image from url</label>
                             </div>
                         </div>
                         <div className="controlpanel-item">
@@ -117,9 +117,11 @@ class App extends React.Component {
                             Adjust canvas height
                             </div>
                         </div>
-                        <div className="mdl-textfield mdl-js-textfield controlpanel-item">
-                            <input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} />
-                            <label className="mdl-textfield__label" htmlFor="title">Type your text</label>
+                        <div className="controlpanel-item">
+                            <p id="canvasBgColor"> <input type="color" onChange={this.handleCanvasBgColorChange}/> </p>
+                            <div className="mdl-tooltip" htmlFor="canvasBgColor">
+                            Change background color
+                            </div>
                         </div>
                         <div className="controlpanel-item">
                             <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.fitToWidth}>
@@ -130,10 +132,10 @@ class App extends React.Component {
                             </button>
                         </div>
                     </div>
-                    <div class="mdl-tabs__panel header-panel" id="tab2">
+                    <div className="mdl-tabs__panel header-panel" id="tab2">
                         <p>Second tab's content.</p>
                     </div>
-                    <div class="mdl-tabs__panel header-panel" id="tab3">
+                    <div className="mdl-tabs__panel header-panel" id="tab3">
                         <p>Third tab's content.</p>
                     </div>
             </div>
@@ -146,9 +148,9 @@ class App extends React.Component {
                     <Canvas onRef={ref => (this.child = ref)}
                         image={this.state.image}
                         imageCount={this.state.imageCount}
-                        title={this.state.title}
                         width={this.state.width}
                         height={this.state.height}
+                        canvasbgcolor={this.state.canvasBgColor}
                     />
                 </div>
             </div>

@@ -10,7 +10,8 @@ class Dropdown extends React.Component {
     this.state = {
       text: '',
       color: '#000000',
-      font: ['Arial', 'Sherwood', 'Geneva', 'Verdana', 'Monaco', 'Myriad Pro', 'Lucida Grande', 'Ubuntu', 'Impact', 'Times New Roman', 'Georgia', 'Gothic'],
+      bgColor: 'transparent', 
+      font: ['Arial', 'Sherwood', 'Geneva', 'Verdana', 'Monaco', 'Myriad Pro', 'Lucida Grande', 'Ubuntu', 'Impact', 'Times New Roman', 'Georgia', 'Gothic', 'Pacifico', 'Vollkorn SC', 'Pangolin', 'Play', 'Roboto', 'Lobster', 'Cormorant Infant'],
       selectedFont: "Arial",
       selectedFontSize: 12,
       size: [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 72],
@@ -46,19 +47,21 @@ class Dropdown extends React.Component {
     let { canvas } = this.props;
     let activObj = canvas.getActiveObject();
     // if activeObject is a text - changing it
-    if (activObj && activObj.setText && !activObj.getSelectionStyles) {  
+    if (activObj && activObj.setText && activObj.getSelectedText() == false) {  
       if (this.state.text !== prevState.text) activObj.setText(this.state.text);
-      if (this.state.selectedFontSize !== prevState.text) activObj.set({fontSize: this.state.selectedFontSize});
-      if (this.state.selectedFont !== prevState.text) activObj.set({fontFamily: this.state.selectedFont}); 
-      if (this.state.color !== prevState.text) activObj.set({fill: this.state.color});
+      if (this.state.selectedFontSize !== prevState.selectedFontSize) activObj.set({fontSize: this.state.selectedFontSize});
+      if (this.state.selectedFont !== prevState.selectedFont) activObj.set({fontFamily: this.state.selectedFont}); 
+      if (this.state.color !== prevState.color) activObj.set({fill: this.state.color});
+      if (this.state.bgColor !== prevState.bgColor) activObj.set({backgroundColor: this.state.bgColor});
       canvas.renderAll();
     }
 
     if (activObj && activObj.setText && activObj.isEditing && activObj.getSelectionStyles) {
       activObj.dirty = true;      
-      if (this.state.selectedFontSize !== prevState.text) activObj.setSelectionStyles({fontSize: this.state.selectedFontSize});
-      if (this.state.selectedFont !== prevState.text) activObj.setSelectionStyles({fontFamily: this.state.selectedFont}); 
-      if (this.state.color !== prevState.text) activObj.setSelectionStyles({fill: this.state.color});
+      if (this.state.selectedFontSize) activObj.setSelectionStyles({fontSize: this.state.selectedFontSize});
+      if (this.state.selectedFont) activObj.setSelectionStyles({fontFamily: this.state.selectedFont}); 
+      if (this.state.color) activObj.setSelectionStyles({fill: this.state.color});
+      if (this.state.bgColor) activObj.setSelectionStyles({backgroundColor: this.state.bgColor});
       canvas.renderAll();
     }     
   }  
@@ -73,7 +76,11 @@ class Dropdown extends React.Component {
       color: e.target.value
     })
   }
-  
+  changeBgColor(e) {
+    this.setState({
+      bgColor: e.target.value
+    })
+  }
   handleFontSizeChange = (selectedFontSize) => {
     this.setState({ selectedFontSize: selectedFontSize.value});
   }
@@ -94,6 +101,7 @@ class Dropdown extends React.Component {
       <div className="add-card-opened">
         <textarea onChange={this.changeTextarea} ></textarea>
         <input type="color" value={this.state.color} onChange={this.changeTextareaColor.bind(this)}></input>
+        <input type="color" value={this.state.bgColor} onChange={this.changeBgColor.bind(this)}></input>
         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Добавить</button>
         <Select className="font-family-select"
             placeholder={this.state.selectedFont}

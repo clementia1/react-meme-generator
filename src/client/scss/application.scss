@@ -8,7 +8,7 @@
  * animation shadow-drop-2-center
  * ----------------------------------------
  */
- 
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Vollkorn+SC|Pangolin|Play|Roboto|Lobster|Cormorant+Infant'); 
 @-webkit-keyframes shadow-drop-2-center {
   0% {
     -webkit-transform: translateZ(0);
@@ -41,9 +41,9 @@ body {
   color: #3d2a12;
 }
 
-.canvas-container {
+/* .canvas-container {
   background: white;
-}
+} */
 .card {
     background: white;
     font-size: 18px;
@@ -134,9 +134,8 @@ label.input-custom-file input[type=file] {
 
 .header, .sidebar, .mainCanvas {
   border: 1px solid;
-  border-radius: 7px;
   padding: 2px;
-  -webkit-box-shadow: 0px 2px 41px -13px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 2px 41px -13px rgba(0,0,0,0.75);
-  box-shadow: 0px 2px 41px -13px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 2px 30px -13px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 30px -13px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 30px -13px rgba(0,0,0,0.75);
 }
