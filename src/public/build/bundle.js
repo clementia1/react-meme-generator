@@ -30867,7 +30867,7 @@ var App = function (_React$Component) {
         _this.state = {
             image: '',
             imageCount: 0,
-            canvasBgColor: '',
+            canvasBgColor: 'white',
             width: 700,
             height: 500
         };
