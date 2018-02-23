@@ -4,10 +4,13 @@ let express = require('express'),
     multer = require('multer');
 let app = express();
 
+app.set('port', (process.env.PORT || 3000));
 
 app.use(express.static(path.join(__dirname, '..', 'public'))); //serves the index.html
 app.use('/upload', express.static('upload'));
-app.listen(3000); //listens on port 3000 -> http://localhost:3000/
+app.listen(app.get('port'), function() {
+  console.log('App is running on port', app.get('port'));
+});
 
 // configuring Multer to use files directory for storing files
 // this is important because later we'll need to access file path
