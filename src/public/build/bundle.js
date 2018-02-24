@@ -919,9 +919,9 @@ if (typeof Object.create === 'function') {
 
 
 
-var base64 = __webpack_require__(147)
-var ieee754 = __webpack_require__(148)
-var isArray = __webpack_require__(149)
+var base64 = __webpack_require__(146)
+var ieee754 = __webpack_require__(147)
+var isArray = __webpack_require__(148)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -4687,8 +4687,8 @@ function updateLink (link, options, obj) {
 
 
 
-var punycode = __webpack_require__(152);
-var util = __webpack_require__(154);
+var punycode = __webpack_require__(151);
+var util = __webpack_require__(153);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -4763,7 +4763,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = __webpack_require__(155);
+    querystring = __webpack_require__(154);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -6690,10 +6690,10 @@ module.exports = Cancel;
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(158)
+/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(157)
 var IncomingMessage = __webpack_require__(59)
-var extend = __webpack_require__(167)
-var statusCodes = __webpack_require__(168)
+var extend = __webpack_require__(166)
+var statusCodes = __webpack_require__(167)
 var url = __webpack_require__(36)
 
 var http = exports
@@ -7089,7 +7089,7 @@ exports.Readable = exports;
 exports.Writable = __webpack_require__(65);
 exports.Duplex = __webpack_require__(12);
 exports.Transform = __webpack_require__(67);
-exports.PassThrough = __webpack_require__(165);
+exports.PassThrough = __webpack_require__(164);
 
 
 /***/ }),
@@ -7128,7 +7128,7 @@ var processNextTick = __webpack_require__(20);
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = __webpack_require__(159);
+var isArray = __webpack_require__(158);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -7168,7 +7168,7 @@ util.inherits = __webpack_require__(10);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(160);
+var debugUtil = __webpack_require__(159);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -7177,7 +7177,7 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = __webpack_require__(161);
+var BufferList = __webpack_require__(160);
 var destroyImpl = __webpack_require__(64);
 var StringDecoder;
 
@@ -8576,7 +8576,7 @@ util.inherits = __webpack_require__(10);
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: __webpack_require__(164)
+  deprecate: __webpack_require__(163)
 };
 /*</replacement>*/
 
@@ -9168,7 +9168,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(162).setImmediate, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(161).setImmediate, __webpack_require__(6)))
 
 /***/ }),
 /* 66 */
@@ -9805,7 +9805,7 @@ var _App = __webpack_require__(110);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _application = __webpack_require__(174);
+var _application = __webpack_require__(173);
 
 var _application2 = _interopRequireDefault(_application);
 
@@ -30832,7 +30832,7 @@ __webpack_require__(7);
 
 __webpack_require__(8);
 
-var _Sidebar = __webpack_require__(171);
+var _Sidebar = __webpack_require__(170);
 
 var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
@@ -30926,7 +30926,7 @@ var App = function (_React$Component) {
             function getWindowWidth() {
                 return Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.documentElement.clientWidth);
             }
-            this.setState({ width: getWindowWidth() * 0.75 - getWindowWidth() * 0.03 });
+            this.setState({ width: getWindowWidth() * 0.75 - getWindowWidth() * 0.04 });
         }
     }, {
         key: 'render',
@@ -32035,15 +32035,11 @@ var _Strip = __webpack_require__(133);
 
 var _Strip2 = _interopRequireDefault(_Strip);
 
-var _Character = __webpack_require__(144);
-
-var _Character2 = _interopRequireDefault(_Character);
-
-var _Balloon = __webpack_require__(145);
+var _Balloon = __webpack_require__(144);
 
 var _Balloon2 = _interopRequireDefault(_Balloon);
 
-var _fabricWebpack = __webpack_require__(146);
+var _fabricWebpack = __webpack_require__(145);
 
 var _fabricWebpack2 = _interopRequireDefault(_fabricWebpack);
 
@@ -32053,7 +32049,7 @@ module.exports = {
     Panel: _Panel2.default,
     Strip: _Strip2.default,
     Balloon: _Balloon2.default,
-    Character: _Character2.default, fabric: _fabricWebpack2.default
+    fabric: _fabricWebpack2.default
 };
 
 /***/ }),
@@ -32447,37 +32443,33 @@ var Strip = function (_Component) {
                 'div',
                 null,
                 _react2.default.createElement('canvas', _extends({ id: 'canvas' }, this.props)),
+                childrenWithProps,
                 _react2.default.createElement(
                     'div',
-                    null,
-                    childrenWithProps,
+                    { className: 'control-elements' },
                     this.state.isAddBlockOpened ? _react2.default.createElement(
                         'div',
-                        { className: 'add-card-opened' },
-                        _react2.default.createElement(_Dropdown2.default, { canvas: this.state.canvas }),
-                        _react2.default.createElement(
-                            'button',
-                            { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.toggleAddCard },
-                            '\u0425'
-                        )
-                    ) : _react2.default.createElement(
+                        { className: 'control-box text-editor' },
+                        _react2.default.createElement(_Dropdown2.default, { canvas: this.state.canvas })
+                    ) : _react2.default.createElement('div', null),
+                    this.state.isAddBlockOpenedBrush ? _react2.default.createElement(
+                        'div',
+                        { className: 'control-box draw-mode' },
+                        _react2.default.createElement(_Brush2.default, { canvas: this.state.canvas })
+                    ) : _react2.default.createElement('div', null)
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'control-buttons' },
+                    _react2.default.createElement(
                         'button',
                         { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.toggleAddCard.bind(this) },
                         'Edit Text'
                     ),
-                    this.state.isAddBlockOpenedBrush ? _react2.default.createElement(
-                        'div',
-                        { className: 'add-card-opened' },
-                        _react2.default.createElement(_Brush2.default, { canvas: this.state.canvas }),
-                        _react2.default.createElement(
-                            'button',
-                            { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.toggleAddCardBrush },
-                            '\u0425'
-                        )
-                    ) : _react2.default.createElement(
+                    _react2.default.createElement(
                         'button',
                         { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.toggleAddCardBrush.bind(this) },
-                        '\u0420\u0415\u0416\u0418\u041C \u041A\u0418\u0421\u0422\u042C'
+                        'Draw mode'
                     ),
                     _react2.default.createElement(
                         'button',
@@ -32691,11 +32683,6 @@ var Dropdown = function (_React$Component) {
         _react2.default.createElement('textarea', { onChange: this.changeTextarea }),
         _react2.default.createElement('input', { name: 'color', type: 'color', value: this.state.color, onChange: this.changeTextareaColor.bind(this), onFocus: this.handleControlItemFocus }),
         _react2.default.createElement('input', { name: 'bgColor', type: 'color', value: this.state.bgColor, onChange: this.changeBgColor.bind(this), onFocus: this.handleControlItemFocus }),
-        _react2.default.createElement(
-          'button',
-          { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.AddText },
-          '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C'
-        ),
         _react2.default.createElement(_reactSelect2.default, { className: 'font-family-select',
           placeholder: this.state.selectedFont,
           value: this.selectedFont,
@@ -32713,7 +32700,12 @@ var Dropdown = function (_React$Component) {
             return _this2.handleControlItemFocus(e, "selectedFontSize");
           },
           options: fontSizeOptions
-        })
+        }),
+        _react2.default.createElement(
+          'button',
+          { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.AddText },
+          'Add text'
+        )
       );
     }
   }]);
@@ -36266,161 +36258,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Character = function (_Component) {
-    _inherits(Character, _Component);
-
-    function Character(props) {
-        _classCallCheck(this, Character);
-
-        var _this2 = _possibleConstructorReturn(this, (Character.__proto__ || Object.getPrototypeOf(Character)).call(this, props));
-
-        _this2.state = {
-            props: {},
-            image: null
-        };
-        return _this2;
-    }
-
-    _createClass(Character, [{
-        key: 'update',
-        value: function update() {
-            var _this3 = this;
-
-            var _this = this;
-            setTimeout(function () {
-                var _props = _this3.props,
-                    canvas = _props.canvas,
-                    index = _props.index;
-
-                if (!canvas) return;
-                fabric.Image.fromURL(_this3.props.image, function (image) {
-                    var _props2 = _this3.props,
-                        parent = _props2.parent,
-                        scale = _props2.scale,
-                        top = _props2.top,
-                        left = _props2.left,
-                        bottom = _props2.bottom,
-                        align = _props2.align;
-
-                    bottom = parseInt(bottom);
-
-                    if (_this3.state.image) image = _this3.state.image;
-
-                    image.scale(scale);
-                    // default use bottom
-                    var _top = parent.height - image.height * image.scaleY - bottom;
-                    if (top) _top = parseInt(top);
-
-                    // add parent top
-                    _top += parent.top;
-
-                    // default use align
-                    switch (align) {
-                        case 'center':
-                            var _left = parent.width / 2 - image.width * image.scaleX / 2;
-                            break;
-                        case 'right':
-                            var _left = parent.width - image.width * image.scaleX;
-                            break;
-                        case 'left':
-                        default:
-                            var _left = 0;
-                    }
-
-                    if (left) _left = parseInt(left);
-                    // add parent left
-                    _left += parent.left;
-
-                    var currentProps = {
-                        top: _top,
-                        left: _left,
-                        height: image.height,
-                        width: image.width
-                    };
-
-                    image.set(currentProps);
-
-                    if (!_this3.state.image) {
-                        _this3.setState({
-                            props: currentProps,
-                            image: image
-                        });
-                        canvas.add(image);
-                    }
-                }, {
-                    crossOrigin: 'anonymous'
-                });
-            });
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.update();
-        }
-    }, {
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps() {
-            this.update();
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this = this;
-            var parentProps = Object.assign({}, _this.props, _this.state.props);
-            delete parentProps.children;
-
-            var childProps = Object.assign({}, { canvas: _this.props.canvas, parent: parentProps, rootParent: _this.props.rootParent });
-            var childrenWithProps = _react2.default.Children.map(this.props.children, function (child, id) {
-                var currentProps = Object.assign({}, childProps, { index: id });
-                return _react2.default.cloneElement(child, currentProps);
-            });
-            return _react2.default.createElement(
-                'div',
-                null,
-                childrenWithProps
-            );
-        }
-    }]);
-
-    return Character;
-}(_react.Component);
-
-Character.defaultProps = {
-    image: 'char1.png',
-    scale: 1,
-    top: null,
-    left: null,
-    bottom: 0,
-    align: 'center'
-};
-
-exports.default = Character;
-
-/***/ }),
-/* 145 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 var Balloon = function (_Component) {
     _inherits(Balloon, _Component);
 
@@ -36607,7 +36444,7 @@ Balloon.defaultProps = {
 exports.default = Balloon;
 
 /***/ }),
-/* 146 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer, process) {/* build: `node build.js modules=ALL exclude=json,gestures minifier=uglifyjs` */
@@ -36626,7 +36463,7 @@ if (typeof document !== 'undefined' && typeof window !== 'undefined') {
 }
 else {
   // assume we're running under node.js when document/window are not present
-  fabric.document = __webpack_require__(150)
+  fabric.document = __webpack_require__(149)
     .jsdom("<!DOCTYPE html><html><head></head><body></body></html>");
 
   if (fabric.document.createWindow) {
@@ -60793,10 +60630,10 @@ fabric.util.object.extend(fabric.IText.prototype, /** @lends fabric.IText.protot
     return;
   }
 
-  var DOMParser = __webpack_require__(151).DOMParser,
+  var DOMParser = __webpack_require__(150).DOMParser,
       URL = __webpack_require__(36),
       HTTP = __webpack_require__(57),
-      HTTPS = __webpack_require__(169),
+      HTTPS = __webpack_require__(168),
 
       Canvas = __webpack_require__(35),
       Image = __webpack_require__(35).Image;
@@ -60847,7 +60684,7 @@ fabric.util.object.extend(fabric.IText.prototype, /** @lends fabric.IText.protot
 
   /** @private */
   function requestFs(path, callback) {
-    var fs = __webpack_require__(170);
+    var fs = __webpack_require__(169);
     fs.readFile(path, function (err, data) {
       if (err) {
         fabric.log(err);
@@ -60995,7 +60832,7 @@ fabric.util.object.extend(fabric.IText.prototype, /** @lends fabric.IText.protot
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11).Buffer, __webpack_require__(1)))
 
 /***/ }),
-/* 147 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61116,7 +60953,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 148 */
+/* 147 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -61206,7 +61043,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 149 */
+/* 148 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -61217,6 +61054,12 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
+/* 149 */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
 /* 150 */
 /***/ (function(module, exports) {
 
@@ -61224,12 +61067,6 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 /* 151 */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -61765,10 +61602,10 @@ module.exports = Array.isArray || function (arr) {
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(153)(module), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(152)(module), __webpack_require__(6)))
 
 /***/ }),
-/* 153 */
+/* 152 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -61796,7 +61633,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 154 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61819,18 +61656,18 @@ module.exports = {
 
 
 /***/ }),
-/* 155 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(156);
-exports.encode = exports.stringify = __webpack_require__(157);
+exports.decode = exports.parse = __webpack_require__(155);
+exports.encode = exports.stringify = __webpack_require__(156);
 
 
 /***/ }),
-/* 156 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61921,7 +61758,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 157 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62013,14 +61850,14 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 158 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(58)
 var inherits = __webpack_require__(10)
 var response = __webpack_require__(59)
 var stream = __webpack_require__(60)
-var toArrayBuffer = __webpack_require__(166)
+var toArrayBuffer = __webpack_require__(165)
 
 var IncomingMessage = response.IncomingMessage
 var rStates = response.readyStates
@@ -62343,7 +62180,7 @@ var unsafeHeaders = [
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11).Buffer, __webpack_require__(6), __webpack_require__(1)))
 
 /***/ }),
-/* 159 */
+/* 158 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -62354,13 +62191,13 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 160 */
+/* 159 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 161 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62440,7 +62277,7 @@ module.exports = function () {
 }();
 
 /***/ }),
-/* 162 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -62493,7 +62330,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(163);
+__webpack_require__(162);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -62507,7 +62344,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 163 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -62700,7 +62537,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(1)))
 
 /***/ }),
-/* 164 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -62774,7 +62611,7 @@ function config (name) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 165 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62827,7 +62664,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 };
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Buffer = __webpack_require__(11).Buffer
@@ -62860,7 +62697,7 @@ module.exports = function (buf) {
 
 
 /***/ }),
-/* 167 */
+/* 166 */
 /***/ (function(module, exports) {
 
 module.exports = extend
@@ -62885,7 +62722,7 @@ function extend() {
 
 
 /***/ }),
-/* 168 */
+/* 167 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -62955,7 +62792,7 @@ module.exports = {
 
 
 /***/ }),
-/* 169 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var http = __webpack_require__(57)
@@ -62992,13 +62829,13 @@ function validateParams (params) {
 
 
 /***/ }),
-/* 170 */
+/* 169 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 171 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63024,11 +62861,11 @@ var _ImagePanel3 = __webpack_require__(69);
 
 var _ImagePanel4 = _interopRequireDefault(_ImagePanel3);
 
-var _SidebarHeader = __webpack_require__(172);
+var _SidebarHeader = __webpack_require__(171);
 
 var _SidebarHeader2 = _interopRequireDefault(_SidebarHeader);
 
-var _SidebarMain = __webpack_require__(173);
+var _SidebarMain = __webpack_require__(172);
 
 var _SidebarMain2 = _interopRequireDefault(_SidebarMain);
 
@@ -63046,7 +62883,7 @@ var Sidebar = function Sidebar(props) {
 exports.default = Sidebar;
 
 /***/ }),
-/* 172 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63100,7 +62937,7 @@ var SidebarHeader = function SidebarHeader() {
 exports.default = SidebarHeader;
 
 /***/ }),
-/* 173 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63150,11 +62987,11 @@ var SidebarMain = function SidebarMain(props) {
 exports.default = SidebarMain;
 
 /***/ }),
-/* 174 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(175);
+var content = __webpack_require__(174);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -63200,7 +63037,7 @@ if(false) {
 }
 
 /***/ }),
-/* 175 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(33)(false);
@@ -63208,7 +63045,7 @@ exports = module.exports = __webpack_require__(33)(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Pacifico|Vollkorn+SC|Pangolin|Play|Roboto|Lobster|Cormorant+Infant);", ""]);
 
 // module
-exports.push([module.i, "/* ----------------------------------------------\r\n * Generated by Animista on 2018-2-7 9:5:40\r\n * w: http://animista.net, t: @cssanimista\r\n * ---------------------------------------------- */\n/**\r\n * ----------------------------------------\r\n * animation shadow-drop-2-center\r\n * ----------------------------------------\r\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n.canvas-container {\n  background: white; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: auto; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 20px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n\n.Select {\n  display: inline-flex;\n  align-items: center; }\n\n.font-family-select {\n  width: 160px; }\n\n.header, .sidebar, .mainCanvas {\n  border: 1px solid;\n  padding: 2px;\n  -webkit-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75); }\n", ""]);
+exports.push([module.i, "/* ----------------------------------------------\r\n * Generated by Animista on 2018-2-7 9:5:40\r\n * w: http://animista.net, t: @cssanimista\r\n * ---------------------------------------------- */\n/**\r\n * ----------------------------------------\r\n * animation shadow-drop-2-center\r\n * ----------------------------------------\r\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n.canvas-container {\n  background: white; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: auto; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 20px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n\n.Select {\n  display: inline-flex;\n  align-items: center; }\n\n.font-family-select {\n  width: 160px; }\n\n.header, .sidebar, .mainCanvas {\n  border: 1px solid;\n  padding: 2px;\n  -webkit-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75); }\n\n.control-box {\n  padding: 10px; }\n\n.mdl-button {\n  margin: 3px; }\n", ""]);
 
 // exports
 

@@ -80,7 +80,7 @@ class App extends React.Component {
           document.documentElement.clientWidth
         );
       }
-      this.setState({width: getWindowWidth() * 0.75 - getWindowWidth() * 0.03});
+      this.setState({width: getWindowWidth() * 0.75 - getWindowWidth() * 0.04});
   }
 
   render() {

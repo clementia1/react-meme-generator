@@ -148,20 +148,22 @@ class Strip extends Component {
         });
         return (
             <div>
-                <canvas id="canvas" {...this.props}></canvas>
-                <div>{childrenWithProps}
+                <canvas id="canvas" {...this.props}></canvas>{childrenWithProps}  
+                <div className="control-elements">
                     {this.state.isAddBlockOpened ?
-                        <div className="add-card-opened">
-                            <Dropdown canvas={this.state.canvas} />
-                            <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard}>Х</button>
-                        </div> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard.bind(this)}>Edit Text</button>
+                        <div className="control-box text-editor">
+                            <Dropdown canvas={this.state.canvas}/>                            
+                        </div> : <div></div>
                     }
                     {this.state.isAddBlockOpenedBrush ?
-                        <div className="add-card-opened">
-                            <Brush canvas={this.state.canvas} />
-                            <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCardBrush}>Х</button>
-                        </div> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCardBrush.bind(this)}>РЕЖИМ КИСТЬ</button>
+                        <div className="control-box draw-mode">
+                            <Brush canvas={this.state.canvas}/>                            
+                        </div> : <div></div>
                     }
+                </div>
+                <div className="control-buttons"> 
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard.bind(this)}>Edit Text</button>
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCardBrush.bind(this)}>Draw mode</button>
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'grayscale')}>Grayscale</button>
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'invert')}>Invert</button>
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onDownload.bind(this)}>Download</button>

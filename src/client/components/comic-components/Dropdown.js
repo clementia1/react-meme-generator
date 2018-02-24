@@ -106,8 +106,7 @@ class Dropdown extends React.Component {
       <div className="add-card-opened">
         <textarea onChange={this.changeTextarea} ></textarea>
         <input name="color" type="color" value={this.state.color} onChange={this.changeTextareaColor.bind(this)} onFocus={this.handleControlItemFocus}></input>
-        <input name="bgColor" type="color" value={this.state.bgColor} onChange={this.changeBgColor.bind(this)} onFocus={this.handleControlItemFocus}></input>
-        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Добавить</button>
+        <input name="bgColor" type="color" value={this.state.bgColor} onChange={this.changeBgColor.bind(this)} onFocus={this.handleControlItemFocus}></input>        
         <Select className="font-family-select"
             placeholder={this.state.selectedFont}
             value={this.selectedFont}
@@ -122,6 +121,7 @@ class Dropdown extends React.Component {
             onFocus={(e) => this.handleControlItemFocus(e, "selectedFontSize")}
             options={fontSizeOptions}
         />
+        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Add text</button>
       </div>
     )
   }
