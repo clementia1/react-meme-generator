@@ -117,14 +117,10 @@ class Strip extends Component {
         }        
         console.log(canvas.item(0), canvas.item(1));
         if (nextProps.width !== this.props.width) {
-            canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
-            canvas.item(0).setWidth(nextProps.width, { cssOnly: true });
             canvas.setWidth(nextProps.width, { backstoreOnly: true });
             canvas.setWidth(nextProps.width, { cssOnly: true });            
         }
         if (nextProps.height !== this.props.height) {
-            canvas.item(0).setHeight(nextProps.height, { backstoreOnly: true });
-            canvas.item(0).setHeight(nextProps.height, { cssOnly: true });
             canvas.setHeight(nextProps.height, { backstoreOnly: true });
             canvas.setHeight(nextProps.height, { cssOnly: true });
         }
