@@ -89,22 +89,16 @@ class App extends React.Component {
              <div className="header mdl-tabs mdl-js-tabs">
                     <div className="mdl-tabs__tab-bar">
                         <a href="#tab1" className="mdl-tabs__tab header-tab">MAIN SETTINGS</a>
-                        <a href="#tab2" className="mdl-tabs__tab header-tab">ADD TEXT</a>
-                        <a href="#tab3" className="mdl-tabs__tab header-tab">DRAWING MODE</a>
+                        {/* <a href="#tab2" className="mdl-tabs__tab header-tab">ADD TEXT</a>
+                        <a href="#tab3" className="mdl-tabs__tab header-tab">DRAWING MODE</a> */}
                     </div>
                     <div className="mdl-tabs__panel header-panel is-active" id="tab1">
-                        <div className="controlpanel-item">
-                            <label className="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                            ADD IMAGE
-                            <input type="file" onChange={this.handleUploadImage}/>
-                            </label>
-                        </div>
-                        <div className="controlpanel-item">
+                        {/* <div className="controlpanel-item">
                             <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input className="mdl-textfield__input" type="text" id="sample3" onChange={this.addImageFromUrl}/>
                                 <label className="mdl-textfield__label" htmlFor="sample3">Add image from url</label>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="controlpanel-item">
                             <p className="rangeCanvasWidth" id="rangeCanvasWidth"> <input className="mdl-slider mdl-js-slider" type="range" min="0" max="1500" step="10" value={this.state.width} onChange={this.handleWidthChange} /> </p>
                             <div className="mdl-tooltip" htmlFor="rangeCanvasWidth">
@@ -117,6 +111,12 @@ class App extends React.Component {
                             Adjust canvas height
                             </div>
                         </div>
+                        <div className="controlpanel-item">
+                            <label className="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            ADD IMAGE
+                            <input type="file" onChange={this.handleUploadImage}/>
+                            </label>
+                        </div>                        
                         <div className="controlpanel-item">
                             <p id="canvasBgColor"> <input type="color" onChange={this.handleCanvasBgColorChange}/> </p>
                             <div className="mdl-tooltip" htmlFor="canvasBgColor">

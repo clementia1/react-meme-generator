@@ -30946,45 +30946,11 @@ var App = function (_React$Component) {
                             'a',
                             { href: '#tab1', className: 'mdl-tabs__tab header-tab' },
                             'MAIN SETTINGS'
-                        ),
-                        _react2.default.createElement(
-                            'a',
-                            { href: '#tab2', className: 'mdl-tabs__tab header-tab' },
-                            'ADD TEXT'
-                        ),
-                        _react2.default.createElement(
-                            'a',
-                            { href: '#tab3', className: 'mdl-tabs__tab header-tab' },
-                            'DRAWING MODE'
                         )
                     ),
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-tabs__panel header-panel is-active', id: 'tab1' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'controlpanel-item' },
-                            _react2.default.createElement(
-                                'label',
-                                { className: 'input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' },
-                                'ADD IMAGE',
-                                _react2.default.createElement('input', { type: 'file', onChange: this.handleUploadImage })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'controlpanel-item' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label' },
-                                _react2.default.createElement('input', { className: 'mdl-textfield__input', type: 'text', id: 'sample3', onChange: this.addImageFromUrl }),
-                                _react2.default.createElement(
-                                    'label',
-                                    { className: 'mdl-textfield__label', htmlFor: 'sample3' },
-                                    'Add image from url'
-                                )
-                            )
-                        ),
                         _react2.default.createElement(
                             'div',
                             { className: 'controlpanel-item' },
@@ -31015,6 +30981,16 @@ var App = function (_React$Component) {
                                 'div',
                                 { className: 'mdl-tooltip', htmlFor: 'rangeCanvasHeight' },
                                 'Adjust canvas height'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'controlpanel-item' },
+                            _react2.default.createElement(
+                                'label',
+                                { className: 'input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' },
+                                'ADD IMAGE',
+                                _react2.default.createElement('input', { type: 'file', onChange: this.handleUploadImage })
                             )
                         ),
                         _react2.default.createElement(
@@ -32379,7 +32355,7 @@ var Strip = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.props.onRef(this);
-            var canvas = new fabric.Canvas('canvas');
+            var canvas = new fabric.Canvas('canvas', { backgroundColor: "white" });
             (0, _customizeControls2.default)(canvas);
 
             var _props = this.props,
@@ -32392,17 +32368,6 @@ var Strip = function (_Component) {
                 strokeWidth = _props.strokeWidth,
                 fontSize = _props.fontSize;
 
-            var rect = new fabric.Rect({
-                top: padding,
-                left: padding,
-                width: width - 2 * padding,
-                height: height - 2 * padding,
-                fill: fill,
-                stroke: stroke,
-                selectable: false,
-                strokeWidth: strokeWidth
-            });
-            canvas.add(rect);
 
             var text = new fabric.IText('Type your text', {
                 name: 'sampleText',
@@ -32442,17 +32407,18 @@ var Strip = function (_Component) {
             console.log(canvas.item(0), canvas.item(1));
             if (nextProps.width !== this.props.width) {
                 canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
-                canvas.item(0).setWidth(nextProps.width, { cssOnly: true }).sendToBack();
+                canvas.item(0).setWidth(nextProps.width, { cssOnly: true });
                 canvas.setWidth(nextProps.width, { backstoreOnly: true });
                 canvas.setWidth(nextProps.width, { cssOnly: true });
             }
             if (nextProps.height !== this.props.height) {
                 canvas.item(0).setHeight(nextProps.height, { backstoreOnly: true });
-                canvas.item(0).setHeight(nextProps.height, { cssOnly: true }).sendToBack();
+                canvas.item(0).setHeight(nextProps.height, { cssOnly: true });
                 canvas.setHeight(nextProps.height, { backstoreOnly: true });
                 canvas.setHeight(nextProps.height, { cssOnly: true });
             }
-            canvas.item(0).set({ fill: nextProps.canvasbgcolor });
+            canvas.backgroundColor = nextProps.canvasbgcolor;
+            canvas.renderAll();
         }
     }, {
         key: 'toggleAddCard',
@@ -32485,10 +32451,10 @@ var Strip = function (_Component) {
                 'div',
                 null,
                 _react2.default.createElement('canvas', _extends({ id: 'canvas' }, this.props)),
-                childrenWithProps,
                 _react2.default.createElement(
                     'div',
                     null,
+                    childrenWithProps,
                     this.state.isAddBlockOpened ? _react2.default.createElement(
                         'div',
                         { className: 'add-card-opened' },
@@ -32619,16 +32585,21 @@ var Dropdown = function (_React$Component) {
       _this.setState({ selectedFont: selectedFont.value });
     };
 
+    _this.handleControlItemFocus = function (e, name) {
+      _this.setState({ currentControlItem: e.target.name === '' ? name : e.target.name });
+    };
+
     _this.state = {
       text: '',
       color: '#000000',
-      bgColor: 'transparent',
+      bgColor: '#000000',
       font: ['Arial', 'Sherwood', 'Geneva', 'Verdana', 'Monaco', 'Myriad Pro', 'Lucida Grande', 'Ubuntu', 'Impact', 'Times New Roman', 'Georgia', 'Gothic', 'Pacifico', 'Vollkorn SC', 'Pangolin', 'Play', 'Roboto', 'Lobster', 'Cormorant Infant'],
       selectedFont: "Arial",
       selectedFontSize: 12,
       size: [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 72],
       fontWeight: "normal",
-      activ: false
+      activ: false,
+      currentControlItem: ''
     };
     _this.AddText = _this.AddText.bind(_this);
     _this.changeTextarea = _this.changeTextarea.bind(_this);
@@ -32652,9 +32623,7 @@ var Dropdown = function (_React$Component) {
           top: 50,
           originX: 'center',
           originY: 'center',
-          hasRotatingPoint: true,
-          centerTransform: true,
-          fill: this.state.color
+          hasRotatingPoint: true
         });
         canvas.add(textSample);
       }
@@ -32666,21 +32635,23 @@ var Dropdown = function (_React$Component) {
 
       var activObj = canvas.getActiveObject();
       // if activeObject is a text - changing it
-      if (activObj && activObj.setText && activObj.getSelectedText() == false) {
-        if (this.state.text !== prevState.text) activObj.setText(this.state.text);
-        if (this.state.selectedFontSize !== prevState.selectedFontSize) activObj.set({ fontSize: this.state.selectedFontSize });
-        if (this.state.selectedFont !== prevState.selectedFont) activObj.set({ fontFamily: this.state.selectedFont });
-        if (this.state.color !== prevState.color) activObj.set({ fill: this.state.color });
-        if (this.state.bgColor !== prevState.bgColor) activObj.set({ backgroundColor: this.state.bgColor });
-        canvas.renderAll();
-      }
 
       if (activObj && activObj.setText && activObj.isEditing && activObj.getSelectionStyles) {
         activObj.dirty = true;
-        if (this.state.selectedFontSize) activObj.setSelectionStyles({ fontSize: this.state.selectedFontSize });
-        if (this.state.selectedFont) activObj.setSelectionStyles({ fontFamily: this.state.selectedFont });
-        if (this.state.color) activObj.setSelectionStyles({ fill: this.state.color });
-        if (this.state.bgColor) activObj.setSelectionStyles({ backgroundColor: this.state.bgColor });
+        switch (this.state.currentControlItem) {
+          case 'color':
+            activObj.setSelectionStyles({ fill: this.state.color }).setCoords();
+            break;
+          case 'bgColor':
+            activObj.setSelectionStyles({ backgroundColor: this.state.bgColor }).setCoords();
+            break;
+          case 'selectedFont':
+            activObj.setSelectionStyles({ fontFamily: this.state.selectedFont }).setCoords();
+            break;
+          case 'selectedFontSize':
+            activObj.setSelectionStyles({ fontSize: this.state.selectedFontSize }).setCoords();
+            break;
+        }
         canvas.renderAll();
       }
     }
@@ -32708,6 +32679,8 @@ var Dropdown = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var selectedFontSize = this.state.selectedFontSize;
 
       var fontSizeOptions = this.state.size.map(function (item) {
@@ -32720,8 +32693,8 @@ var Dropdown = function (_React$Component) {
         'div',
         { className: 'add-card-opened' },
         _react2.default.createElement('textarea', { onChange: this.changeTextarea }),
-        _react2.default.createElement('input', { type: 'color', value: this.state.color, onChange: this.changeTextareaColor.bind(this) }),
-        _react2.default.createElement('input', { type: 'color', value: this.state.bgColor, onChange: this.changeBgColor.bind(this) }),
+        _react2.default.createElement('input', { name: 'color', type: 'color', value: this.state.color, onChange: this.changeTextareaColor.bind(this), onFocus: this.handleControlItemFocus }),
+        _react2.default.createElement('input', { name: 'bgColor', type: 'color', value: this.state.bgColor, onChange: this.changeBgColor.bind(this), onFocus: this.handleControlItemFocus }),
         _react2.default.createElement(
           'button',
           { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.AddText },
@@ -32731,12 +32704,18 @@ var Dropdown = function (_React$Component) {
           placeholder: this.state.selectedFont,
           value: this.selectedFont,
           onChange: this.handleFontFamilyChange,
+          onFocus: function onFocus(e) {
+            return _this2.handleControlItemFocus(e, "selectedFont");
+          },
           options: fontFamilyOptions
         }),
         _react2.default.createElement(_reactSelect2.default, {
           placeholder: this.state.selectedFontSize,
           value: this.selectedFontSize,
           onChange: this.handleFontSizeChange,
+          onFocus: function onFocus(e) {
+            return _this2.handleControlItemFocus(e, "selectedFontSize");
+          },
           options: fontSizeOptions
         })
       );
@@ -63233,7 +63212,7 @@ exports = module.exports = __webpack_require__(33)(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Pacifico|Vollkorn+SC|Pangolin|Play|Roboto|Lobster|Cormorant+Infant);", ""]);
 
 // module
-exports.push([module.i, "/* ----------------------------------------------\n * Generated by Animista on 2018-2-7 9:5:40\n * w: http://animista.net, t: @cssanimista\n * ---------------------------------------------- */\n/**\n * ----------------------------------------\n * animation shadow-drop-2-center\n * ----------------------------------------\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n/* .canvas-container {\n  background: white;\n} */\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: auto; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 20px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n\n.Select {\n  display: inline-flex;\n  align-items: center; }\n\n.font-family-select {\n  width: 160px; }\n\n.header, .sidebar, .mainCanvas {\n  border: 1px solid;\n  padding: 2px;\n  -webkit-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75); }\n", ""]);
+exports.push([module.i, "/* ----------------------------------------------\r\n * Generated by Animista on 2018-2-7 9:5:40\r\n * w: http://animista.net, t: @cssanimista\r\n * ---------------------------------------------- */\n/**\r\n * ----------------------------------------\r\n * animation shadow-drop-2-center\r\n * ----------------------------------------\r\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n.canvas-container {\n  background: white; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: auto; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 20px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n\n.Select {\n  display: inline-flex;\n  align-items: center; }\n\n.font-family-select {\n  width: 160px; }\n\n.header, .sidebar, .mainCanvas {\n  border: 1px solid;\n  padding: 2px;\n  -webkit-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75); }\n", ""]);
 
 // exports
 

@@ -79,21 +79,10 @@ class Strip extends Component {
     
     componentDidMount() {
         this.props.onRef(this);
-        var canvas = new fabric.Canvas('canvas');
+        var canvas = new fabric.Canvas('canvas', {backgroundColor : "white"});
         customizeControls(canvas);
 
         var { padding, width, height, fill, stroke, fontFamily, strokeWidth, fontSize } = this.props;
-        var rect = new fabric.Rect({
-            top: padding,
-            left: padding,
-            width: width - 2 * padding,
-            height: height - 2 * padding,
-            fill: fill,
-            stroke: stroke,
-            selectable: false,
-            strokeWidth: strokeWidth
-        });
-        canvas.add(rect);
 
         var text = new fabric.IText('Type your text', {
             name: 'sampleText',
@@ -129,18 +118,18 @@ class Strip extends Component {
         console.log(canvas.item(0), canvas.item(1));
         if (nextProps.width !== this.props.width) {
             canvas.item(0).setWidth(nextProps.width, { backstoreOnly: true });
-            canvas.item(0).setWidth(nextProps.width, { cssOnly: true }).sendToBack();
+            canvas.item(0).setWidth(nextProps.width, { cssOnly: true });
             canvas.setWidth(nextProps.width, { backstoreOnly: true });
-            canvas.setWidth(nextProps.width, { cssOnly: true });
+            canvas.setWidth(nextProps.width, { cssOnly: true });            
         }
         if (nextProps.height !== this.props.height) {
             canvas.item(0).setHeight(nextProps.height, { backstoreOnly: true });
-            canvas.item(0).setHeight(nextProps.height, { cssOnly: true }).sendToBack();
+            canvas.item(0).setHeight(nextProps.height, { cssOnly: true });
             canvas.setHeight(nextProps.height, { backstoreOnly: true });
             canvas.setHeight(nextProps.height, { cssOnly: true });
         }
-        canvas.item(0).set({fill: nextProps.canvasbgcolor});
-        
+        canvas.backgroundColor = nextProps.canvasbgcolor;
+        canvas.renderAll();
     }
     toggleAddCard() {
         this.setState({
@@ -164,8 +153,7 @@ class Strip extends Component {
         return (
             <div>
                 <canvas id="canvas" {...this.props}></canvas>
-                {childrenWithProps}
-                <div>
+                <div>{childrenWithProps}
                     {this.state.isAddBlockOpened ?
                         <div className="add-card-opened">
                             <Dropdown canvas={this.state.canvas} />
