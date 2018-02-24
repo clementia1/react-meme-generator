@@ -54,7 +54,7 @@ class Dropdown extends React.Component {
           activObj.setSelectionStyles({fill: this.state.color}).setCoords();
           break;
         case 'bgColor':
-          activObj.setSelectionStyles({backgroundColor: this.state.bgColor}).setCoords();
+          activObj.setSelectionStyles({textBackgroundColor: this.state.bgColor}).setCoords();
           break;
         case 'selectedFont':
           activObj.setSelectionStyles({fontFamily: this.state.selectedFont}).setCoords();

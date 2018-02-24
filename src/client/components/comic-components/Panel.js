@@ -93,8 +93,8 @@ Panel.defaultProps = {
     height: 180,
     padding: 20,
     fill: 'white',
-    stroke: 'black',
-    strokeWidth: 3,
+    stroke: 'white',
+    strokeWidth: 0,
     background: null,
 };
 

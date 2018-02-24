@@ -32210,8 +32210,8 @@ Panel.defaultProps = {
     height: 180,
     padding: 20,
     fill: 'white',
-    stroke: 'black',
-    strokeWidth: 3,
+    stroke: 'white',
+    strokeWidth: 0,
     background: null
 };
 
@@ -32643,7 +32643,7 @@ var Dropdown = function (_React$Component) {
             activObj.setSelectionStyles({ fill: this.state.color }).setCoords();
             break;
           case 'bgColor':
-            activObj.setSelectionStyles({ backgroundColor: this.state.bgColor }).setCoords();
+            activObj.setSelectionStyles({ textBackgroundColor: this.state.bgColor }).setCoords();
             break;
           case 'selectedFont':
             activObj.setSelectionStyles({ fontFamily: this.state.selectedFont }).setCoords();
