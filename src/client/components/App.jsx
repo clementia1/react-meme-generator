@@ -4,6 +4,7 @@ import Canvas from './canvas';
 import 'material-design-lite/material.css';
 import 'material-design-lite/material.min.js';
 import Sidebar from './sidebar/Sidebar';
+import { SketchPicker } from 'react-color'
 
 
 class App extends React.Component {
@@ -12,6 +13,7 @@ class App extends React.Component {
     this.state = {
         image: '',
         imageCount: 0,
+        displayBgColorPicker: false,
         canvasBgColor: 'white',
         width: 700,
         height: 500,
@@ -65,10 +67,17 @@ class App extends React.Component {
     this.setState({height: event.target.value});
   }
 
-  handleCanvasBgColorChange = (event) => {
-    this.setState({canvasBgColor: event.target.value});
+  handleCanvasBgColorChange = (color) => {
+    this.setState({canvasBgColor: color.hex});
   }    
 
+  toggleDisplayBgColorPicker = () => {
+    this.setState({ displayBgColorPicker: !this.state.displayBgColorPicker })
+  };
+
+  handleCloseBgColorPicker = () => {
+    this.setState({ displayBgColorPicker: false })
+  };
 
   componentWillMount() {
     function getWindowWidth() {
@@ -84,6 +93,17 @@ class App extends React.Component {
   }
 
   render() {
+    const popover = {
+        position: 'absolute',
+        zIndex: '2',
+    }
+    const cover = {
+        position: 'fixed',
+        top: '0px',
+        right: '0px',
+        bottom: '0px',
+        left: '0px',
+    }
     return (
         <div>
              <div className="header mdl-tabs mdl-js-tabs">
@@ -118,10 +138,16 @@ class App extends React.Component {
                             </label>
                         </div>                        
                         <div className="controlpanel-item">
-                            <p id="canvasBgColor"> <input type="color" onChange={this.handleCanvasBgColorChange}/> </p>
+                            <button id="canvasBgColor" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" onClick={this.toggleDisplayBgColorPicker}>
+                            <i class="material-icons">format_color_fill</i>
+                            </button>
                             <div className="mdl-tooltip" htmlFor="canvasBgColor">
                             Change background color
                             </div>
+                            { this.state.displayBgColorPicker ? <div style={ popover }>
+                            <div style={ cover } onClick={ this.handleCloseBgColorPicker }/>
+                            <SketchPicker color={ this.state.canvasBgColor } onChangeComplete={ this.handleCanvasBgColorChange } />
+                            </div> : null }                            
                         </div>
                         <div className="controlpanel-item">
                             <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.fitToWidth}>
@@ -133,10 +159,8 @@ class App extends React.Component {
                         </div>
                     </div>
                     <div className="mdl-tabs__panel header-panel" id="tab2">
-                        <p>Second tab's content.</p>
                     </div>
                     <div className="mdl-tabs__panel header-panel" id="tab3">
-                        <p>Third tab's content.</p>
                     </div>
             </div>
 

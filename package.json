@@ -19,6 +19,7 @@
     "nodemon": "^1.15.1",
     "object-assign": "^4.1.1",
     "react": "^16.2.0",
+    "react-color": "^2.13.8",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-select": "^1.2.1"
