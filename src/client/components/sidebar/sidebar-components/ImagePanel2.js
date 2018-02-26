@@ -19,6 +19,13 @@ const ImagePanel2 = (props) => (
             <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe7.png"/></div>
             <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe8.png"/></div>
             <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe9.png"/></div>
+            <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe10.png"/></div>
+            <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe11.png"/></div>
+            <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe12.png"/></div>
+            <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe13.png"/></div>
+            <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe14.png"/></div>
+            <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe15.png"/></div>
+            <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe16.png"/></div>
         </div>
   </div>
 )
