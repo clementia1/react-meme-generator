@@ -4,7 +4,7 @@ import Canvas from './canvas';
 import 'material-design-lite/material.css';
 import 'material-design-lite/material.min.js';
 import Sidebar from './sidebar/Sidebar';
-import { SketchPicker } from 'react-color'
+import { SketchPicker } from 'react-color';
 
 
 class App extends React.Component {

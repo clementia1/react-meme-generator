@@ -13,11 +13,12 @@ class Strip extends Component {
             canvas: null,
             isAddBlockOpened: false,
             isAddBlockOpenedBrush: false,
-
+            isDrawingModeOn: false,
         };
         this.toggleAddCard = this.toggleAddCard.bind(this);
-        this.toggleAddCardBrush = this.toggleAddCardBrush.bind(this);
+        this.toggleDrawMode = this.toggleDrawMode.bind(this);
     }
+    
     onDownload() {
         var { canvas } = this.state;
         canvas.deactivateAll().renderAll();
@@ -132,9 +133,10 @@ class Strip extends Component {
             isAddBlockOpened: !this.state.isAddBlockOpened,
         })
     }
-    toggleAddCardBrush() {
+    toggleDrawMode() {
         this.setState({
             isAddBlockOpenedBrush: !this.state.isAddBlockOpenedBrush,
+            isDrawingModeOn: !this.state.isDrawingModeOn
         })
     }
     render() {
@@ -157,13 +159,13 @@ class Strip extends Component {
                     }
                     {this.state.isAddBlockOpenedBrush ?
                         <div className="control-box draw-mode">
-                            <Brush canvas={this.state.canvas}/>                            
+                            <Brush canvas={this.state.canvas} isDrawingModeOn={this.state.isDrawingModeOn}/>                            
                         </div> : <div></div>
                     }
                 </div>
                 <div className="control-buttons"> 
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCard.bind(this)}>Edit Text</button>
-                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleAddCardBrush.bind(this)}>Draw mode</button>
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.toggleDrawMode.bind(this)}>Draw mode</button>
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'grayscale')}>Grayscale</button>
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onEffect.bind(this, 'invert')}>Invert</button>
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.onDownload.bind(this)}>Download</button>
