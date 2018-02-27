@@ -12479,32 +12479,102 @@ var ImagePanel1 = function ImagePanel1(props) {
             _react2.default.createElement(
                 'div',
                 { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
-                _react2.default.createElement('img', { src: 'upload/memes/rageface/hmm.png' })
+                _react2.default.createElement('img', { src: 'images/memes/rageface/hmm.png' })
             ),
             _react2.default.createElement(
                 'div',
                 { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
-                _react2.default.createElement('img', { src: 'upload/memes/rageface/mofgod.png' })
+                _react2.default.createElement('img', { src: 'images/memes/rageface/mofgod.png' })
             ),
             _react2.default.createElement(
                 'div',
                 { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
-                _react2.default.createElement('img', { src: 'upload/memes/rageface/1.png' })
+                _react2.default.createElement('img', { src: 'images/memes/rageface/wtf.png' })
             ),
             _react2.default.createElement(
                 'div',
                 { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
-                _react2.default.createElement('img', { src: 'upload/memes/rageface/wtf.png' })
+                _react2.default.createElement('img', { src: 'images/memes/rageface/3.png' })
             ),
             _react2.default.createElement(
                 'div',
                 { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
-                _react2.default.createElement('img', { src: 'upload/memes/rageface/okay.png' })
+                _react2.default.createElement('img', { src: 'images/memes/rageface/rly.png' })
             ),
             _react2.default.createElement(
                 'div',
                 { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
-                _react2.default.createElement('img', { src: 'upload/memes/rageface/rly.png' })
+                _react2.default.createElement('img', { src: 'images/memes/rageface/0.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/1.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/2.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/okay.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/4.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/5.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/6.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/7.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/8.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/9.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/10.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/11.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/12.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/13.png' })
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
+                _react2.default.createElement('img', { src: 'images/memes/rageface/14.png' })
             )
         )
     );
@@ -12547,7 +12617,7 @@ var ImagePanel2 = function ImagePanel2(props) {
             ),
             _react2.default.createElement(
                 'div',
-                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox ', onClick: props.addImage },
+                { className: 'mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox', onClick: props.addImage },
                 _react2.default.createElement('img', { src: 'images/memes/pepe/feelsgoodman.png' })
             ),
             _react2.default.createElement(
@@ -76111,7 +76181,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/icon?family=Ma
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Pacifico|Vollkorn+SC|Pangolin|Play|Roboto|Lobster|Cormorant+Infant);", ""]);
 
 // module
-exports.push([module.i, "/* ----------------------------------------------\r\n * Generated by Animista on 2018-2-7 9:5:40\r\n * w: http://animista.net, t: @cssanimista\r\n * ---------------------------------------------- */\n/**\r\n * ----------------------------------------\r\n * animation shadow-drop-2-center\r\n * ----------------------------------------\r\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n.canvas-container {\n  background: white; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: auto; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 20px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n\n.Select {\n  display: inline-flex;\n  align-items: center; }\n\n.font-family-select {\n  width: 160px; }\n\n.header, .sidebar, .mainCanvas {\n  border: 1px solid;\n  padding: 2px;\n  -webkit-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75); }\n\n.control-box {\n  padding: 10px; }\n\n.mdl-button {\n  margin: 3px; }\n", ""]);
+exports.push([module.i, "/* ----------------------------------------------\n * Generated by Animista on 2018-2-7 9:5:40\n * w: http://animista.net, t: @cssanimista\n * ---------------------------------------------- */\n/**\n * ----------------------------------------\n * animation shadow-drop-2-center\n * ----------------------------------------\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n.canvas-container {\n  background: white; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: auto; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 20px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n\n.Select {\n  display: inline-flex;\n  align-items: center; }\n\n.font-family-select {\n  width: 160px; }\n\n.header, .sidebar, .mainCanvas {\n  border: 1px solid;\n  padding: 2px;\n  -webkit-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75); }\n\n.control-box {\n  padding: 10px; }\n\n.mdl-button {\n  margin: 3px; }\n", ""]);
 
 // exports
 

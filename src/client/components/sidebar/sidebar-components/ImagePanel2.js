@@ -7,7 +7,7 @@ const ImagePanel2 = (props) => (
   <div>
         <div className="mdl-grid">
             <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/feelsbadman.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox " onClick={props.addImage}><img src="images/memes/pepe/feelsgoodman.png"/></div>
+            <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/feelsgoodman.png"/></div>
             <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/Pepe_pls.png"/></div>
             <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe0.png"/></div>
             <div className="mdl-cell mdl-cell--3-col mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/pepe/pepe1.png"/></div>
