@@ -1,6 +1,7 @@
 import React from 'react';
 import 'material-design-lite/material.css';
 import 'material-design-lite/material.min.js';
+import Select from 'react-select';
 import { SketchPicker } from 'react-color';
 
 class Brush extends React.Component {
@@ -46,10 +47,8 @@ class Brush extends React.Component {
         }
         canvas.freeDrawingBrush.color = this.state.brushColor;
     }
-    changeMode(e) {
-        this.setState({
-            selectedMode: e.target.value
-        })
+    changeMode(selectedMode) {
+        this.setState({selectedMode: selectedMode.value})
     }
     range(e) {
         this.setState({
@@ -77,25 +76,32 @@ class Brush extends React.Component {
           bottom: '0px',
           left: '0px',
         }
+        let brushMode = this.state.mode.map((item) => {
+            return item = { 'value': item, 'label': item }
+        });
         return (
-            <div>
-                <label >Mode:</label>
-                <select onChange={this.changeMode} value={this.state.selectedMode}>
-                    {this.state.mode.map((item, index) => {
-                        return <option key={index} value={item} >{item}</option>
-                    })}    </select>
-                <label >Range:</label>
-                <p className="rangeCanvasWidth" id="rangeCanvasWidth">
-                    <input name='range' type="range" min="1" max="100" step="1" value={this.state.range} onChange={this.range.bind(this)} className='mdl-slider mdl-js-slider'></input>
-                </p>                
-                <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.clear}>Clear all</button>
-                <div>
+            <div>                
+                <div className="controlpanel-item">
+                    <Select className="brush-mode-select"
+                        placeholder={this.state.selectedMode}
+                        value={this.selectedMode}
+                        onChange={this.changeMode}
+                        options={brushMode}
+                    />
+                </div> 
+                <div className="controlpanel-item">
                     { this.state.displayBrushColorPicker ? <div style={ popover }>
                       <div style={ cover } onClick={ this.handleCloseBrushColorPicker }/>
                       <SketchPicker color={ this.state.brushColor } onChangeComplete={ this.handleChangeBrushColor }/>
                     </div> : null }
-                    </div>
-                    <button onClick={ this.toggleBrushColorPicker }>Pick Color</button>
+                </div>
+                <div className="controlpanel-item"><button onClick={ this.toggleBrushColorPicker }>Pick Color</button></div>
+                <div className="controlpanel-item">
+                    <p className="rangeCanvasWidth" id="rangeCanvasWidth">
+                        <input name='range' type="range" min="1" max="100" step="1" value={this.state.range} onChange={this.range.bind(this)} className='mdl-slider mdl-js-slider'></input>
+                    </p>
+                </div>                
+                <div className="controlpanel-item"><button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.clear}>Clear all</button></div>
             </div>
         )
     }

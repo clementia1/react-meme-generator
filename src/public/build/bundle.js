@@ -35231,7 +35231,7 @@ var Strip = function (_Component) {
             canvas.deactivateAll().renderAll();
             var link = this.downloadLink;
             link.setAttribute('href', canvas.toDataURL());
-            link.setAttribute('download', this.props.title + '.png');
+            link.setAttribute('download', 'random-meme-you-just-made' + '.png');
             link.click();
         }
     }, {
@@ -35626,30 +35626,50 @@ var Dropdown = function (_React$Component) {
         'div',
         { className: 'add-card-opened' },
         _react2.default.createElement('textarea', { onChange: this.changeTextarea }),
-        _react2.default.createElement('input', { name: 'color', type: 'color', value: this.state.color, onChange: this.changeTextareaColor.bind(this), onFocus: this.handleControlItemFocus }),
-        _react2.default.createElement('input', { name: 'bgColor', type: 'color', value: this.state.bgColor, onChange: this.changeBgColor.bind(this), onFocus: this.handleControlItemFocus }),
-        _react2.default.createElement(_reactSelect2.default, { className: 'font-family-select',
-          placeholder: this.state.selectedFont,
-          value: this.selectedFont,
-          onChange: this.handleFontFamilyChange,
-          onFocus: function onFocus(e) {
-            return _this2.handleControlItemFocus(e, "selectedFont");
-          },
-          options: fontFamilyOptions
-        }),
-        _react2.default.createElement(_reactSelect2.default, {
-          placeholder: this.state.selectedFontSize,
-          value: this.selectedFontSize,
-          onChange: this.handleFontSizeChange,
-          onFocus: function onFocus(e) {
-            return _this2.handleControlItemFocus(e, "selectedFontSize");
-          },
-          options: fontSizeOptions
-        }),
         _react2.default.createElement(
-          'button',
-          { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.AddText },
-          'Add text'
+          'div',
+          { className: 'controlpanel-item' },
+          _react2.default.createElement('input', { name: 'color', type: 'color', value: this.state.color, onChange: this.changeTextareaColor.bind(this), onFocus: this.handleControlItemFocus })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'controlpanel-item' },
+          _react2.default.createElement('input', { name: 'bgColor', type: 'color', value: this.state.bgColor, onChange: this.changeBgColor.bind(this), onFocus: this.handleControlItemFocus })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'controlpanel-item' },
+          _react2.default.createElement(_reactSelect2.default, { className: 'font-family-select',
+            placeholder: this.state.selectedFont,
+            value: this.selectedFont,
+            onChange: this.handleFontFamilyChange,
+            onFocus: function onFocus(e) {
+              return _this2.handleControlItemFocus(e, "selectedFont");
+            },
+            options: fontFamilyOptions
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'controlpanel-item' },
+          _react2.default.createElement(_reactSelect2.default, {
+            placeholder: this.state.selectedFontSize,
+            value: this.selectedFontSize,
+            onChange: this.handleFontSizeChange,
+            onFocus: function onFocus(e) {
+              return _this2.handleControlItemFocus(e, "selectedFontSize");
+            },
+            options: fontSizeOptions
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'controlpanel-item' },
+          _react2.default.createElement(
+            'button',
+            { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.AddText },
+            'Add text'
+          )
         )
       );
     }
@@ -38865,8 +38885,7 @@ Object.defineProperty(exports, "__esModule", {
 function customizeControls(canvas) {
 
   var DIMICON = 15;
-  var dataImage = ["http://localhost:3000/upload/remove.svg", /*delete*/
-  "upload/layer.svg"];
+  var dataImage = ["upload/remove.svg", "upload/layer.svg"];
   //********override*****//
   fabric.Object.prototype._drawControl = function (control, ctx, methodName, left, top) {
     if (!this.isControlVisible(control)) {
@@ -39038,6 +39057,10 @@ __webpack_require__(11);
 
 __webpack_require__(12);
 
+var _reactSelect = __webpack_require__(206);
+
+var _reactSelect2 = _interopRequireDefault(_reactSelect);
+
 var _reactColor = __webpack_require__(90);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -39126,10 +39149,8 @@ var Brush = function (_React$Component) {
         }
     }, {
         key: 'changeMode',
-        value: function changeMode(e) {
-            this.setState({
-                selectedMode: e.target.value
-            });
+        value: function changeMode(selectedMode) {
+            this.setState({ selectedMode: selectedMode.value });
         }
     }, {
         key: 'range',
@@ -39150,44 +39171,25 @@ var Brush = function (_React$Component) {
                 bottom: '0px',
                 left: '0px'
             };
+            var brushMode = this.state.mode.map(function (item) {
+                return item = { 'value': item, 'label': item };
+            });
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(
-                    'label',
-                    null,
-                    'Mode:'
-                ),
-                _react2.default.createElement(
-                    'select',
-                    { onChange: this.changeMode, value: this.state.selectedMode },
-                    this.state.mode.map(function (item, index) {
-                        return _react2.default.createElement(
-                            'option',
-                            { key: index, value: item },
-                            item
-                        );
-                    }),
-                    '    '
-                ),
-                _react2.default.createElement(
-                    'label',
-                    null,
-                    'Range:'
-                ),
-                _react2.default.createElement(
-                    'p',
-                    { className: 'rangeCanvasWidth', id: 'rangeCanvasWidth' },
-                    _react2.default.createElement('input', { name: 'range', type: 'range', min: '1', max: '100', step: '1', value: this.state.range, onChange: this.range.bind(this), className: 'mdl-slider mdl-js-slider' })
-                ),
-                _react2.default.createElement(
-                    'button',
-                    { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.clear },
-                    'Clear all'
+                    'div',
+                    { className: 'controlpanel-item' },
+                    _react2.default.createElement(_reactSelect2.default, { className: 'brush-mode-select',
+                        placeholder: this.state.selectedMode,
+                        value: this.selectedMode,
+                        onChange: this.changeMode,
+                        options: brushMode
+                    })
                 ),
                 _react2.default.createElement(
                     'div',
-                    null,
+                    { className: 'controlpanel-item' },
                     this.state.displayBrushColorPicker ? _react2.default.createElement(
                         'div',
                         { style: popover },
@@ -39196,9 +39198,31 @@ var Brush = function (_React$Component) {
                     ) : null
                 ),
                 _react2.default.createElement(
-                    'button',
-                    { onClick: this.toggleBrushColorPicker },
-                    'Pick Color'
+                    'div',
+                    { className: 'controlpanel-item' },
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.toggleBrushColorPicker },
+                        'Pick Color'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'controlpanel-item' },
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'rangeCanvasWidth', id: 'rangeCanvasWidth' },
+                        _react2.default.createElement('input', { name: 'range', type: 'range', min: '1', max: '100', step: '1', value: this.state.range, onChange: this.range.bind(this), className: 'mdl-slider mdl-js-slider' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'controlpanel-item' },
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect', onClick: this.clear },
+                        'Clear all'
+                    )
                 )
             );
         }
@@ -76181,7 +76205,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/icon?family=Ma
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Pacifico|Vollkorn+SC|Pangolin|Play|Roboto|Lobster|Cormorant+Infant);", ""]);
 
 // module
-exports.push([module.i, "/* ----------------------------------------------\n * Generated by Animista on 2018-2-7 9:5:40\n * w: http://animista.net, t: @cssanimista\n * ---------------------------------------------- */\n/**\n * ----------------------------------------\n * animation shadow-drop-2-center\n * ----------------------------------------\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n.canvas-container {\n  background: white; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: auto; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 20px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n\n.Select {\n  display: inline-flex;\n  align-items: center; }\n\n.font-family-select {\n  width: 160px; }\n\n.header, .sidebar, .mainCanvas {\n  border: 1px solid;\n  padding: 2px;\n  -webkit-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75); }\n\n.control-box {\n  padding: 10px; }\n\n.mdl-button {\n  margin: 3px; }\n", ""]);
+exports.push([module.i, "/* ----------------------------------------------\n * Generated by Animista on 2018-2-7 9:5:40\n * w: http://animista.net, t: @cssanimista\n * ---------------------------------------------- */\n/**\n * ----------------------------------------\n * animation shadow-drop-2-center\n * ----------------------------------------\n */\n@-webkit-keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\n@keyframes shadow-drop-2-center {\n  0% {\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    box-shadow: 0 0 0 0 transparent; }\n  100% {\n    -webkit-transform: translateZ(50px);\n    transform: translateZ(50px);\n    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35); } }\n\nbody {\n  background: #fff8ef;\n  color: #3d2a12; }\n\n.canvas-container {\n  background: white; }\n\n.card {\n  background: white;\n  font-size: 18px;\n  font-weight: bold;\n  border-radius: 4px;\n  cursor: pointer;\n  word-wrap: break-word;\n  color: #4d4d4d;\n  padding: 4px;\n  margin: 10px; }\n\n.card:hover, .add-card:hover {\n  background: #c6c6c6;\n  cursor: pointer; }\n\ntextarea {\n  display: block;\n  width: 50%; }\n\nlabel.input-custom-file input[type=file] {\n  display: none; }\n\n.add-card-open {\n  text-align: center; }\n\n.rangeCanvasWidth {\n  width: 300px; }\n\n.imgBox {\n  -moz-display: flex;\n  transition: all .2s ease-in-out; }\n\n.imgBox > img {\n  width: 100%;\n  height: auto; }\n\n.imgBox:hover {\n  transform: scale(1.1); }\n\n.imgBox:active {\n  -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;\n  animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }\n\n.header-tab {\n  width: 33.33vw; }\n\n.header-panel {\n  display: inline-table;\n  height: auto; }\n\n.controlpanel-item {\n  display: inline-table;\n  margin: 15px; }\n\n.sidebar-header-ul {\n  list-style-type: none;\n  background-color: #291604; }\n\n.sidebar-header-ul li, a {\n  color: #dad8d6;\n  padding: 10px;\n  outline: none;\n  text-decoration: none;\n  text-transform: uppercase; }\n\n.Select {\n  display: inline-flex;\n  align-items: center; }\n\n.font-family-select {\n  width: 160px; }\n\n.brush-mode-select {\n  width: 100px; }\n\n.header, .sidebar, .mainCanvas {\n  border: 1px solid;\n  padding: 2px;\n  -webkit-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  -moz-box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75);\n  box-shadow: 0px 2px 30px -13px rgba(0, 0, 0, 0.75); }\n\n.control-box {\n  padding: 10px; }\n\n.mdl-button {\n  margin: 3px; }\n", ""]);
 
 // exports
 

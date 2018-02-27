@@ -108,7 +108,7 @@ label.input-custom-file input[type=file] {
 
 .controlpanel-item {
   display: inline-table;
-  margin: 20px;
+  margin: 15px;
 }
 
 .sidebar-header-ul {  
@@ -131,6 +131,10 @@ label.input-custom-file input[type=file] {
 
 .font-family-select {
   width: 160px;
+}
+
+.brush-mode-select {
+  width: 100px;  
 }
 
 .header, .sidebar, .mainCanvas {

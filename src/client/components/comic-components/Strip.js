@@ -24,7 +24,7 @@ class Strip extends Component {
         canvas.deactivateAll().renderAll();
         var link = this.downloadLink;
         link.setAttribute('href', canvas.toDataURL());
-        link.setAttribute('download', this.props.title + '.png');
+        link.setAttribute('download', 'random-meme-you-just-made' + '.png');
         link.click();
     }
     onEffect(effect) {

@@ -104,24 +104,24 @@ class Dropdown extends React.Component {
     });
     return (
       <div className="add-card-opened">
-        <textarea onChange={this.changeTextarea} ></textarea>
-        <input name="color" type="color" value={this.state.color} onChange={this.changeTextareaColor.bind(this)} onFocus={this.handleControlItemFocus}></input>
-        <input name="bgColor" type="color" value={this.state.bgColor} onChange={this.changeBgColor.bind(this)} onFocus={this.handleControlItemFocus}></input>        
-        <Select className="font-family-select"
+        <textarea onChange={this.changeTextarea}></textarea>
+        <div className="controlpanel-item"><input name="color" type="color" value={this.state.color} onChange={this.changeTextareaColor.bind(this)} onFocus={this.handleControlItemFocus}></input></div>
+        <div className="controlpanel-item"><input name="bgColor" type="color" value={this.state.bgColor} onChange={this.changeBgColor.bind(this)} onFocus={this.handleControlItemFocus}></input></div>        
+        <div className="controlpanel-item"><Select className="font-family-select"
             placeholder={this.state.selectedFont}
             value={this.selectedFont}
             onChange={this.handleFontFamilyChange}
             onFocus={(e) => this.handleControlItemFocus(e, "selectedFont")}
             options={fontFamilyOptions}
-        />
-        <Select
+        /></div>
+        <div className="controlpanel-item"><Select
             placeholder={this.state.selectedFontSize}
             value={this.selectedFontSize}
             onChange={this.handleFontSizeChange}
             onFocus={(e) => this.handleControlItemFocus(e, "selectedFontSize")}
             options={fontSizeOptions}
-        />
-        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Add text</button>
+        /></div>
+        <div className="controlpanel-item"><button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Add text</button></div>
       </div>
     )
   }

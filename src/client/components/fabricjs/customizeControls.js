@@ -2,7 +2,7 @@ function customizeControls(canvas) {
     
     var DIMICON = 15;
     var dataImage = [            
-            "http://localhost:3000/upload/remove.svg", /*delete*/
+            "upload/remove.svg", 
             "upload/layer.svg"
           ];
           //********override*****//
