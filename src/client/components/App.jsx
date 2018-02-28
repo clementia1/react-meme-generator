@@ -138,8 +138,8 @@ class App extends React.Component {
                             </label>
                         </div>                        
                         <div className="controlpanel-item">
-                            <button id="canvasBgColor" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" onClick={this.toggleDisplayBgColorPicker}>
-                            <i class="material-icons">format_color_fill</i>
+                            <button id="canvasBgColor" className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" onClick={this.toggleDisplayBgColorPicker}>
+                            <i className="material-icons">format_color_fill</i>
                             </button>
                             <div className="mdl-tooltip" htmlFor="canvasBgColor">
                             Change background color

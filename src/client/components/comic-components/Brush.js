@@ -80,7 +80,7 @@ class Brush extends React.Component {
             return item = { 'value': item, 'label': item }
         });
         return (
-            <div>                
+            <div className="draw-mode-panel">                
                 <div className="controlpanel-item">
                     <Select className="brush-mode-select"
                         placeholder={this.state.selectedMode}

@@ -1,5 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
+import TextColorPicker from '../TextColorPicker';
+import TextBgColorPicker from '../TextBgColorPicker';
 import 'material-design-lite/material.css';
 import 'material-design-lite/material.min.js';
 import 'react-select/dist/react-select.css';
@@ -72,15 +74,11 @@ class Dropdown extends React.Component {
       text: e.target.value
     })
   }
-  changeTextareaColor(e) {
-    this.setState({
-      color: e.target.value
-    })
+  changeTextareaColor = (color) => {
+    this.setState({color: color.hex})
   }
-  changeBgColor(e) {
-    this.setState({
-      bgColor: e.target.value
-    })
+  changeBgColor = (color) => {
+    this.setState({bgColor: color.hex})
   }
   handleFontSizeChange = (selectedFontSize) => {
     this.setState({ selectedFontSize: selectedFontSize.value});
@@ -103,10 +101,14 @@ class Dropdown extends React.Component {
             return item = { 'value': item, 'label': item, 'title': item }
     });
     return (
-      <div className="add-card-opened">
+      <div className="text-editor-panel">
         <textarea onChange={this.changeTextarea}></textarea>
-        <div className="controlpanel-item"><input name="color" type="color" value={this.state.color} onChange={this.changeTextareaColor.bind(this)} onFocus={this.handleControlItemFocus}></input></div>
-        <div className="controlpanel-item"><input name="bgColor" type="color" value={this.state.bgColor} onChange={this.changeBgColor.bind(this)} onFocus={this.handleControlItemFocus}></input></div>        
+        <div className="controlpanel-item" onFocus={(e) => this.handleControlItemFocus(e, "color")}>
+            <TextColorPicker color={this.state.color} handleChangeComplete={this.changeTextareaColor}/>
+        </div>
+        <div className="controlpanel-item" onFocus={(e) => this.handleControlItemFocus(e, "bgColor")}>
+            <TextBgColorPicker bgColor={this.state.bgColor} handleChangeComplete={this.changeBgColor}/>
+        </div>        
         <div className="controlpanel-item"><Select className="font-family-select"
             placeholder={this.state.selectedFont}
             value={this.selectedFont}
