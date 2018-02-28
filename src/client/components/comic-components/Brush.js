@@ -3,6 +3,7 @@ import 'material-design-lite/material.css';
 import 'material-design-lite/material.min.js';
 import Select from 'react-select';
 import { SketchPicker } from 'react-color';
+import BrushColorPicker from '../BrushColorPicker';
 
 class Brush extends React.Component {
     constructor(props) {
@@ -55,27 +56,11 @@ class Brush extends React.Component {
             [e.target.name]: e.target.value
         })
     }
-    toggleBrushColorPicker = () => {
-        this.setState({ displayBrushColorPicker: !this.state.displayColorPicker })
-    };
     handleChangeBrushColor = (color) => {
         this.setState({ brushColor: color.hex });
     };
-    handleCloseBrushColorPicker = () => {
-        this.setState({ displayBrushColorPicker: false })
-    };
+
     render() {
-        const popover = {
-          position: 'absolute',
-          zIndex: '2',
-        }
-        const cover = {
-          position: 'fixed',
-          top: '0px',
-          right: '0px',
-          bottom: '0px',
-          left: '0px',
-        }
         let brushMode = this.state.mode.map((item) => {
             return item = { 'value': item, 'label': item }
         });
@@ -90,12 +75,8 @@ class Brush extends React.Component {
                     />
                 </div> 
                 <div className="controlpanel-item">
-                    { this.state.displayBrushColorPicker ? <div style={ popover }>
-                      <div style={ cover } onClick={ this.handleCloseBrushColorPicker }/>
-                      <SketchPicker color={ this.state.brushColor } onChangeComplete={ this.handleChangeBrushColor }/>
-                    </div> : null }
-                </div>
-                <div className="controlpanel-item"><button onClick={ this.toggleBrushColorPicker }>Pick Color</button></div>
+                    <BrushColorPicker color={this.state.brushColor} handleChangeBrushColor={this.handleChangeBrushColor}/>
+                </div>                
                 <div className="controlpanel-item">
                     <p className="rangeCanvasWidth" id="rangeCanvasWidth">
                         <input name='range' type="range" min="1" max="100" step="1" value={this.state.range} onChange={this.range.bind(this)} className='mdl-slider mdl-js-slider'></input>
