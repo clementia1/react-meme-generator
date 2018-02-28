@@ -89,7 +89,17 @@ class App extends React.Component {
           document.documentElement.clientWidth
         );
       }
-      this.setState({width: getWindowWidth() * 0.75 - getWindowWidth() * 0.04});
+      switch (true) {
+          case getWindowWidth() >= 840:
+              this.setState({width: getWindowWidth() * 0.75 - getWindowWidth() * 0.04});
+                break;
+          case getWindowWidth() < 840 && getWindowWidth() >= 480: 
+              this.setState({width: getWindowWidth() * 0.75 - getWindowWidth() * 0.067});
+                break;              
+          case getWindowWidth() <= 480:
+              this.setState({width: getWindowWidth() * 0.87});
+                break;
+      }      
   }
 
   render() {
@@ -165,10 +175,10 @@ class App extends React.Component {
             </div>
 
             <div className="mdl-grid">
-                <div className="sidebar mdl-cell mdl-cell--3-col">
+                <div className="sidebar mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
                     <Sidebar addImage={this.addImageToCanvas}/>
                 </div>
-                <div className="mainCanvas mdl-cell mdl-cell--9-col">
+                <div className="mainCanvas mdl-cell mdl-cell--9-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                     <Canvas onRef={ref => (this.child = ref)}
                         image={this.state.image}
                         imageCount={this.state.imageCount}
