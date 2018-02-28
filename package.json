@@ -6,6 +6,7 @@
   "scripts": {
     "start": "./node_modules/.bin/nodemon src/server/index.js",
     "webpack": "./node_modules/.bin/webpack --progress --color --watch",
+    "build": "./node_modules/.bin/webpack --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
