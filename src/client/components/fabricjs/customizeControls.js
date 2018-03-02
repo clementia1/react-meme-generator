@@ -76,7 +76,7 @@ function customizeControls(canvas) {
               }
           };
 
-
+        
          fabric.Canvas.prototype._removeAction = function(e, target) {
             let _this = this;
             if (this.getActiveGroup() && this.getActiveGroup() !== 'undefined') {
@@ -84,7 +84,7 @@ function customizeControls(canvas) {
                     o.off();
                     o.remove();
                 });
-                thsis.discardActiveGroup();
+                this.discardActiveGroup();
 
                 // as of fabric 1.6.3 necessary for reasons..
                 setTimeout(function() {
@@ -99,7 +99,8 @@ function customizeControls(canvas) {
                     _this.deactivateAll();
                 }, 0);
             }
-         },
+            this._resetCurrentTransform();
+         };
             
           fabric.Canvas.prototype._getActionFromCorner = function(target, corner, e) {
               if (!corner) {
@@ -118,7 +119,6 @@ function customizeControls(canvas) {
                 case 'tl':
                   return this._removeAction(e, target);
                 case 'tr':
-                  return
                 default:
                   return 'scale';
               }
