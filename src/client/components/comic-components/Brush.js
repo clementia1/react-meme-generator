@@ -43,7 +43,7 @@ class Brush extends React.Component {
         if (this.state.selectedMode == 'Circle') {
             canvas.freeDrawingBrush.width = this.state.range / 150;
         } else {
-            canvas.freeDrawingBrush.width = this.state.range;
+            canvas.freeDrawingBrush.width = +this.state.range;
         }
         canvas.freeDrawingBrush.color = this.state.brushColor;
     }
