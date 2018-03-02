@@ -79,6 +79,7 @@ function customizeControls(canvas) {
         
          fabric.Canvas.prototype._removeAction = function(e, target) {
             let _this = this;
+             
             if (this.getActiveGroup() && this.getActiveGroup() !== 'undefined') {
                 this.getActiveGroup().forEachObject(function(o) {
                     o.off();

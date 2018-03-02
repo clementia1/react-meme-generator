@@ -15,12 +15,11 @@ class Brush extends React.Component {
             width: 10,
             mode: ['Pencil', 'Circle', 'Spray', 'Pattern'],
             selectedMode: 'Pencil',
-            range: '20',
+            range: 20,
         };
         this.clear = this.clear.bind(this);
         this.AddBrush = this.AddBrush.bind(this);
         this.changeMode = this.changeMode.bind(this);
-        this.range = this.range.bind(this);
     }
     clear() {
         let { canvas } = this.props;
@@ -51,10 +50,8 @@ class Brush extends React.Component {
     changeMode(selectedMode) {
         this.setState({selectedMode: selectedMode.value})
     }
-    range(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+    range = (e) => {
+        this.setState({range: e.target.value})
     }
     handleChangeBrushColor = (color) => {
         this.setState({ brushColor: color.hex });
@@ -79,7 +76,7 @@ class Brush extends React.Component {
                 </div>                
                 <div className="controlpanel-item">
                     <p className="rangeCanvasWidth" id="rangeCanvasWidth">
-                        <input name='range' type="range" min="1" max="100" step="1" value={this.state.range} onChange={this.range.bind(this)} className='mdl-slider mdl-js-slider'></input>
+                        <input name='range' type="range" min="1" max="100" step="1" value={this.state.range} onChange={this.range} className='mdl-slider mdl-js-slider'></input>
                     </p>
                 </div>                
                 <div className="controlpanel-item"><button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.clear}>Clear all</button></div>

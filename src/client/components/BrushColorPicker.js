@@ -29,7 +29,7 @@ class BrushColorPicker extends React.Component {
     return (
       <div>
         <button className="mdl-button mdl-js-button mdl-button--fab" onClick={ this.handleClick }>
-            <i class="material-icons">border_color</i>
+            <i className="material-icons">border_color</i>
         </button>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>
