@@ -6,12 +6,13 @@ function customizeControls(canvas) {
             "upload/layer.svg"
           ];
           //********override*****//
-          fabric.Object.prototype._drawControl = function(control, ctx, methodName, left, top) {
-            if (!this.isControlVisible(control)) {
-              return;
+          fabric.Object.prototype._drawControl = function(control, ctx, methodName, left, top, styleOverride) {
+              styleOverride = styleOverride || {};
+              if (!this.isControlVisible(control)) {
+                return;
             }
             var SelectedIconImage = new Image();
-            var size = this.cornerSize;
+            var size = this.cornerSize, stroke = !this.transparentCorners && this.cornerStrokeColor;
             /*  fabric.isVML() ||*/
             this.transparentCorners || ctx.clearRect(left, top, size, size);
             switch (control) {
@@ -32,7 +33,11 @@ function customizeControls(canvas) {
                 SelectedIconImage.src = dataImage[3];
                 break;*/
               default:
-                ctx[methodName](left, top, size, size);
+                this.transparentCorners || ctx.clearRect(left, top, size, size);
+                ctx[methodName + 'Rect'](left, top, size, size);
+                if (stroke) {
+                    ctx.strokeRect(left, top, size, size);
+                }
             }
           
             if (control == 'tl' || control == 'tr' || control == 'bl' || control == 'br') {
@@ -92,11 +97,11 @@ function customizeControls(canvas) {
                   break;*/
                 case 'tl': //delete function if mouse down
                   action = 'delete';
-                  canvas.remove(canvas.getActiveObject());
+                  return canvas.remove(canvas.getActiveObject());
                   break;
                 case 'tr': //delete function if mouse down
                   action = 'sendToBack';
-                  canvas.sendBackwards(canvas.getActiveObject());
+                  return canvas.sendBackwards(canvas.getActiveObject());
                   break;
                   /**ADD END**/
                 default:

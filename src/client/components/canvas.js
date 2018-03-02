@@ -11,8 +11,6 @@ class Canvas extends React.Component {
   render() {
     return (
 		<Strip {...this.props}>
-			<Panel width={this.props.width}>
-			</Panel> 
 		</Strip>
     );
   }

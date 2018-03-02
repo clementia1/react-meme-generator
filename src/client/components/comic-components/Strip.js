@@ -20,21 +20,21 @@ class Strip extends Component {
     }
     
     onDownload() {
-        var { canvas } = this.state;
+        let { canvas } = this.state;
         canvas.deactivateAll().renderAll();
-        var link = this.downloadLink;
+        let link = this.downloadLink;
         link.setAttribute('href', canvas.toDataURL());
         link.setAttribute('download', 'random-meme-you-just-made' + '.png');
         link.click();
     }
     onEffect(effect) {
-        var { canvas } = this.state;
+        let { canvas } = this.state;
         canvas.deactivateAll();
-        var overlayImageUrl = canvas.toDataURL('png');
-        var imageDOM = ReactDOM.findDOMNode(this.imageBuffer);
+        let overlayImageUrl = canvas.toDataURL('png');
+        let imageDOM = ReactDOM.findDOMNode(this.imageBuffer);
         imageDOM.setAttribute('src', overlayImageUrl);
         imageDOM.setAttribute('crossOrigin', 'anonymous');
-        var filterImageUrl = imageDOM.getAttribute('src');
+        let filterImageUrl = imageDOM.getAttribute('src');
         // patch fabric for cross domain image jazz
 
         fabric.Image.fromURL(filterImageUrl, function (img) {
@@ -80,12 +80,12 @@ class Strip extends Component {
     
     componentDidMount() {
         this.props.onRef(this);
-        var canvas = new fabric.Canvas('canvas', {backgroundColor : "white"});
+        let canvas = new fabric.Canvas('canvas', {backgroundColor : "white"});
         customizeControls(canvas);
 
-        var { padding, width, height, fill, stroke, fontFamily, strokeWidth, fontSize } = this.props;
+        let { padding, width, height, fill, stroke, fontFamily, strokeWidth, fontSize } = this.props;
 
-        var text = new fabric.IText('Type your text', {
+        let text = new fabric.IText('Type your text', {
             name: 'sampleText',
             top: padding + 20,
             left: width / 2,
@@ -103,12 +103,14 @@ class Strip extends Component {
         
         this.setState({ canvas });
     }
-      componentWillUnmount() {
-        this.props.onRef(null)
-      }
 
+    componentDidUpdate() {
+        let { canvas } = this.state;
+        canvas.renderAll();
+    }
+    
     componentWillReceiveProps(nextProps) {
-        var { canvas } = this.state;
+        let { canvas } = this.state;
         
         if (nextProps.image !== this.props.image || nextProps.imageCount !== this.props.imageCount) {
             fabric.Image.fromURL(nextProps.image, function (oImg) {
@@ -128,6 +130,11 @@ class Strip extends Component {
         canvas.backgroundColor = nextProps.canvasbgcolor;
         canvas.renderAll();
     }
+
+    componentWillUnmount() {
+        this.props.onRef(null)
+    }
+    
     toggleAddCard() {
         this.setState({
             isAddBlockOpened: !this.state.isAddBlockOpened,
@@ -140,17 +147,9 @@ class Strip extends Component {
         })
     }
     render() {
-        var _this = this;
-        var parentProps = Object.assign({}, _this.props);
-        delete parentProps.children;
-        var childProps = Object.assign({}, { canvas: _this.state.canvas, parent: parentProps, rootParent: parentProps });
-        var childrenWithProps = React.Children.map(this.props.children, function (child, id) {
-            var currentProps = Object.assign({}, childProps, { index: id });
-            return React.cloneElement(child, currentProps);
-        });
         return (
             <div>
-                <canvas id="canvas" {...this.props}></canvas>{childrenWithProps}  
+                <canvas id="canvas" {...this.props}></canvas>
                 <div className="control-elements">
                     {this.state.isAddBlockOpened ?
                         <div className="control-box text-editor">
