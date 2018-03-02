@@ -75,41 +75,54 @@ function customizeControls(canvas) {
                   return false;
               }
           };
-    
-          fabric.Canvas.prototype._getActionFromCorner = function(target, corner) {
-            var action = 'drag';
-            if (corner) {
+
+
+         fabric.Canvas.prototype._removeAction = function(e, target) {
+            let _this = this;
+            if (this.getActiveGroup() && this.getActiveGroup() !== 'undefined') {
+                this.getActiveGroup().forEachObject(function(o) {
+                    o.off();
+                    o.remove();
+                });
+                thsis.discardActiveGroup();
+
+                // as of fabric 1.6.3 necessary for reasons..
+                setTimeout(function() {
+                    _this.deactivateAll();
+                }, 0);
+
+            } else {
+                target.off();
+                target.remove();
+
+                setTimeout(function() {
+                    _this.deactivateAll();
+                }, 0);
+            }
+         },
+            
+          fabric.Canvas.prototype._getActionFromCorner = function(target, corner, e) {
+              if (!corner) {
+                return 'drag';
+              }
+
               switch (corner) {
+                case 'mtr':
+                  return 'rotate';
                 case 'ml':
                 case 'mr':
-                  action = 'scaleX';
-                  break;
+                  return e[this.altActionKey] ? 'skewY' : 'scaleX';
                 case 'mt':
                 case 'mb':
-                  action = 'scaleY';
-                  break;
-                case 'mtr':
-                  action = 'rotate';
-                  break;
-                  /*//**ADD **
-                case 'br':
-                  action = 'rotate';
-                  break;*/
-                case 'tl': //delete function if mouse down
-                  action = 'delete';
-                  return canvas.remove(canvas.getActiveObject());
-                  break;
-                case 'tr': //delete function if mouse down
-                  action = 'sendToBack';
-                  return canvas.sendBackwards(canvas.getActiveObject());
-                  break;
-                  /**ADD END**/
+                  return e[this.altActionKey] ? 'skewX' : 'scaleY';
+                case 'tl':
+                  return this._removeAction(e, target);
+                case 'tr':
+                  return
                 default:
-                  action = 'scale';
+                  return 'scale';
               }
-              return action;
-            }
-          }
+            },
           
           fabric.Canvas.prototype.getItemByName = function(name) {
             var object = null,
