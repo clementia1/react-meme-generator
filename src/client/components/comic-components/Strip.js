@@ -78,9 +78,18 @@ class Strip extends Component {
         }     
     }
     
+    sendActiveObjectBackwards() {
+        let { canvas } = this.state;
+        let activeObj = canvas.getActiveObject();
+        canvas.sendBackwards(activeObj);
+        canvas.renderAll();
+    }
+    
     componentDidMount() {
         this.props.onRef(this);
-        let canvas = new fabric.Canvas('canvas', {backgroundColor : "white"});
+        let canvas = new fabric.Canvas('canvas', {
+            preserveObjectStacking: true,
+            backgroundColor : "white"});
         customizeControls(canvas);
 
         let { padding, width, height, fill, stroke, fontFamily, strokeWidth, fontSize } = this.props;

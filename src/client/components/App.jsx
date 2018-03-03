@@ -52,7 +52,10 @@ class App extends React.Component {
   fitToHeight = () => {
     this.child.fitToObjectHeight(); 
   }
-    
+  
+  sendActiveObjectBackwards = () => {
+    this.child.sendActiveObjectBackwards(); 
+  }
   addImageFromUrl(event) { 
     this.setState({
         image: event.target.value
@@ -165,6 +168,11 @@ class App extends React.Component {
                             </button>
                             <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.fitToHeight}>
                               FIT TO HEIGHT
+                            </button>
+                        </div>
+                        <div className="controlpanel-item">
+                            <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.sendActiveObjectBackwards}>
+                              Move layer down
                             </button>
                         </div>
                     </div>
