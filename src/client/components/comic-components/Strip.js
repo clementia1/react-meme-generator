@@ -116,6 +116,7 @@ class Strip extends Component {
     componentDidUpdate() {
         let { canvas } = this.state;
         canvas.renderAll();
+        componentHandler.upgradeDom();
     }
     
     componentWillReceiveProps(nextProps) {
@@ -163,12 +164,12 @@ class Strip extends Component {
                     {this.state.isAddBlockOpened ?
                         <div className="control-box text-editor">
                             <Dropdown canvas={this.state.canvas}/>                            
-                        </div> : <div></div>
+                        </div> : null
                     }
                     {this.state.isAddBlockOpenedBrush ?
                         <div className="control-box draw-mode">
                             <Brush canvas={this.state.canvas} isDrawingModeOn={this.state.isDrawingModeOn}/>                            
-                        </div> : <div></div>
+                        </div> : null
                     }
                 </div>
                 <div className="control-buttons"> 

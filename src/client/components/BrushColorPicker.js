@@ -1,5 +1,5 @@
-import React from 'react'
-import { ChromePicker } from 'react-color'
+import React from 'react';
+import { ChromePicker } from 'react-color';
 
 class BrushColorPicker extends React.Component {
   state = {    
@@ -29,7 +29,7 @@ class BrushColorPicker extends React.Component {
     return (
       <div>
         <button className="mdl-button mdl-js-button mdl-button--fab" onClick={ this.handleClick }>
-            <i className="material-icons">border_color</i>
+            <i className="material-icons">brush</i>
         </button>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>

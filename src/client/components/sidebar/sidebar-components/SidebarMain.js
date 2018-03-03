@@ -9,7 +9,7 @@ const SidebarMain = (props) => (
   <main>
     <Switch>
       <Route exact path='/' render={()=><ImagePanel1 addImage={props.addImage}/>} />
-      <Route path='/ImagePanel2' render={()=><ImagePanel2 addImage={props.addImage}/>}/>
+      <Route path='/panel2' render={()=><ImagePanel2 addImage={props.addImage}/>}/>
     </Switch>
   </main>
 );

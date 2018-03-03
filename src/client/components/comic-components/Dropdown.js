@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import TextColorPicker from '../TextColorPicker';
 import TextBgColorPicker from '../TextBgColorPicker';
+import TextStrokeColorPicker from '../TextStrokeColorPicker';
 import 'material-design-lite/material.css';
 import 'material-design-lite/material.min.js';
 import 'react-select/dist/react-select.css';
@@ -12,7 +13,8 @@ class Dropdown extends React.Component {
     this.state = {
       text: '',
       color: '#000000',
-      bgColor: '#000000', 
+      bgColor: '#000000',
+      strokeColor: '#000000', 
       font: ['Arial', 'Sherwood', 'Geneva', 'Verdana', 'Monaco', 'Myriad Pro', 'Lucida Grande', 'Ubuntu', 'Impact', 'Times New Roman', 'Georgia', 'Gothic', 'Pacifico', 'Vollkorn SC', 'Pangolin', 'Play', 'Roboto', 'Lobster', 'Cormorant Infant'],
       selectedFont: "Arial",
       selectedFontSize: 12,
@@ -58,6 +60,9 @@ class Dropdown extends React.Component {
         case 'bgColor':
           activObj.setSelectionStyles({textBackgroundColor: this.state.bgColor}).setCoords();
           break;
+        case 'strokeColor':
+          activObj.setSelectionStyles({stroke: this.state.strokeColor}).setCoords();
+          break;
         case 'selectedFont':
           activObj.setSelectionStyles({fontFamily: this.state.selectedFont}).setCoords();
           break;
@@ -79,6 +84,9 @@ class Dropdown extends React.Component {
   }
   changeBgColor = (color) => {
     this.setState({bgColor: color.hex})
+  }
+  changeStrokeColor = (color) => {
+    this.setState({strokeColor: color.hex})
   }
   handleFontSizeChange = (selectedFontSize) => {
     this.setState({ selectedFontSize: selectedFontSize.value});
@@ -108,21 +116,28 @@ class Dropdown extends React.Component {
         </div>
         <div className="controlpanel-item" onFocus={(e) => this.handleControlItemFocus(e, "bgColor")}>
             <TextBgColorPicker bgColor={this.state.bgColor} handleChangeComplete={this.changeBgColor}/>
-        </div>        
-        <div className="controlpanel-item"><Select className="font-family-select"
-            placeholder={this.state.selectedFont}
-            value={this.selectedFont}
-            onChange={this.handleFontFamilyChange}
-            onFocus={(e) => this.handleControlItemFocus(e, "selectedFont")}
-            options={fontFamilyOptions}
-        /></div>
-        <div className="controlpanel-item"><Select
-            placeholder={this.state.selectedFontSize}
-            value={this.selectedFontSize}
-            onChange={this.handleFontSizeChange}
-            onFocus={(e) => this.handleControlItemFocus(e, "selectedFontSize")}
-            options={fontSizeOptions}
-        /></div>
+        </div>
+        <div className="controlpanel-item" onFocus={(e) => this.handleControlItemFocus(e, "strokeColor")}>
+            <TextStrokeColorPicker strokeColor={this.state.strokeColor} handleChangeComplete={this.changeStrokeColor}/>
+        </div>
+        <div className="controlpanel-item">
+            <Select className="font-family-select"
+                placeholder={this.state.selectedFont}
+                value={this.selectedFont}
+                onChange={this.handleFontFamilyChange}
+                onFocus={(e) => this.handleControlItemFocus(e, "selectedFont")}
+                options={fontFamilyOptions}
+            />
+        </div>
+        <div className="controlpanel-item">
+            <Select
+                placeholder={this.state.selectedFontSize}
+                value={this.selectedFontSize}
+                onChange={this.handleFontSizeChange}
+                onFocus={(e) => this.handleControlItemFocus(e, "selectedFontSize")}
+                options={fontSizeOptions}
+            />
+        </div>
         <div className="controlpanel-item"><button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Add text</button></div>
       </div>
     )

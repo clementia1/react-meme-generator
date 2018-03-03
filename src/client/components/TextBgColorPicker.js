@@ -1,5 +1,5 @@
-import React from 'react'
-import { ChromePicker } from 'react-color'
+import React from 'react';
+import { ChromePicker } from 'react-color';
 
 class TextBgColorPicker extends React.Component {
   state = {    
