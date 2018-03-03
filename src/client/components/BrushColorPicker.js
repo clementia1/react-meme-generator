@@ -32,7 +32,7 @@ class BrushColorPicker extends React.Component {
             <i className="material-icons">brush</i>
         </button>
         <div className="mdl-tooltip" htmlFor="brush-color-picker">
-            Choose brush color
+            Brush color
         </div>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>

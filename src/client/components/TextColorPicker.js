@@ -32,7 +32,7 @@ class TextColorPicker extends React.Component {
             <i className="material-icons">format_color_text</i>
         </button>
         <div className="mdl-tooltip" htmlFor="text-color">
-            Choose text color
+            Text color
         </div>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>
