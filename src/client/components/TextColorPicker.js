@@ -28,9 +28,12 @@ class TextColorPicker extends React.Component {
     }
     return (
       <div>
-        <button className="mdl-button mdl-js-button mdl-button--fab" onClick={ this.handleClick }>
+        <button id="text-color" className="mdl-button mdl-js-button mdl-button--fab" onClick={ this.handleClick }>
             <i className="material-icons">format_color_text</i>
         </button>
+        <div className="mdl-tooltip" htmlFor="text-color">
+            Choose text color
+        </div>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>
           <ChromePicker

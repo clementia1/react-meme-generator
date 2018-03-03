@@ -28,9 +28,12 @@ class BrushColorPicker extends React.Component {
     }
     return (
       <div>
-        <button className="mdl-button mdl-js-button mdl-button--fab" onClick={ this.handleClick }>
+        <button id="brush-color-picker" className="mdl-button mdl-js-button mdl-button--fab" onClick={ this.handleClick }>
             <i className="material-icons">brush</i>
         </button>
+        <div className="mdl-tooltip" htmlFor="brush-color-picker">
+            Choose brush color
+        </div>
         { this.state.displayColorPicker ? <div style={ popover }>
           <div style={ cover } onClick={ this.handleClose }/>
           <ChromePicker
