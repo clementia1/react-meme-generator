@@ -127,8 +127,8 @@ class Strip extends Component {
                 oImg.scaleToWidth(0.3 * canvas.getWidth());
                 canvas.add(oImg);
             });
-        }        
-        console.log(canvas.item(0), canvas.item(1));
+        }
+        
         if (nextProps.width !== this.props.width) {
             canvas.setWidth(nextProps.width, { backstoreOnly: true });
             canvas.setWidth(nextProps.width, { cssOnly: true });            

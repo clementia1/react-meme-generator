@@ -1,32 +1,33 @@
 import React from 'react';
+import axios from 'axios';
 import 'material-design-lite/material.css';
 import 'material-design-lite/material.min.js';
 
-const ImagePanel1 = (props) => (
-  <div>
-        <div className="mdl-grid sidebar-panel">                                                                                                                                 
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/hmm.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/mofgod.png"/></div>            
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/wtf.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/3.png"/></div>            
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/rly.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/0.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/1.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/2.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/okay.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/4.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/5.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/6.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/7.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/8.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/9.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/10.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/11.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/12.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/13.png"/></div>
-            <div className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={props.addImage}><img src="images/memes/rageface/14.png"/></div>
-        </div>
-  </div>
-)
+class ImagePanel1 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            images: []
+        }
+    }
+    componentWillMount() {
+            axios.get('/api/getimages/?dir=/memes/rageface').then((response) => {
+                this.setState({images: response.data})
+            })
+    }
+    render() {        
+        return (
+            <div>
+                <div className="mdl-grid sidebar-panel">
+                        {
+                            this.state.images.map((item, index) => {
+                                return <div key={index} className="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone mdl-shadow--2dp imgBox" onClick={this.props.addImage}><img src={"images/memes/rageface/" + item}/></div>
+                            })
+                        }
+                </div>
+            </div>
+        );
+    }
+}
 
 export default ImagePanel1;

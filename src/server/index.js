@@ -1,7 +1,8 @@
 let express = require('express'),
     path = require('path'),
     router = express.Router(),
-    multer = require('multer');
+    multer = require('multer'),
+    fs = require('fs');
 let app = express();
 
 app.set('port', (process.env.PORT || 3000));
@@ -27,6 +28,15 @@ app.post('/upload', upload.single('file'), (req, res, next) => {
     res.sendStatus(200);
 });
 
-app.get('*', function (req, res) {
+/*app.get('*', function (req, res) {
   res.redirect('/');
+});*/
+
+app.get('/api/getimages', function (req, res) {
+    let folder = path.join(__dirname, '..', 'public', 'images', req.query.dir);
+    fs.readdir(folder, (err, files) => {
+        if (files) {
+            res.send(files);
+        }
+    })
 });
