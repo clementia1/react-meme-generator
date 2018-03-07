@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 
 const SidebarHeader = () => (
     <nav>
-      <ul className="sidebar-header-ul mdl-tabs__tab-bar">
-        <li><Link to='/'>Rageface</Link></li>
-        <li><Link to='/pepe'>Pepe</Link></li>
+      <ul className="sidebar-header-ul">
+        <li><Link to='/'>Pepe</Link></li>
+        <li><Link to='/rageface'>Rageface</Link></li>
+        <li><Link to='/twitch'>Twitch</Link></li>
       </ul>
     </nav>
 );

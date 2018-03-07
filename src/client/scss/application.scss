@@ -88,7 +88,8 @@
 
 body {
   background: #fff8ef;
-  color: #3d2a12;  
+  color: #3d2a12;
+  width: 100vw;  
 }
 
 .canvas-container {
@@ -109,10 +110,11 @@ body {
     background: #c6c6c6;
     cursor: pointer;
 }
-textarea {
+.texteditor-textarea-container {
     display: block;
     width: 50%;
 }
+
 
 label.input-custom-file input[type=file] {
   display: none;
@@ -160,9 +162,12 @@ label.input-custom-file input[type=file] {
   margin: 15px;
 }
 
-.sidebar-header-ul {  
+.sidebar-header-ul { 
   list-style-type: none;
   background-color: rgb(41, 22, 4);
+  margin: 0px;
+  -webkit-padding-start: 0px;
+  text-align: center;
 }
 
 .sidebar-header-ul li, a {
@@ -171,10 +176,11 @@ label.input-custom-file input[type=file] {
   outline: none;
   text-decoration: none;
   text-transform: uppercase;
+  display: inline-flex;  
 }
 
 .sidebar-panel {
-    justify-content: center;
+  justify-content: center;
 }
 .Select {
   display: inline-flex;
@@ -206,6 +212,7 @@ label.input-custom-file input[type=file] {
 }
 
 .text-editor-panel, .draw-mode-panel {
+  justify-content: center;
 /*	-webkit-animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;*/
 }

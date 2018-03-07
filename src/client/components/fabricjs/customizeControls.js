@@ -2,8 +2,8 @@ function customizeControls(canvas) {
 
     var DIMICON = 15;
     var dataImage = [
-            "upload/remove.svg",
-            "upload/layer.svg"
+            "images/remove.svg",
+            "images/layer.svg"
           ];
     //********override*****//
     fabric.Object.prototype._drawControl = function (control, ctx, methodName, left, top, styleOverride) {

@@ -28,9 +28,12 @@ app.post('/upload', upload.single('file'), (req, res, next) => {
     res.sendStatus(200);
 });
 
-/*app.get('*', function (req, res) {
-  res.redirect('/');
-});*/
+app.get('/rageface', function (req, res) {
+    res.redirect('/');
+});
+app.get('/twitch', function (req, res) {
+    res.redirect('/');
+});
 
 app.get('/api/getimages', function (req, res) {
     let folder = path.join(__dirname, '..', 'public', 'images', req.query.dir);

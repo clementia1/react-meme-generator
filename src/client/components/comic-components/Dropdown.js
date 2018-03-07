@@ -14,7 +14,8 @@ class Dropdown extends React.Component {
       text: '',
       color: '#000000',
       bgColor: '#000000',
-      strokeColor: '#000000', 
+      strokeColor: '#000000',
+      textStrokeWidth: 1, 
       font: ['Arial', 'Sherwood', 'Geneva', 'Verdana', 'Monaco', 'Myriad Pro', 'Lucida Grande', 'Ubuntu', 'Impact', 'Times New Roman', 'Georgia', 'Gothic', 'Pacifico', 'Vollkorn SC', 'Pangolin', 'Play', 'Roboto', 'Lobster', 'Cormorant Infant'],
       selectedFont: "Arial",
       selectedFontSize: 12,
@@ -63,6 +64,9 @@ class Dropdown extends React.Component {
         case 'strokeColor':
           activObj.setSelectionStyles({stroke: this.state.strokeColor}).setCoords();
           break;
+        case 'strokeWidth':
+          activObj.setSelectionStyles({strokeWidth: +this.state.textStrokeWidth}).setCoords();
+          break;
         case 'selectedFont':
           activObj.setSelectionStyles({fontFamily: this.state.selectedFont}).setCoords();
           break;
@@ -99,7 +103,9 @@ class Dropdown extends React.Component {
   handleControlItemFocus = (e, name) => {
     this.setState({ currentControlItem: e.target.name === '' ? name : e.target.name});
   }
-
+  handleStrokeWidthChange = (e) => {
+    this.setState({textStrokeWidth: e.target.value})
+  }
   render() {
     const { selectedFontSize } = this.state;
     let fontSizeOptions = this.state.size.map((item) => {
@@ -109,8 +115,12 @@ class Dropdown extends React.Component {
             return item = { 'value': item, 'label': item, 'title': item }
     });
     return (
-      <div className="text-editor-panel">
-        <textarea onChange={this.changeTextarea}></textarea>
+      <div className="text-editor-panel">        
+        <div class="mdl-textfield mdl-js-textfield texteditor-textarea-container">
+            <textarea class="mdl-textfield__input texteditor-textarea" type="text" rows= "3" id="create-text" onChange={this.changeTextarea}></textarea>
+            <label class="mdl-textfield__label" for="create-text">Text</label>
+        </div>
+        <div className="controlpanel-item"><button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Add text</button></div>
         <div className="controlpanel-item" onFocus={(e) => this.handleControlItemFocus(e, "color")}>
             <TextColorPicker color={this.state.color} handleChangeComplete={this.changeTextareaColor}/>
         </div>
@@ -138,7 +148,14 @@ class Dropdown extends React.Component {
                 options={fontSizeOptions}
             />
         </div>
-        <div className="controlpanel-item"><button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.AddText}>Add text</button></div>
+        <div className="controlpanel-item" onFocus={(e) => this.handleControlItemFocus(e, "strokeWidth")}>
+                    <p className="stroke-width-range" id="stroke-width-range">
+                        <input name="strokeWidth" type="range" min="1" max="30" step="1" value={this.state.textStrokeWidth} onChange={this.handleStrokeWidthChange} className='mdl-slider mdl-js-slider'></input>
+                    </p>
+                    <div className="mdl-tooltip" htmlFor="stroke-width-range">
+                        Text outline width
+                    </div>
+        </div>  
       </div>
     )
   }
